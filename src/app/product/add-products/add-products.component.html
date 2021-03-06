@@ -1,0 +1,221 @@
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+      <i class="fa fa-bars text-white" aria-hidden="true"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+      <div class="sidebar-content">
+        <div class="sidebar-brand">
+          <a routerLink="/seller-active-dashboard">Seller Account</a>
+          <div id="close-sidebar">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="sidebar-header">
+          <div class="user-pic">
+            <img
+              class="img-responsive img-rounded"
+              src="https://likewise-stage.azureedge.net/uploads/3eb6cf23-895b-45e9-b92c-5fb1b457dd04/bill-gates-profile-pic.jpg"
+              alt="User picture"
+            />
+          </div>
+          <div class="user-info">
+            <span class="user-name"> {{userName}} </span>
+            <span class="user-role">Seller</span>
+          </div>
+        </div>
+  
+        <!-- Sidebar Menu -->
+        <div class="sidebar-menu">
+          <ul>
+            <li class="header-menu"><span>General</span></li>
+            <li class="sidebar-dropdown">
+              <a (click)="showSubMenu=!showSubMenu">
+                <i class="fa fa-tachometer" aria-hidden="true"></i>
+                <span>Inventory</span>
+              </a>
+              <div *ngIf="showSubMenu" class="">
+                <ul>
+                  <li routerLinkActive="active">
+                    <a routerLink="/inventory">Manage Inventory</a>
+                  </li>
+                  <li routerLinkActive="active">
+                    <a routerLink="/product/add-products">Add Products</a>
+                  </li>
+                  <li routerLinkActive="active">
+                    <a>Add Inventory</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a>Manage Inventory</a>
+                  </li>
+                  <li>
+                    <a>Add Products</a>
+                  </li>
+                  <li>
+                    <a>Add Inventory</a>
+                  </li>
+                </ul>
+              </div> -->
+            </li>
+            <li class="sidebar-dropdown">
+              <a>
+                <i class="fa fa-shopping-cart"></i>
+                <span>Orders</span>
+                <span class="badge badge-pill badge-danger">3</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a>Manage Order</a>
+                  </li>
+                  <li>
+                    <a>Orders Dispatch</a>
+                  </li>
+                  <li>
+                    <a>Return</a>
+                  </li>
+  
+                  <li>
+                    <a>Return Pickup</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+  
+            <li class="sidebar-dropdown">
+              <a>
+                <i class="fa fa-globe"></i>
+                <span>Maps</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a>Google maps</a>
+                  </li>
+                  <li>
+                    <a>Open street map</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="header-menu">
+              <span>Extra</span>
+            </li>
+            <li>
+              <a>
+                <i class="fa fa-book"></i>
+                <span>Documentation</span>
+                <span class="badge badge-pill badge-primary">Beta</span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <i class="fa fa-calendar"></i>
+                <span>Calendar</span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <i class="fa fa-folder"></i>
+                <span>Examples</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- sidebar-menu  -->
+      </div>
+    </nav>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+      <div class="container-fluid">
+        <h2>Add Products</h2>
+        <hr />
+        
+        <!-- Default form subscription -->
+        <form [formGroup]="addProductForm" class="border rounded border-light p-5" (ngSubmit)="addProduct(addProductForm.valid)">
+
+            <label for="" class="small">Product ID</label>
+            <input type="text" class="form-control mb-4" placeholder="Product ID" formControlName="productId">
+            
+            <label for="" class="small">Item Name (AKA Title)</label>
+            <input type="text" class="form-control mb-4" placeholder="Item Name" formControlName="itemName">
+            
+            <label for="" class="small">Country Of Origin</label>
+            <input type="text" class="form-control mb-4" placeholder="India" formControlName="countryOfOrigin">
+            
+            <label for="" class="small">Manufacturer</label>
+            <input type="text" class="form-control mb-4" placeholder="Manufacturer" formControlName="manufacturer">
+            
+            <label for="" class="small">Number of Items</label>
+            <input type="number" class="form-control mb-4" placeholder="Number of Items" formControlName="itemsNum">
+            
+            <label for="" class="small">Color Name</label>
+            <input type="text" class="form-control mb-4" placeholder="Color Name" formControlName="colorName">
+
+            <label for="" class="small">Included Components</label>
+            <input type="text" class="form-control mb-4" placeholder="Included Components" formControlName="includedComponents">
+            
+            <label for="" class="small">Exclosure Material</label>
+            <input type="text" class="form-control mb-4" placeholder="Exclosure Material" formControlName="exclosureMaterial">
+            
+            <label for="" class="small">Item type Name</label>
+            <input type="text" class="form-control mb-4" placeholder="Item type Name" formControlName="itemTypeName">
+            
+            <label for="" class="small">Size Map</label>
+            <input type="text" class="form-control mb-4" placeholder="Size Map" formControlName="sizeMap">
+
+            <label for="" class="small">Manufacturer Contact</label>
+            <input type="text" class="form-control mb-4" placeholder="Address Here..." formControlName="manufacturerContact">
+
+            <label for="" class="small">Product Dimensions</label>
+            <div class="row d-flex justify-content-between col-12" formGroupName="productDimensions">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="Length" formControlName="length">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="Width" formControlName="width">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="Height" formControlName="height">
+            </div>            
+            <label for="" class="small">Unit Count</label>
+            <input type="number" class="form-control mb-4" placeholder="18" formControlName="unitCount">
+
+            <label for="" class="small">Unit Count Type</label>
+            <input type="number" class="form-control mb-4" placeholder="Set Unit Count" formControlName="unitCountType">
+
+            
+
+            <div class="">
+                <button class="btn btn-dark mr-2" (click)="resetForm()" type="button">Cancel</button>
+                <button class="btn btn-info" type="submit">Save</button>
+            </div>
+            
+
+
+        </form>
+
+
+        <footer class="text-center">
+          <div class="mb-2">
+            <small>
+              © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+              Rights Reserved
+            </small>
+          </div>
+        </footer>
+      </div>
+    </main>
+    <!-- page-content" -->
+  </div>
+  <!-- page-wrapper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+  
