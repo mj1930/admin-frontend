@@ -173,14 +173,14 @@
                   >
                 </div>
               </div>
-              <div class="col-lg-3 my-2">
+              <!-- <div class="col-lg-3 my-2">
                 <select class="browser-default custom-select">
                   <option selected>Select Action</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </select>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="table-responsive rounded table-striped">
@@ -203,8 +203,8 @@
                     <input type="checkbox" style="cursor: pointer" />
                   </td>
                   <td>
-                    <p class="text-left small m-0">{{user?.isActive ? 'Active': 'Inactive'}}</p>
-                    <span *ngIf="!user?.isActive" class="text-left small m-0 p-0 text-muted"
+                    <p class="text-left small m-0">{{user?.isEmailVerified ? 'Active': 'Inactive'}}</p>
+                    <span *ngIf="!user?.isEmailVerified" class="text-left small m-0 p-0 text-muted"
                       >(Not Verified)</span
                     >
                   </td>
