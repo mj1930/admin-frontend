@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SellerRoutingModule } from './seller-routing.module';
 import { httpInterceptorProviders } from '../http-interceptor';
 import { SellerService } from './seller.service';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SellerService } from './seller.service';
     MDBBootstrapModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [httpInterceptorProviders, SellerService]
 })

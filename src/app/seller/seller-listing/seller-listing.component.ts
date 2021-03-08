@@ -8,7 +8,7 @@ import { SellerService } from '../seller.service';
 })
 export class SellerListingComponent implements OnInit {
 
-  users;
+  users = [];
   skip = 0;
   limit = -1;
 
