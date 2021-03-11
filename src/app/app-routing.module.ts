@@ -9,6 +9,8 @@ const routes: Routes = [
    //{path: 'product', loadChildren: () => import('./product/product.module').then(module => module.ProductModule)},
   // {path: 'inventory', loadChildren: () => import('./inventory/inventory.module').then(module => module.InventoryModule)},
    {path: 'seller', loadChildren: () => import('./seller/seller.module').then(module => module.SellerModule)},
+   {path: 'category', loadChildren: () => import('./category/category.module').then(module => module.CategoryModule)},
+   {path: 'order', loadChildren: () => import('./orders/order.module').then(module => module.OrderModule)},
   //{path: '**', component: RegisterComponent}
 ];
 
