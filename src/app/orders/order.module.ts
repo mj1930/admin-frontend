@@ -7,10 +7,11 @@ import { httpInterceptorProviders } from '../http-interceptor';
 import { SharedModule } from '../shared/shared.module';
 import { AddOrderComponent } from './add-order/add-order.component';
 import { OrderRoutingModule } from './order-routing.module';
+import { OrderListingComponent } from './order-listing/order-listing.component';
 
 
 @NgModule({
-  declarations: [AddOrderComponent],
+  declarations: [AddOrderComponent, OrderListingComponent],
   imports: [
     CommonModule,
     OrderRoutingModule,
