@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AddOrderComponent } from './add-order/add-order.component';
 import { OrderRoutingModule } from './order-routing.module';
 import { OrderListingComponent } from './order-listing/order-listing.component';
+import { OrderService } from './order.service';
 
 
 @NgModule({
@@ -21,6 +22,6 @@ import { OrderListingComponent } from './order-listing/order-listing.component';
     HttpClientModule,
     SharedModule
   ],
-  providers: [httpInterceptorProviders]
+  providers: [httpInterceptorProviders, OrderService]
 })
 export class OrderModule { }

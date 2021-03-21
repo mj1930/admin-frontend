@@ -8,6 +8,7 @@ import * as $ from 'jquery';
 })
 export class SideNavigationComponent implements OnInit {
 
+  showSubMenu = false;
   constructor() { }
 
   ngOnInit(): void {

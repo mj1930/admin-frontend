@@ -49,36 +49,21 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr *ngFor="let order of orders; let i=index;">
                       <td scope="row">
                         <input type="checkbox" style="cursor: pointer" />
                       </td>
                       <td>
-                          <p>1</p>
+                          <p>{{i+1}}</p>
                       </td>
                       <td>
-                        <p>14 Mar 2021 18:09:56</p>
+                        <p>{{order?.createdAt | date:'medium'}}</p>
                       </td>
                       <td>
-                          <p>Whatsapp</p>
+                          <p>{{order?.mode}}</p>
                       </td>
                       <td>
-                          <p>012458</p>
-                      </td>
-                      <td>
-                          <p>Product Name</p>
-                      </td>
-                      <td>
-                          <p>12</p>
-                      </td>
-                      <td>
-                          <p>Life Life Info Solutions</p>
-                      </td>
-                      <td>
-                          <p>Hisar</p>
-                      </td>
-                      <td>
-                          <p>1820</p>
+                          <p>{{order?._id}}</p>
                       </td>
                       <td>
                           <p>NA</p>
@@ -87,25 +72,40 @@
                           <p>NA</p>
                       </td>
                       <td>
-                          <p>Pending</p>
+                          <p>NA</p>
                       </td>
                       <td>
-                          <p>COD</p>
+                          <p>NA</p>
                       </td>
                       <td>
-                          <p>Pending</p>
+                          <p>{{order?.totalAmnt}}</p>
                       </td>
                       <td>
-                          <p>Address Here</p>
+                          <p>{{order?.userGstin}}</p>
                       </td>
                       <td>
-                          <p>4 Days</p>
+                          <p>NA</p>
                       </td>
                       <td>
-                          <p>1 Day</p>
+                          <p>{{order?.orderStatus === 'P'? 'Pending' : NA}}</p>
                       </td>
                       <td>
-                          <p>Anant Avinash</p>
+                          <p>{{order?.paymentMode}}</p>
+                      </td>
+                      <td>
+                          <p>NA</p>
+                      </td>
+                      <td>
+                          <p>{{order?.address}}</p>
+                      </td>
+                      <td>
+                          <p>NA</p>
+                      </td>
+                      <td>
+                          <p>NA</p>
+                      </td>
+                      <td>
+                          <p>NA</p>
                       </td>
                       <td>
                         <div class="btn-group" role="group">

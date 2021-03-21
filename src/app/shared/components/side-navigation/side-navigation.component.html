@@ -4,7 +4,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a routerLink="/seller">Seller Account</a>
+        <a routerLink="/seller">Admin Account</a>
         <div id="close-sidebar" (click)="closeSidebar()">
           <i class="fa fa-times" aria-hidden="true"></i>
         </div>
@@ -39,6 +39,23 @@
               <i class="fa fa-shopping-cart"></i>
               <span>Product Listing</span>
             </a>
+          </li>
+
+          <li class="sidebar-dropdown" routerLinkActive="active">
+            <a (click)="showSubMenu=!showSubMenu">
+              <i class="fa fa-shopping-cart"></i>
+              <span>Category</span>
+            </a>
+            <div *ngIf="showSubMenu" class="">
+              <ul>
+                <li routerLinkActive="active">
+                  <a routerLink="/category">Add Category</a>
+                </li>
+                <li routerLinkActive="active">
+                  <a routerLink="/category/category-listing">Category Listing</a>
+                </li>
+              </ul>
+            </div>
           </li>
           
           <li class="sidebar-dropdown">

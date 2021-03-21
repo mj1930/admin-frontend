@@ -8,6 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryListingComponent } from './category-listing/category-listing.component';
+import { CategoryService } from './category.service';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 
 @NgModule({
@@ -19,8 +21,9 @@ import { CategoryListingComponent } from './category-listing/category-listing.co
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    AutocompleteLibModule
   ],
-  providers: [httpInterceptorProviders]
+  providers: [httpInterceptorProviders, CategoryService]
 })
 export class CategoryModule { }

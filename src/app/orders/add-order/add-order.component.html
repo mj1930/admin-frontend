@@ -6,10 +6,10 @@
             <h2>Order Booking</h2>
             <hr />
             <div class="row">
-                <form class="col">
+                <form class="col" [formGroup]="addOrderForm" (ngSubmit)="addProduct()">
                     <div class="form-group">
                       <label for="">Mode Of Booking</label>
-                      <select class="form-control">
+                      <select class="form-control" formControlName="mode">
                         <option>Website</option>
                         <option selected>Phone</option>
                         <option>Whatsapp</option>
@@ -17,107 +17,39 @@
                     </div>
 
                     <div class="">
+                      <!-- <span class="text-primary" style="cursor: pointer;">Add New Product</span> -->
+
+                      <!-- <div formArrayName="products"
+          *ngFor="let product of addOrderForm.get('products')['controls']; let i = index;"> -->
+          <div formGroupName="products">
                       <div class="form-group">
                         <div class="d-flex justify-content-between">
                           <label for="">Product Name</label>
-                          <span class="text-primary" style="cursor: pointer;">Add New Product</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Product Name">
+                        <input type="text" class="form-control" (keyup)="searchProduct()" formControlName="name" placeholder="Product Name">
                       </div>
 
                       <div class="form-group mt-2">
                         <label for="">Quantity</label>
-                        <input type="text" class="form-control" placeholder="2">
+                        <input type="text" class="form-control" (keyup)="calculateTotalAmount()" formControlName="quantity" placeholder="2">
                       </div>
 
                       <div class="form-group mt-2">
                           <label for="">Product Price (MRP)</label>
-                          <input type="text" class="form-control" placeholder="INR 200">
+                          <input type="text" class="form-control" (keyup)="calculateTotalAmount()" formControlName="price" placeholder="INR 200">
                       </div>
-                    </div>
+                    <!-- </div> -->
 
                     <div class="row">
                         <div class="col">
                             <p>Search Result</p>
                             <div class="row">
-                                <div class="col-sm-4 col-md-3 col-lg-2 my-2">
+                                <div *ngFor="let product of searchResult" class="col-sm-4 col-md-3 col-lg-2 my-2">
                                     <div class="card px-2">
                                       <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
                                       <div class="card-body px-0">
-                                        <h5 class="card-title">Product name</h5>
-                                        <p class="card-text">Description details goes here</p>
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                      </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-                                    <div class="card px-2">
-                                      <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
-                                      <div class="card-body px-0">
-                                        <h5 class="card-title">Product name</h5>
-                                        <p class="card-text">Description details goes here</p>
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                      </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-                                    <div class="card px-2">
-                                      <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
-                                      <div class="card-body px-0">
-                                        <h5 class="card-title">Product name</h5>
-                                        <p class="card-text">Description details goes here</p>
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                      </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-                                    <div class="card px-2">
-                                      <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
-                                      <div class="card-body px-0">
-                                        <h5 class="card-title">Product name</h5>
-                                        <p class="card-text">Description details goes here</p>
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                      </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-                                    <div class="card px-2">
-                                      <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
-                                      <div class="card-body px-0">
-                                        <h5 class="card-title">Product name</h5>
-                                        <p class="card-text">Description details goes here</p>
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                      </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-                                    <div class="card px-2">
-                                      <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
-                                      <div class="card-body px-0">
-                                        <h5 class="card-title">Product name</h5>
-                                        <p class="card-text">Description details goes here</p>
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                      </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-                                    <div class="card px-2">
-                                      <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
-                                      <div class="card-body px-0">
-                                        <h5 class="card-title">Product name</h5>
-                                        <p class="card-text">Description details goes here</p>
+                                        <h5 class="card-title">{{product?.itemName}}</h5>
+                                        <p class="card-text">{{product?.description}}</p>
                                         <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
                                       </div>
@@ -128,37 +60,37 @@
                         
                     </div>
 
-                    
-
+                  </div>
+                    </div>
                     <div class="form-group">
                         <label for="">Order Total</label>
-                        <input type="text" class="form-control" placeholder="Rs 200" disabled>
+                        <input type="text" class="form-control" formControlName="totalAmnt" placeholder="Rs 200" disabled>
                     </div>
 
                     <div class="form-group">
                         <label for="">Address</label>
-                        <textarea class="form-control"></textarea>
+                        <textarea class="form-control" formControlName="address"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="">GST (Applicable only at Business Purchase)</label>
-                        <input type="text" class="form-control" placeholder="GSTIN">
+                        <input type="text" class="form-control" formControlName="userGstin" placeholder="GSTIN">
                     </div>
 
                     <div class="form-group">
                         <label for="">Business Name</label>
-                        <input type="text" class="form-control" placeholder="Name of business">
+                        <input type="text" class="form-control" formControlName="businessName" placeholder="Name of business">
                     </div>
 
                     <div class="form-group">
                         <label for="">Payment Mode</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <div class="form-check" *ngFor="let payMode of paymentModes">
+                            <input class="form-check-input" type="radio" id="exampleRadios1" formControlName="paymentMode" [value]="payMode.text" [checked]="payMode.text === 'Cash On Delivery'">
                             <label class="form-check-label" for="exampleRadios1">
-                              Debit Card / Credit Card
+                              {{payMode.text}}
                             </label>
                         </div>
-                        <div class="form-check">
+                        <!-- <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
                             <label class="form-check-label" for="exampleRadios2">
                               UPI Payment
@@ -175,10 +107,10 @@
                             <label class="form-check-label" for="exampleRadios4">
                               Cash On Delivery
                             </label>
-                        </div>
+                        </div> -->
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-sm rounded m-0">Proceed To Payment</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded m-0">Go to Details</button>
                   </form>
             </div>
       
