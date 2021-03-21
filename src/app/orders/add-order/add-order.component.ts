@@ -39,8 +39,8 @@ export class AddOrderComponent implements OnInit {
   //userId: [],
   totalAmnt:[],
   address:[],
-  userGstin:[],
-  businessName:[],
+  userGstin:[""],
+  businessName:[""],
   paymentMode:[]
     });
 this.userName = JSON.parse(localStorage.getItem('user')).name;

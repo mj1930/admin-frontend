@@ -40,7 +40,7 @@
                       </div>
                     <!-- </div> -->
 
-                    <div class="row">
+                    <div class="row" *ngIf="addOrderForm.controls['products']['controls']['name'].value">
                         <div class="col">
                             <p>Search Result</p>
                             <div class="row">
