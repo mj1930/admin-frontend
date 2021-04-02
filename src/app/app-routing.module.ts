@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { SignupComponent } from './auth/signup/signup.component';
 import { UserRightsManagementComponent } from './user-rights-management/user-rights-management.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/seller'},
   {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'reset-password', component: ResetPasswordComponent},
   {path: 'user-rights', component: UserRightsManagementComponent},
