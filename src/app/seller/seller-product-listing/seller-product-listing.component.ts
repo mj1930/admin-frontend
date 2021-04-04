@@ -10,6 +10,8 @@ export class SellerProductListingComponent implements OnInit {
 
   products;
   status;
+  showHide: boolean = false;
+  feedback: string = '';
 
   constructor(private sellerService: SellerService) { }
 
@@ -26,18 +28,25 @@ export class SellerProductListingComponent implements OnInit {
     })
   }
 
-  approveRejectProduct(data) {
+  approveRejectProduct(data, status) {
     let reqBody = {
-      status : !data.isApproved,
-      productId: data._id
+      status,
+      productId: data._id,
+      feedback: this.feedback,
     }
     this.sellerService.approveRejectProduct(reqBody).subscribe(data => {
       console.log(data);
       //this.products = data;
       this.getSellerProductListing();
+      this.showHide = false;
+      this.feedback = '';
     }, error => {
       console.log(error);
     })
+  }
+
+  showHideFeedbackBox() {
+    this.showHide = !this.showHide;
   }
 
 }
