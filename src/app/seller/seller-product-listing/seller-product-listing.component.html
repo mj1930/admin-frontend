@@ -90,7 +90,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let product of products; let i=index;">
+                <tr style="cursor: pointer" *ngFor="let product of products; let i=index;" (click)="goToProductDescPage(product._id)">
                   <td scope="row">
                     <input type="checkbox" style="cursor: pointer" />
                   </td>
@@ -114,29 +114,27 @@
                     </p>
                   </td>
                   <td>{{product?.createdAt | date: 'medium'}}</td>
-                  <td>{{product?.unitCount}}</td>
+                  <td>{{product?.availableUnits}}</td>
                   <td>N/A</td>
                   <td>N/A</td>
-                  <td>N/A</td>
+                  <td>INR {{product?.productPrice}}</td>
                   <td>N/A</td>
                   <td>N/A</td>
                   <td>N/A</td>
                   
                   <td>
                       <div class="d-flex justify-content-around">
-                        <button (click)="showHideFeedbackBox()" class="btn btn-sm btn-danger m-2"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        <button (click)="approveRejectProduct(product, true)"  class="btn btn-sm btn-success m-2"><i class="fa fa-check" aria-hidden="true"></i></button>
+                        <button [disabled]="showFeedbackSection" (click)="showFeedbackSection = true;" class="btn btn-sm btn-danger m-2"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button [disabled]="showFeedbackSection" (click)="approveRejectProduct(product, 'approve'); showFeedbackSection = false" class="btn btn-sm btn-success m-2"><i class="fa fa-check" aria-hidden="true"></i></button>
                       </div>
 
-                      <div class="col" *ngIf="showHide">
-                          <input type="text" placeholder="Feedback Here" name="feedback" [(ngModel)]="feedback">
+                      <div class="col" *ngIf="showFeedbackSection">
+                          <textarea rows="5" [(ngModel)]="feedback" placeholder="Feedback Here"></textarea>
                           <div class="d-flex justify-content-between">
-                            <button class="btn btn-sm btn-primary m-2" (click)="showHideFeedbackBox()">Cancel</button>
-                            <button class="btn btn-sm btn-dark m-2" (click)="approveRejectProduct(product, false)" >Submit</button>
-
+                            <button class="btn btn-sm btn-primary m-2" (click)="showFeedbackSection = false;">Cancel</button>
+                            <button class="btn btn-sm btn-dark m-2" (click)="approveRejectProduct(product, 'reject'); showFeedbackSection = false;">Submit</button>
                           </div>
                       </div>
-                      
                   </td>
                 </tr>
   

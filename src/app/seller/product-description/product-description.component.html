@@ -1,0 +1,135 @@
+<div class="page-wrapper chiller-theme toggled">
+    <app-side-navigation></app-side-navigation>
+      <!-- sidebar-wrapper  -->
+      <section class="page-content">
+        <div class="container-fluid">
+          <h2>Product Details</h2>
+          <hr />
+        </div>
+      </section>
+  
+  
+      <main class="page-content py-0">
+        <div class="container-fluid">
+          
+        <div class="border rounded border-light p-3 my-2">
+            <h4>Product Description</h4>
+            <hr>
+            <div>
+                <p class="font-weight-bold m-0">Item Name (AKA Title): <span class="font-weight-light text-dark">{{product?.itemName}}</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">Barcode: <span class="font-weight-light text-dark">{{product?.barcode}}</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">Country Of Origin: <span class="font-weight-light text-dark">{{product?.countryOfOrigin}}</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">City: <span class="font-weight-light text-dark">{{product?.city}}</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">Manufacturer: <span class="font-weight-light text-dark">{{product?.brand}}</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">Available Units: <span class="font-weight-light text-dark">{{product?.availableUnits || 'NA'}}</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">Product Dimensions: <span class="font-weight-light text-dark">{{product?.dimensions}}</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">Bullet Points: <span class="font-weight-light text-dark">NA</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">Product Description: <span class="font-weight-light text-dark">{{product?.description}}</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">Product Weight: <span class="font-weight-light text-dark">{{product?.weight}}</span></p>
+            </div>
+        </div>
+
+        <!-- <div class="border rounded border-light p-3 my-2">
+            <h4>Product Images</h4>
+            <hr>
+            <div class="row d-flex justify-content-around">
+                <div class="col-md-4 col-sm-6 my-2"><img class="img-fluid" src="http://2.bp.blogspot.com/-H6MAoWN-UIE/TuRwLbHRSWI/AAAAAAAABBk/89iiEulVsyg/s400/Free%2BNature%2BPhoto.jpg" /></div>
+                <div class="col-md-4 col-sm-6 my-2"><img class="img-fluid" src="http://th03.deviantart.net/fs70/200H/f/2010/256/0/9/painting_of_nature_by_dhikagraph-d2ynalq.jpg" /></div>
+                <div class="col-md-4 col-sm-6 my-2"><img class="img-fluid" src="http://th03.deviantart.net/fs70/200H/f/2010/256/0/9/painting_of_nature_by_dhikagraph-d2ynalq.jpg" /></div>
+                <div class="col-md-4 col-sm-6 my-2"><img class="img-fluid" src="http://2.bp.blogspot.com/-H6MAoWN-UIE/TuRwLbHRSWI/AAAAAAAABBk/89iiEulVsyg/s400/Free%2BNature%2BPhoto.jpg" /></div>
+            </div>
+        </div> -->
+
+        <div class="border rounded border-light p-3 my-2">
+            <h4>Product Selling Information</h4>
+            <hr>
+            <div>
+                <p class="font-weight-bold m-0">Your Price: <span class="font-weight-light text-dark">INR {{product?.productPrice}}</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">Seller SKU: <span class="font-weight-light text-dark">NA</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">Condition: <span class="font-weight-light text-dark">NA</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">HSN Code: <span class="font-weight-light text-dark">NA</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">MRP: <span class="font-weight-light text-dark">INR {{product?.mrp}}</span></p>
+            </div>
+        </div>
+
+        <div class="border rounded border-light p-3 my-2">
+            <h4>Product Variations</h4>
+            <hr>
+            <div>
+                <p class="font-weight-bold m-0">Color: <span class="font-weight-light text-dark">{{product?.color.join(',')}}</span></p>
+            </div>
+
+            <div>
+                <p class="font-weight-bold m-0">Size: <span class="font-weight-light text-dark">{{product?.size.join(',')}}</span></p>
+            </div>
+        </div>
+
+        <!-- <div class="border rounded border-light p-3 my-2 d-flex justify-content-between"> -->
+            <button class="btn btn-sm btn-dark mt-3" (click)="goToProductListingPage()">Cancel</button>
+        <!-- </div> -->
+  
+  
+          <footer class="text-center">
+            <div class="mb-2">
+              <small>
+                © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+                Rights Reserved
+              </small>
+            </div>
+          </footer>
+        </div>
+      </main>
+      <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    

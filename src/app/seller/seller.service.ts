@@ -10,6 +10,10 @@ export class SellerService {
     return this.http.post('products/get-all-products', {skip:0, limit:100});
   }
 
+  getProductDetails(id) {
+    return this.http.get(`products/get-product-details/${id}`);
+  }
+
   getUsers(reqBody) {
     return this.http.post('users/get-all-users', reqBody);
   }

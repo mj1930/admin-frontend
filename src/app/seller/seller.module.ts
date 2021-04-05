@@ -9,10 +9,11 @@ import { SellerRoutingModule } from './seller-routing.module';
 import { httpInterceptorProviders } from '../http-interceptor';
 import { SellerService } from './seller.service';
 import { SharedModule } from '../shared/shared.module';
+import { ProductDescriptionComponent } from './product-description/product-description.component';
 
 
 @NgModule({
-  declarations: [SellerListingComponent, SellerProductListingComponent],
+  declarations: [SellerListingComponent, SellerProductListingComponent, ProductDescriptionComponent],
   imports: [
     CommonModule,
     SellerRoutingModule,
@@ -20,7 +21,8 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   providers: [httpInterceptorProviders, SellerService]
 })
