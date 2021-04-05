@@ -65,7 +65,7 @@
 
                     <div class="form-group" *ngIf="sellers.length">
                       <label for="">Select Seller</label>
-                      <select class="form-control" formControlName="sellerId">
+                      <select class="form-control" (change)="changeSeller(seller)" formControlName="sellerId">
                         <option *ngFor="let seller of sellers;" [value]="seller._id">{{seller?.name}}</option>
                       </select>
                     </div>

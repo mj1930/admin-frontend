@@ -39,7 +39,8 @@ export class AddOrderComponent implements OnInit {
     name: '',
     price: null,
     quantity: null,
-    sellerId: ''
+    sellerId: '',
+    sellerName: ''
   }),
   //userId: [],
   totalAmnt:[],
@@ -96,6 +97,14 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
   setProductSearchText(productName, price) {
   this.addOrderForm.controls['products']['controls']['name'].setValue(productName);
   this.addOrderForm.controls['products']['controls']['price'].setValue(parseFloat(price));
+  }
+
+  changeSeller(seller) {
+    this.sellers.forEach(item => {
+if(item._id === this.addOrderForm.controls['products']['controls']['sellerId'].value) {
+  this.addOrderForm.controls['products']['controls']['sellerName'].setValue(item.name);
+}
+    }) 
   }
 
   resetForm() {
