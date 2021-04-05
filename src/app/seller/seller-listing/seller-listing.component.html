@@ -85,7 +85,7 @@
                     >
                   </td>
                   <td>
-                    {{user?.storename}}
+                    {{user?.storename ? user?.storename : 'NA'}}
                   </td>
                   <td>{{user?.createdAt | date: 'medium'}}</td>
                   <td>

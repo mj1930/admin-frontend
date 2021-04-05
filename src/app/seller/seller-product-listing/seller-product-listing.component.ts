@@ -41,8 +41,6 @@ export class SellerProductListingComponent implements OnInit {
       //this.products = data;
       this.feedback = '';
       this.getSellerProductListing();
-      this.showHide = false;
-      this.feedback = '';
     }, error => {
       console.log(error);
     })
