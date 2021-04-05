@@ -46,6 +46,7 @@
                       <th scope="col">Delay</th>
                       <th scope="col">Delivery Man</th>
                       <th scope="col">Print Invoice & Label</th>
+                      <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -87,7 +88,7 @@
                           <p>NA</p>
                       </td>
                       <td>
-                          <p>{{order?.orderStatus === 'P'? 'Pending' : NA}}</p>
+                          <p>{{order?.status}}</p>
                       </td>
                       <td>
                           <p>{{order?.paymentMode}}</p>
@@ -111,6 +112,11 @@
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-sm btn-dark">Print</button>
                           </div>
+                      </td>
+                      <td>
+                        <select class="form-control select-style" name="status" [(ngModel)]="status" (change)="updateStatus(order._id, $event)">
+                          <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
+                        </select>
                       </td>
                     </tr>
                   </tbody>

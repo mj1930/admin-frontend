@@ -20,4 +20,12 @@ export class OrderService {
     return this.http.get(`products/search-products?term=${term}`);
   }
 
+  getUsers(reqBody) {
+    return this.http.post('users/get-all-users', reqBody);
+  }
+
+  updateStatus(reqBody) {
+    return this.http.post('orders/update-order', reqBody);
+  }
+
 }

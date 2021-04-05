@@ -15,7 +15,8 @@ export class AddOrderComponent implements OnInit {
   paymentModes = [{value:'debit', text:'Debit Card / Credit Card'},
   {value:'upi', text:'UPI Payment'},
   {value:'gateway', text:'Payment Gateway (PayTM, PhonePe, GooglePay)'},
-  {value:'cod', text:'Cash On Delivery'}]
+  {value:'cod', text:'Cash On Delivery'}];
+  sellers = [];
 
   constructor(private fb: FormBuilder, 
     private orderService: OrderService, 
@@ -23,6 +24,7 @@ export class AddOrderComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.getSellerListing();
     this.addOrderForm = this.fb.group({
      
   mode: [],
@@ -41,7 +43,8 @@ export class AddOrderComponent implements OnInit {
   address:[],
   userGstin:[""],
   businessName:[""],
-  paymentMode:[]
+  paymentMode:[],
+  sellerId: ''
     });
 this.userName = JSON.parse(localStorage.getItem('user')).name;
   }
@@ -72,6 +75,24 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
     if( quantity && price) {
       String(this.addOrderForm.controls['totalAmnt'].setValue(quantity * price));
     }
+  }
+
+  
+  getSellerListing() {
+    let reqBody = {
+      skip: 0,
+      limit: 10000
+    }
+    this.orderService.getUsers(reqBody).subscribe(data => {
+      console.log(data);
+      this.sellers = data['data'];
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  setProductSearchText(productName) {
+  this.addOrderForm.controls['products']['controls']['name'].setValue(productName);
   }
 
   resetForm() {

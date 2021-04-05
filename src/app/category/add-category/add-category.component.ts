@@ -13,6 +13,7 @@ export class AddCategoryComponent implements OnInit {
   subCategory = '';
   categoryId = null;
   showInputForCategory = false;
+  categoryImage: any;
 
   constructor(private categoryService: CategoryService, private router: Router) { }
 
@@ -33,22 +34,29 @@ export class AddCategoryComponent implements OnInit {
     })
   }
 
+  categoryFileUpload(event) {
+    this.categoryImage = event.target.files[0]
+  }
+
 
   addCategory() {
-    let reqBody = {
-      subCategory: this.subCategory
-    }
+    let formData = new FormData();
+    // let reqBody = {
+    //   subCategory: this.subCategory
+    // }
+    formData.append('subCategory', this.subCategory)
     if (this.categoryId) {
-      reqBody['categoryId'] = this.categoryId;
-      this.categoryService.addSubCategory(reqBody).subscribe(data => {
+      formData.append('categoryId', this.categoryId);
+      this.categoryService.addSubCategory(formData).subscribe(data => {
         console.log(data);
         this.router.navigateByUrl('/category/category-listing');
       }, error => {
         console.log(error)
       })
     } else {
-      reqBody['category'] = this.category;
-      this.categoryService.addCategory(reqBody).subscribe(data => {
+      formData.append("file", this.categoryImage);
+      formData.append('category', this.category);
+      this.categoryService.addCategory(formData).subscribe(data => {
         console.log(data);
         this.router.navigateByUrl('/category/category-listing');
       }, error => {
