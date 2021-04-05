@@ -12,10 +12,12 @@ export class AddOrderComponent implements OnInit {
   addOrderForm: FormGroup;
   showSubMenu = false;
   userName = '';
-  paymentModes = [{value:'debit', text:'Debit Card / Credit Card'},
-  {value:'upi', text:'UPI Payment'},
-  {value:'gateway', text:'Payment Gateway (PayTM, PhonePe, GooglePay)'},
-  {value:'cod', text:'Cash On Delivery'}];
+  paymentModes = [
+    // {value:'debit', text:'Debit Card / Credit Card'},
+    // {value:'upi', text:'UPI Payment'},
+    // {value:'gateway', text:'Payment Gateway (PayTM, PhonePe, GooglePay)'},
+    {value:'cod', text:'Cash On Delivery'}
+  ];
   sellers = [];
 
   constructor(private fb: FormBuilder, 
@@ -27,7 +29,7 @@ export class AddOrderComponent implements OnInit {
     this.getSellerListing();
     this.addOrderForm = this.fb.group({
      
-  mode: [],
+  mode: ['Phone'],
   // products: this.fb.array([this.fb.group({
   //   name: '',
   //   price:null,
@@ -35,16 +37,16 @@ export class AddOrderComponent implements OnInit {
   // })]),
   products: this.fb.group({
     name: '',
-    price:null,
-    quantity: null
+    price: null,
+    quantity: null,
+    sellerId: ''
   }),
   //userId: [],
   totalAmnt:[],
   address:[],
   userGstin:[""],
   businessName:[""],
-  paymentMode:[],
-  sellerId: ''
+  paymentMode:['Cash On Delivery']
     });
 this.userName = JSON.parse(localStorage.getItem('user')).name;
   }
@@ -91,8 +93,9 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
     })
   }
 
-  setProductSearchText(productName) {
+  setProductSearchText(productName, price) {
   this.addOrderForm.controls['products']['controls']['name'].setValue(productName);
+  this.addOrderForm.controls['products']['controls']['price'].setValue(parseFloat(price));
   }
 
   resetForm() {

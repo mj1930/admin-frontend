@@ -3,23 +3,9 @@
         <!-- sidebar-wrapper  -->
         <main class="page-content">
           <div class="container-fluid">
-            <h2>Category Listing</h2>
+            <h2>Order Listing</h2>
             <hr />
             <div class="row">
-              <!-- <div class="filer col p-3 rounded my-2 elegant-color text-white">
-                <div class="row">
-                  <div class="col-sm-12 col-md-2">
-                    <select class="form-control">
-                        <option selected>Select Category</option>
-                        <option>Category 1</option>
-                        <option>Category 2</option>
-                        <option>Category 3</option>
-                        <option>Category 4</option>
-                        <option>Category 5</option>
-                    </select>
-                  </div>
-                </div>
-              </div> -->
               <div class="table-responsive rounded table-striped table-bordered">
                 <table class="table">
                   <thead class="grey lighten-2 small text-uppercase">
@@ -34,18 +20,17 @@
                       <th scope="col">Product Name</th>
                       <th scope="col">Quantity</th>
                       <th scope="col">Seller</th>
-                      <th scope="col">City</th>
                       <th scope="col">Order Total (INR)</th>
-                      <th scope="col">GSTIN Number</th>
-                      <th scope="col">GSTIN Name</th>
+                      <!-- <th scope="col">GSTIN Number</th>
+                      <th scope="col">GSTIN Name</th> -->
                       <th scope="col">Status</th>
                       <th scope="col">Payment Mode</th>
-                      <th scope="col">Payment Status</th>
+                      <!-- <th scope="col">Payment Status</th> -->
                       <th scope="col">Address Details</th>
-                      <th scope="col">Expected Time</th>
+                      <!-- <th scope="col">Expected Time</th>
                       <th scope="col">Delay</th>
-                      <th scope="col">Delivery Man</th>
-                      <th scope="col">Print Invoice & Label</th>
+                      <th scope="col">Delivery Man</th> -->
+                      <!-- <th scope="col">Print Invoice & Label</th> -->
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -76,30 +61,27 @@
                           <p>NA</p>
                       </td>
                       <td>
-                          <p>NA</p>
-                      </td>
-                      <td>
                           <p>{{order?.totalAmnt}}</p>
                       </td>
-                      <td>
+                      <!-- <td>
                           <p>{{order?.userGstin}}</p>
-                      </td>
-                      <td>
+                      </td> -->
+                      <!-- <td>
                           <p>NA</p>
-                      </td>
+                      </td> -->
                       <td>
                           <p>{{order?.status}}</p>
                       </td>
                       <td>
                           <p>{{order?.paymentMode}}</p>
                       </td>
-                      <td>
-                          <p>NA</p>
-                      </td>
+                      <!-- <td>
+                          <p>On Delivery</p>
+                      </td> -->
                       <td>
                           <p>{{order?.address}}</p>
                       </td>
-                      <td>
+                      <!-- <td>
                           <p>NA</p>
                       </td>
                       <td>
@@ -107,14 +89,14 @@
                       </td>
                       <td>
                           <p>NA</p>
-                      </td>
-                      <td>
+                      </td> -->
+                      <!-- <td>
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-sm btn-dark">Print</button>
                           </div>
-                      </td>
+                      </td> -->
                       <td>
-                        <select class="form-control select-style" name="status" [(ngModel)]="status" (change)="updateStatus(order._id, $event)">
+                        <select class="form-control select-style" name="status" [(ngModel)]="order.status" (change)="updateStatus(order._id, $event)">
                           <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
                         </select>
                       </td>

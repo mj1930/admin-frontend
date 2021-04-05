@@ -10,9 +10,9 @@
                     <div class="form-group">
                       <label for="">Mode Of Booking</label>
                       <select class="form-control" formControlName="mode">
-                        <option>Website</option>
-                        <option selected>Phone</option>
-                        <option>Whatsapp</option>
+                        <!-- <option>Website</option> -->
+                        <option selected value="Phone">Phone</option>
+                        <option value="Whatsapp">Whatsapp</option>
                       </select>
                     </div>
 
@@ -29,18 +29,7 @@
                         <input type="text" class="form-control" (keyup)="searchProduct()" formControlName="name" placeholder="Product Name">
                       </div>
 
-                      <div class="form-group mt-2">
-                        <label for="">Quantity</label>
-                        <input type="text" class="form-control" (keyup)="calculateTotalAmount()" formControlName="quantity" placeholder="2">
-                      </div>
-
-                      <div class="form-group mt-2">
-                          <label for="">Product Price (MRP)</label>
-                          <input type="text" class="form-control" (keyup)="calculateTotalAmount()" formControlName="price" placeholder="INR 200">
-                      </div>
-                    <!-- </div> -->
-
-                    <div class="row" *ngIf="addOrderForm.controls['products']['controls']['name'].value">
+                      <div class="row" *ngIf="addOrderForm.controls['products']['controls']['name'].value">
                         <div class="col">
                             <p>Search Result</p>
                             <div class="mb-4" *ngIf="!searchResult.length">
@@ -48,19 +37,37 @@
                             </div>
                             <div class="row" *ngIf="searchResult.length">
                                 <div  *ngFor="let product of searchResult" class="col-sm-4 col-md-3 col-lg-2 my-2">
-                                    <div (click)="setProductSearchText(product.itemName)" class="card px-2 cursor-style">
+                                    <div (click)="setProductSearchText(product.itemName, product.productPrice)" class="card px-2 cursor-style">
                                       <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
                                       <div class="card-body px-0">
                                         <h5 class="card-title">{{product?.itemName}}</h5>
                                         <p class="card-text">{{product?.description}}</p>
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                        <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
+                                        <button type="button" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
                                       </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
+                    </div>
+                      <div class="form-group mt-2">
+                        <label for="">Quantity</label>
+                        <input type="text" class="form-control" (keyup)="calculateTotalAmount()" formControlName="quantity" placeholder="Product quantity">
+                      </div>
+
+                      <div class="form-group mt-2">
+                          <label for="">Product Price (MRP)</label>
+                          <input type="text" class="form-control" (keyup)="calculateTotalAmount()" formControlName="price" placeholder="Product price">
+                      </div>
+                    <!-- </div> -->
+
+
+                    <div class="form-group" *ngIf="sellers.length">
+                      <label for="">Select Seller</label>
+                      <select class="form-control" formControlName="sellerId">
+                        <option *ngFor="let seller of sellers;" [value]="seller._id">{{seller?.name}}</option>
+                      </select>
                     </div>
 
                   </div>
@@ -83,13 +90,6 @@
                     <div class="form-group">
                         <label for="">Business Name</label>
                         <input type="text" class="form-control" formControlName="businessName" placeholder="Name of business">
-                    </div>
-
-                    <div class="form-group" *ngIf="sellers.length">
-                      <label for="">Select Seller</label>
-                      <select class="form-control" formControlName="sellerId">
-                        <option *ngFor="let seller of sellers;" [value]="seller._id">{{seller?.name}}</option>
-                      </select>
                     </div>
 
                     <div class="form-group">
