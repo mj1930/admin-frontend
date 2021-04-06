@@ -19,23 +19,24 @@
                     <div class="form-group" *ngIf="showInputForCategory">
                       <label for="">Category Name</label>
                       <input type="text" name="Category" class="form-control" placeholder="Category Name" [(ngModel)]="category">
+
+                    <label for="" class="small" *ngIf="showInputForCategory">Upload Image</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="imageUpload">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" (change)="categoryFileUpload($event)" class="custom-file-input" id="imageUpload" aria-describedby="inputGroupFileAddon01" accept="jpeg, png">
+                            <label class="custom-file-label" for="imageUpload">Choose file</label>
+                        </div>
+                    </div>
                     </div>
                     <div class="form-group">
                       <label for="">Sub Category Name</label>
                       <input type="text" name="Sub Category" class="form-control" placeholder="Sub Category Name" [(ngModel)]="subCategory">
                     </div>
-                    <label for="" class="small">Upload Image</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="imageUpload">Upload</span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" (change)="categoryFileUpload($event)" class="custom-file-input" id="imageUpload" aria-describedby="inputGroupFileAddon01" accept="jpeg, png">
-                                <label class="custom-file-label" for="imageUpload">Choose file</label>
-                            </div>
-                        </div>
                         <!-- <p *ngIf="categoryImage" class="small m-0 text-success">File Uploaded Successfully</p> -->
-                    <button type="submit" class="btn btn-primary rounded m-0" (click)="addCategory()">Add Category</button>
+                    <button type="submit" class="btn btn-primary rounded m-0 mt-2" (click)="addCategory()">Add Category</button>
                   </form>
             </div>
       
