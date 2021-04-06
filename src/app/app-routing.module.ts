@@ -21,7 +21,9 @@ const routes: Routes = [
    {path: 'seller', loadChildren: () => import('./seller/seller.module').then(module => module.SellerModule)},
    {path: 'category', loadChildren: () => import('./category/category.module').then(module => module.CategoryModule)},
    {path: 'order', loadChildren: () => import('./orders/order.module').then(module => module.OrderModule)},
-  //{path: '**', component: RegisterComponent}
+   {path: 'permission', loadChildren: () => import('./user-permission/user-permission.module').then(module => module.UserPermissionModule)},
+  
+   //{path: '**', component: RegisterComponent}
 ];
 
 @NgModule({

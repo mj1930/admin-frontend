@@ -1,0 +1,148 @@
+<div class="page-wrapper chiller-theme toggled">
+    <app-side-navigation></app-side-navigation>
+        <!-- sidebar-wrapper  -->
+        <main class="page-content">
+          <div class="container-fluid">
+            <h2>User Rights Management</h2>
+            {{users|json}}
+            <hr />
+            <div class="row">
+              <div class="table-responsive rounded table-striped table-bordered">
+                <table class="table">
+                  <thead class="grey lighten-2 small text-uppercase">
+                    <tr class="text-nowrap">
+                      <th scope="col">Name</th>
+                      <th scope="col">Products</th>
+                      <th scope="col">Orders</th>
+                      <th scope="col">Sellers</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let user of users; let i=index;">
+                      <td>
+                          <p>{{user?.name}}</p>
+                      </td>
+                      <td>
+                        <div class="form-check" *ngFor="let option of radioOptions; let i=index">
+                            <input class="form-check-input" [checked]="user.permission['product'] ? i==0 : i==1" (change)="changePermission($event, 'product', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-product" id="chan-pr-1-product">
+                            <label class="form-check-label" for="chan-pr-1-product">
+                              {{option.text}}
+                            </label>
+                          </div>
+                          <!-- <div class="form-check">
+                            <input class="form-check-input" type="radio" name="chan-pr-radio" id="chan-pr-2" checked>
+                            <label class="form-check-label" for="chan-pr-2">
+                              Disallow
+                            </label>
+                          </div> -->
+                      </td>
+                      <td>
+                        <div class="form-check" *ngFor="let option of radioOptions let i=index" >
+                            <input class="form-check-input" [checked]="user.permission['order'] ? i==0 : i==1" (change)="changePermission($event, 'order', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-order" id="chan-pr-1-order">
+                            <label class="form-check-label" for="chan-pr-1-order">
+                              {{option.text}}
+                            </label>
+                          </div>
+                          <!-- <div class="form-check">
+                            <input class="form-check-input" type="radio" name="chan-or-radio" id="chan-or-2">
+                            <label class="form-check-label" for="chan-or-2">
+                              Disallow
+                            </label>
+                          </div> -->
+                      </td>
+                      <td>
+                        <div class="form-check" *ngFor="let option of radioOptions; let i=index;">
+                            <input class="form-check-input" [checked]="user.permission['seller'] ? i==0 : i==1" (change)="changePermission($event, 'seller', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-seller" id="chan-pr-1-seller">
+                            <label class="form-check-label" for="chan-pr-1-seller">
+                              {{option.text}}
+                            </label>
+                          </div>
+                          <!-- <div class="form-check">
+                            <input class="form-check-input" type="radio" name="chan-sel-radio" id="chan-sel-2" checked>
+                            <label class="form-check-label" for="chan-sel-2">
+                              Disallow
+                            </label>
+                          </div> -->
+                      </td>
+                      
+                    </tr>
+
+                    <!-- <tr>
+                        <td>
+                            <p>Mihir Jain</p>
+                        </td>
+                        <td>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="mih-pr-radio" id="mih-pr-1">
+                              <label class="form-check-label" for="mih-pr-1">
+                                Allow
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="mih-pr-radio" id="mih-pr-2" checked>
+                              <label class="form-check-label" for="mih-pr-2">
+                                Disallow
+                              </label>
+                            </div>
+                        </td>
+                        <td>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="mih-or-radio" id="mih-or-1">
+                              <label class="form-check-label" for="mih-or-1">
+                                Allow
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="mih-or-radio" id="mih-or-2" checked>
+                              <label class="form-check-label" for="mih-or-2">
+                                Disallow
+                              </label>
+                            </div>
+                        </td>
+                        <td>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="mih-sel-radio" id="mih-sel-1">
+                              <label class="form-check-label" for="mih-sel-1">
+                                Allow
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="mih-sel-radio" id="mih-sel-2" checked>
+                              <label class="form-check-label" for="mih-sel-2">
+                                Disallow
+                              </label>
+                            </div>
+                        </td>
+                        
+                      </tr> -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+      
+            <footer class="text-center">
+              <div class="mb-2">
+                <small>
+                  © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+                  Rights Reserved
+                </small>
+              </div>
+            </footer>
+          </div>
+        </main>
+    
+        <!-- page-content" -->
+      </div>
+      <!-- page-wrapper -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+      ></script>
+      

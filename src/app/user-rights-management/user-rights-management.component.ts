@@ -12,4 +12,5 @@ export class UserRightsManagementComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
 }

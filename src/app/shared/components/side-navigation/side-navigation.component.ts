@@ -10,9 +10,11 @@ export class SideNavigationComponent implements OnInit {
 
   showSubMenu = false;
   showOrderSubMenu = false;
+  userName = '';
   constructor() { }
 
   ngOnInit(): void {
+    this.userName = JSON.parse(localStorage.getItem('user')).name;
   }
 
   closeSidebar() {

@@ -26,8 +26,8 @@ export class OrderListingComponent implements OnInit {
 
   getOrder() {
     let reqBody = {
-      skip:"0",
-      limit: "100"
+      skip:0,
+      limit: 10000
     };
     this.orderService.getOrder(reqBody).subscribe(data => {
       console.log(data);
