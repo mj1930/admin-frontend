@@ -20,9 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
             url: `${this.baseUrl}${request.url}`,
             setHeaders: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.ODVhMTIxNTc0Njc4NWEzMzVjMTZmMTdhMzc2MzMxMjQ6N2ViMmRkNTVkZmViNjExMTc1ZWMwZDEzYmVhMWViNmU3MThhZGM5YzMyMzRmMjM4YWQ3NzY0NTE1YjcxZmY5Y2MzM2FjZTRhN2I1MGE2ZDBkM2UyYjA0MmUyZjlkOWNiMWZiMzNlY2ZiNTNjY2M5OGE2OTIyZjdlOTlkOTNmNGMwZDFkZWEzMzY4ODIxNDJiMDQ3MTlkYzAxNDYwN2VkMWRjNGQ4YjNjNTg5ZDM5YjY5YWNhMjE1YWNmMTYyNDNjNGM2M2M3ZTYwOGQ4ZTlhYTA4M2Q1OTM4OWI5MTI2Yzc.YXooZ1jg_tgb3Fi23o0JQd4F8SHH0XmewHuV4OfxZRA`,
-
-                // Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`,
                 Accept: 'application/json'
             }
         };

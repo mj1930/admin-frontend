@@ -18,13 +18,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let user of users; let i=index;">
+                    <tr *ngFor="let user of users; let j=index;">
                       <td>
                           <p>{{user?.name}}</p>
                       </td>
                       <td>
                         <div class="form-check" *ngFor="let option of radioOptions; let i=index">
-                            <input class="form-check-input" [checked]="user.permission['product'] ? i==0 : i==1" (change)="changePermission($event, 'product', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-product" id="chan-pr-1-product">
+                            <input class="form-check-input" [checked]="user?.permission && user?.permission.indexOf('product')>-1 ? i == 0 : i==1" (change)="changePermission($event, 'product', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-product_{{j}}" id="chan-pr-1-product">
                             <label class="form-check-label" for="chan-pr-1-product">
                               {{option.text}}
                             </label>
@@ -38,7 +38,7 @@
                       </td>
                       <td>
                         <div class="form-check" *ngFor="let option of radioOptions let i=index" >
-                            <input class="form-check-input" [checked]="user.permission['order'] ? i==0 : i==1" (change)="changePermission($event, 'order', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-order" id="chan-pr-1-order">
+                            <input class="form-check-input" [checked]="user?.permission && user?.permission.indexOf('order')>-1 ? i == 0 : i==1" (change)="changePermission($event, 'order', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-order_{{j}}" id="chan-pr-1-order">
                             <label class="form-check-label" for="chan-pr-1-order">
                               {{option.text}}
                             </label>
@@ -52,7 +52,7 @@
                       </td>
                       <td>
                         <div class="form-check" *ngFor="let option of radioOptions; let i=index;">
-                            <input class="form-check-input" [checked]="user.permission['seller'] ? i==0 : i==1" (change)="changePermission($event, 'seller', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-seller" id="chan-pr-1-seller">
+                            <input class="form-check-input" [checked]="user?.permission && user?.permission.indexOf('seller')>-1 ? i == 0 : i==1" (change)="changePermission($event, 'seller', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-seller_{{j}}" id="chan-pr-1-seller">
                             <label class="form-check-label" for="chan-pr-1-seller">
                               {{option.text}}
                             </label>

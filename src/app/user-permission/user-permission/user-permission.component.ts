@@ -12,13 +12,14 @@ export class UserPermissionComponent implements OnInit {
   radioOptions = [
     { text: 'Allow', value: "true" },
     { text: 'DisAllow', value: "false" },
-  ]
+  ];
+  permissions = [];
 
   constructor(private userPermissionService: UserPermissionService) { }
 
   ngOnInit(): void {
     this.getUserListing();
-    this.getAllPermissions();
+    
   }
 
   getUserListing() {
@@ -29,13 +30,14 @@ export class UserPermissionComponent implements OnInit {
     this.userPermissionService.getUsers(reqBody).subscribe(data => {
       console.log(data);
       this.users = data['data'];
-      this.users.forEach(item => {
-        item['permission'] = {
-          'order': "true",
-          'product': "true",
-          'seller': "true"
-        }
-      })
+      this.getAllPermissions();
+      // this.users.forEach(item => {
+      //   item['permission'] = {
+      //     'order': "false",
+      //     'product': "false",
+      //     'seller': "false"
+      //   }
+      // })
     }, error => {
       console.log(error);
     })
@@ -44,8 +46,16 @@ export class UserPermissionComponent implements OnInit {
   getAllPermissions() {
     this.userPermissionService.getAllPermission().subscribe(data => {
       console.log(data);
+      this.users.forEach(item => {
+        for(let i=0; i<data['data'].length; i++) {
+          if(item._id == data['data'][i]['userId']) {
+            item['permission']= data['data'][i]['permissions']
+          }
+        }
+      })
       //this.products = data;
-    }, error => {
+      //this.users = data['data'];
+     }, error => {
       console.log(error);
     })
   }

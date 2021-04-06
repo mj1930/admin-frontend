@@ -12,11 +12,11 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    ResetPasswordComponent,
-    ForgotPasswordComponent,
+    // LoginComponent,
+    // ResetPasswordComponent,
+    // ForgotPasswordComponent,
     UserRightsManagementComponent,
-    SignupComponent
+    // SignupComponent
   ],
   imports: [
     BrowserModule,

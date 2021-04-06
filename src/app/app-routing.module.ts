@@ -7,15 +7,15 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { UserRightsManagementComponent } from './user-rights-management/user-rights-management.component';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: '/seller'},
-  {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: 'forgot-password', component: ForgotPasswordComponent},
-  {path: 'reset-password', component: ResetPasswordComponent},
+  {path: '', pathMatch: 'full', redirectTo: '/auth/login'},
+  // {path: 'login', component: LoginComponent},
+  // {path: 'signup', component: SignupComponent},
+  // {path: 'forgot-password', component: ForgotPasswordComponent},
+  // {path: 'reset-password', component: ResetPasswordComponent},
   {path: 'user-rights', component: UserRightsManagementComponent},
   // {path: 'login', component: LoginComponent},
   // {path: 'register', component: RegisterComponent},
-   //{path: 'auth', loadChildren: () => import('./authentication/authentication.module').then(module => module.AuthenticationModule)},
+   {path: 'auth', loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule)},
    //{path: 'product', loadChildren: () => import('./product/product.module').then(module => module.ProductModule)},
   // {path: 'inventory', loadChildren: () => import('./inventory/inventory.module').then(module => module.InventoryModule)},
    {path: 'seller', loadChildren: () => import('./seller/seller.module').then(module => module.SellerModule)},
@@ -23,7 +23,7 @@ const routes: Routes = [
    {path: 'order', loadChildren: () => import('./orders/order.module').then(module => module.OrderModule)},
    {path: 'permission', loadChildren: () => import('./user-permission/user-permission.module').then(module => module.UserPermissionModule)},
   
-   //{path: '**', component: RegisterComponent}
+  //  {path: '**', component: RegisterComponent}
 ];
 
 @NgModule({

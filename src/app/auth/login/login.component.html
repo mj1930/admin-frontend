@@ -3,8 +3,8 @@
         <div class="card-header my-2 text-center">
            <b class="text-uppercase"> Admin Login</b>
         </div>
-        <img id="profile-img" class="profile-img-card my-3" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-        <form class="form-signin">
+        <!-- <img id="profile-img" class="profile-img-card my-3" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/> -->
+        <!-- <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
@@ -14,9 +14,56 @@
                 </label>
             </div>
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+        </form> -->
+
+        <form class="text-left" [formGroup]="loginForm" (ngSubmit)="login(loginForm.valid)">
+
+            <!-- Email -->
+            <label for="" class="m-0 small mt-4">Email</label>
+            <input formControlName="email" type="email" id="defaultLoginFormEmail" class="form-control" placeholder="E-mail">
+            <p *ngIf="!loginForm.get('email').valid && loginAttempt && loginForm.get('email').hasError('required')" class="deep-orange-text small m-0">
+                Please provide a email!
+            </p>
+            <p *ngIf="loginForm.get('email').hasError('email')" class="deep-orange-text small m-0">
+                Please provide a valid email!
+            </p>
+            <!-- Password -->
+            <label for="" class="m-0 small mt-4">Password</label>
+            <input formControlName="password" type="password" id="defaultLoginFormPassword" class="form-control" placeholder="Password">
+            <p *ngIf="!loginForm.get('password').valid && loginAttempt && loginForm.get('password').hasError('required')" class="deep-orange-text small m-0">
+                Please provide a password!
+            </p>
+            <span *ngIf="loginError">{{loginError}}</span>
+            <div class="d-md-flex d-block mt-3 justify-content-between">
+                <div>
+                    <div class="custom-control custom-checkbox">
+                        <input name="rememberMe" formControlName="rememberMe" type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                    </div>
+                </div>
+
+                <!-- <div>
+                    <a href="" class="small">Forgot password?</a>
+                </div> -->
+            </div>
+
+            <!-- Sign in button -->
+            <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Sign in</button>
+            <p class="small">By continuing, you agree to our <a href="">Terms of Use</a> and <a href="">Privacy Policy</a>.</p>
+
         </form>
-        <a href="reset-password" class="forgot-password">
+        <!-- <a href="reset-password" class="forgot-password">
             Forgot the password?
-        </a>
+        </a> -->
+        <hr class="my-4">
+            <div class="d-flex justify-content-center">
+                <p class="mx-auto bg-white small d-inline-block px-2 text-black-50" style="margin-top: -36px;">New Member ?</p>
+            </div>
+            
+
+            <!-- Create Account Button -->
+            <a href="" role="button" class="btn-block unique-color text-white btn btn-sm rounded">Create your account</a>
     </div>
+
+    
 </div>
