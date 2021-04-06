@@ -25,6 +25,6 @@ export class UserPermissionService {
   }
 
   getUsers(reqBody) {
-    return this.http.post('users/get-all-users', reqBody);
+    return this.http.post('permission/get-all-users', reqBody);
   }
 }
