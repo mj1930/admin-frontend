@@ -74,9 +74,11 @@
               </ul>
             </div>
           </li>
-          <li class="header-menu">
-            <!-- <i class="fas fa-user-edit"></i> -->
-            <a routerLink="/permission">Permission</a>
+          <li class="sidebar-dropdown" routerLinkActive="active" *ngIf="permissions.indexOf('permission')>-1">
+            <a routerLink="/permission">
+              <i class="fa fa-edit"></i>
+              <span>Permission</span>
+            </a>
           </li>
           <!-- <li class="sidebar-dropdown">
             <a>

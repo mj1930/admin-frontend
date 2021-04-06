@@ -40,23 +40,27 @@ export class AddCategoryComponent implements OnInit {
 
 
   addCategory() {
-    let formData = new FormData();
-    // let reqBody = {
-    //   subCategory: this.subCategory
-    // }
-    formData.append('subCategory', this.subCategory)
+    // let formData = new FormData();
+    let reqBody = {
+      subCategory: this.subCategory
+    }
+    // formData.append('subCategory', this.subCategory);
+    reqBody['subCategory'] = this.subCategory;
     if (this.categoryId) {
-      formData.append('categoryId', this.categoryId);
-      this.categoryService.addSubCategory(formData).subscribe(data => {
+      // formData.append('categoryId', this.categoryId);
+    reqBody['categoryId'] = this.categoryId;
+
+      this.categoryService.addSubCategory(reqBody).subscribe(data => {
         console.log(data);
         this.router.navigateByUrl('/category/category-listing');
       }, error => {
         console.log(error)
       })
     } else {
-      formData.append("file", this.categoryImage);
-      formData.append('category', this.category);
-      this.categoryService.addCategory(formData).subscribe(data => {
+      // formData.append("file", this.categoryImage);
+      // formData.append('category', this.category);
+      reqBody['category'] = this.category;
+      this.categoryService.addCategory(reqBody).subscribe(data => {
         console.log(data);
         this.router.navigateByUrl('/category/category-listing');
       }, error => {
