@@ -3,16 +3,64 @@
         <div class="card-header my-2 text-center">
            <b class="text-uppercase"> Admin Signup</b>
         </div>
-        <img id="profile-img" class="profile-img-card my-3" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+        <form class="text-left" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm(registerForm.valid)">
+
+            <!-- Name -->
+            <label for="" class="m-0 small mt-3">Name</label>
+            <input type="email" formControlName="name" id="defaultSignupFormEmail" class="form-control" placeholder="Your Name">
+            <p *ngIf="!registerForm.get('name').valid && submitFormAttempt && registerForm.get('name').hasError('required')" class="deep-orange-text small m-0">
+                Please provide a name!
+            </p>
+
+            <!-- Email -->
+            <label for="" class="m-0 small mt-3">Email</label>
+            <input type="email" formControlName="email" id="defaultSignupFormEmail" class="form-control" placeholder="E-mail">
+            <p *ngIf="!registerForm.get('email').valid && submitFormAttempt && registerForm.get('email').hasError('required')" class="deep-orange-text small m-0">
+                Please provide a email!
+            </p>
+            <p *ngIf="registerForm.get('email').hasError('email')" class="deep-orange-text small m-0">
+                Please provide a valid email!
+            </p>
+            <!-- Password -->
+            <label for="" class="m-0 small mt-3">Password</label>
+            <input type="password" formControlName="password" id="defaultSignupFormPassword" class="form-control" placeholder="Password">
+            <p *ngIf="!registerForm.get('password').valid && submitFormAttempt && registerForm.get('password').hasError('required')" class="deep-orange-text small m-0">
+                Please provide a password!
+            </p>
+            <p *ngIf="!registerForm.get('password').valid && submitFormAttempt && registerForm.get('password').hasError('minlength')" class="deep-orange-text small m-0">
+                Please provide a password with atleast 6 characters!
+            </p>
+            <!-- Repeat Password -->
+            <label for="" class="m-0 small mt-3">Repeat Password</label>
+            <input type="password" formControlName="confirmPassword" id="defaultSignupFormPassword" class="form-control" placeholder="Repeat Password">
+            <p class="m-0 small">Passwords must be at least 6 characters.</p>
+            <p *ngIf="!registerForm.get('confirmPassword').valid && submitFormAttempt && registerForm.get('confirmPassword').hasError('required')" class="deep-orange-text small m-0">
+                Please provide a confirm password!
+            </p>
+            <p *ngIf="!registerForm.get('confirmPassword').valid && submitFormAttempt && registerForm.get('confirmPassword').hasError('minlength')" class="deep-orange-text small m-0">
+                Please provide a confirm password with atleast 6 characters!
+            </p>
+            <p *ngIf="registerForm.get('confirmPassword').dirty && registerForm.get('confirmPassword').value !== registerForm.get('password').value" class="deep-orange-text small m-0">
+                Password does not match!
+            </p>
+            <!-- Sign in button -->
+            <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Create Account</button>
+            <p class="small">By continuing, you agree to our <a href="">Terms of Use</a> and <a href="">Privacy Policy</a>.</p>
+
+        </form>
+        <!-- <img id="profile-img" class="profile-img-card my-3" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
         <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
             <input type="password" id="repeatPassword" class="form-control" placeholder="Repeat Password" required>
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign Up</button>
-        </form>
-        <a href="login" class="forgot-password">
-            Already have a account?
-        </a>
+        </form> -->
+        <hr class="my-4">
+        <div class="d-flex justify-content-center">
+            <p class="mx-auto bg-white small d-inline-block px-2 text-black-50" style="margin-top: -36px;">Already a Member ?</p>
+        </div>
+        <!-- Create Account Button -->
+        <a routerLink="/auth/login" role="button" class="btn-block unique-color text-white btn btn-sm rounded my-3">Login your account</a>  
     </div>
 </div>

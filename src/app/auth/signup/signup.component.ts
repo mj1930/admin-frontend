@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -6,10 +9,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  registerForm: FormGroup;
+  submitFormAttempt: boolean = false;
+  mobile = null;
+  registerSteps = {
+    step1: true,
+    step2: false,
+    step3: false
   }
 
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+    })
+  }
+
+  submitRegisterForm(valid) {
+    this.submitFormAttempt = true;
+    if (!valid) {
+      return;
+    }
+    let reqData = {
+      name: this.registerForm.controls['name'].value,
+      email: this.registerForm.controls['email'].value,
+      password: this.registerForm.controls['password'].value
+    }
+
+    this.authService.register(reqData).subscribe(data => {
+      console.log(data);
+      this.router.navigateByUrl('/auth/login');
+    }, error => {
+      console.log(error);
+    })
+  }
 }

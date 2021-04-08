@@ -3,6 +3,20 @@
         <!-- sidebar-wrapper  -->
         <main class="page-content">
           <div class="container-fluid">
+            <div class="row mx-2">
+              <span class="my-2 mx-2">Sort By</span>
+              <select class="form-control" (change)="sortData($event)">
+                  <option value="">Default</option>
+                  <option value="createdAt-asc">Order Date/Time (A - Z) </option>
+                  <option value="createdAt-desc">Order Date/Time (Z - A) </option>
+                  <option value="name-asc">Product Name (A - Z) </option>
+                  <option value="name-desc">Product Name (Z - A) </option>
+                  <option value="orderStatus-asc">Status (A - Z) </option>
+                  <option value="orderStatus-desc">Status (Z - A) </option>
+                  <option value="sellerName-asc">Seller (A - Z) </option>
+                  <option value="sellerName-desc">Seller (Z - A) </option>
+              </select>
+          </div>
             <h2>Order Listing</h2>
             <hr />
             <div class="row">

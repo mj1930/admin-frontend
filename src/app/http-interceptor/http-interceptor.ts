@@ -11,7 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler) {
-        if(request.url.includes('products') && !request.url.includes('approve-disapprove-product')) {
+        if(request.url.includes('products') && !request.url.includes('approve-disapprove-product') && !request.url.includes('sort-products')) {
             this.baseUrl = environment.sellerApiUrl;
         } else {
             this.baseUrl = environment.apiUrl;
@@ -21,12 +21,17 @@ export class AuthInterceptor implements HttpInterceptor {
             setHeaders: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-                Accept: 'application/json'
+               Accept: 'application/json'
             }
         };
 
         if (request.url === 'users/admin/export') {
             requestObject['responseType'] = 'blob';
+        }
+
+        if(request.url.includes('category/add-category')) {
+            delete requestObject['setHeaders']['Content-Type'];
+            delete requestObject['setHeaders']['Accept']; 
         }
 
         const authReq = request.clone(requestObject);

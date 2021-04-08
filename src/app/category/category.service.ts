@@ -24,4 +24,8 @@ export class CategoryService {
     return this.http.post('category/get-all', req);
   }
 
+  getSortCategories(reqBody) {
+    return this.http.post('category/sort-category', reqBody);
+  }
+
 }

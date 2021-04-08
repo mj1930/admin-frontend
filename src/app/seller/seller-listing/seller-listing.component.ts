@@ -31,5 +31,19 @@ export class SellerListingComponent implements OnInit {
     })
   }
 
+  sortData(event) {
+    let obj = {
+      key: event.target.value ? event.target.value.split('-')[0] : "null",
+      sortBy: event.target.value ? (event.target.value.split('-')[1] === 'asc' ? "1" : "-1") : 0 ,
+      skip: 0,
+      limit: 100000
+    };
+    this.sellerService.getSortSellers(obj).subscribe((res: any) => {
+      if (res.code === 200) {
+        this.users = res.data;
+      }
+    });
+  }
+
 
 }

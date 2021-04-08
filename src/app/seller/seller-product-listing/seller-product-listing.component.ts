@@ -50,4 +50,18 @@ export class SellerProductListingComponent implements OnInit {
     this.router.navigate(['/seller/product-description', id]);
   }
 
+  sortData(event) {
+    let obj = {
+      key: event.target.value ? event.target.value.split('-')[0] : "null",
+      sortBy: event.target.value ? (event.target.value.split('-')[1] === 'asc' ? "1" : "-1") : 0 ,
+      skip: 0,
+      limit: 100000
+    };
+    this.sellerService.getSortProducts(obj).subscribe((res: any) => {
+      if (res.code === 200) {
+        this.products = res.data;
+      }
+    });
+  }
+
 }

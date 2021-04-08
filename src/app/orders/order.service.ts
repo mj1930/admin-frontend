@@ -28,4 +28,8 @@ export class OrderService {
     return this.http.post('orders/update-order', reqBody);
   }
 
+  getSortOrders(reqBody) {
+    return this.http.post('orders/sort-order', reqBody);
+  }
+
 }

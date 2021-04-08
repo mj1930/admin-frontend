@@ -3,6 +3,19 @@
     <!-- sidebar-wrapper  -->
     <main class="page-content">
       <div class="container-fluid">
+        <div class="row mx-2">
+          <span class="my-2 mx-2">Sort By</span>
+          <select class="form-control" (change)="sortData($event)">
+              <option value="">Default</option>
+              
+              <option value="isApproved-asc">Status (A - Z) </option>
+              <option value="isApproved-desc">Status (Z - A) </option>
+              <option value="itemName-asc">Name (A - Z) </option>
+              <option value="itemName-desc">Name (Z - A) </option>
+              <option value="createdAt-asc">Date Created (A - Z) </option>
+              <option value="createdAt-desc">Date Created (Z - A) </option>
+          </select>
+      </div>
         <h2>Product Listing</h2>
         <hr />
         <div class="row">
@@ -45,7 +58,6 @@
                     >Inactive</label
                   >
                 </div>
-  
                 <div class="custom-control custom-radio custom-control-inline">
                   <input
                     type="radio"

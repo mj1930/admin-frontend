@@ -3,6 +3,18 @@
         <!-- sidebar-wrapper  -->
         <main class="page-content">
           <div class="container-fluid">
+            <div class="row mx-2">
+              <span class="my-2 mx-2">Sort By</span>
+              <select class="form-control" (change)="sortData($event)">
+                  <option value="">Default</option>
+                  <!-- <option value="status-asc">Status (A - Z) </option>
+                  <option value="status-desc">Status (Z - A) </option> -->
+                  <option value="categoryName-asc">Category Name (A - Z) </option>
+                  <option value="categoryName-desc">Category Name (Z - A) </option>
+                  <!-- <option value="createdAt-asc">Sub Category Name (A - Z) </option>
+                  <option value="createdAt-desc">Sub Category Name (Z - A) </option> -->
+              </select>
+          </div>
             <h2>Category Listing</h2>
             <hr />
             <div class="row">
@@ -38,7 +50,7 @@
                           <p>{{category?.status ? 'Active': 'InActive'}}</p>
                       </td>
                       <td>
-                        <p>{{category?.category}}</p>
+                        <p>{{category?.categoryName}}</p>
                       </td>
                       <td>
                           <p *ngFor="let subCategory of category.subCategories"><span>{{subCategory?.subCategoryName}}</span></p>

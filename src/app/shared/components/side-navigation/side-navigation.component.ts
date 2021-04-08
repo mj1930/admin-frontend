@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as $ from 'jquery';
 
 @Component({
@@ -12,7 +13,7 @@ export class SideNavigationComponent implements OnInit {
   showOrderSubMenu = false;
   userName = '';
   permissions = [];
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
 let user = JSON.parse(localStorage.getItem('user'));
@@ -26,5 +27,10 @@ let user = JSON.parse(localStorage.getItem('user'));
       $(".page-wrapper").addClass("toggled");
     });
   }  
+
+  logout() {
+    sessionStorage.setItem('token', '');
+    this.router.navigateByUrl('/auth/login');
+  }
 
 }

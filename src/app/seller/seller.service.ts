@@ -21,6 +21,14 @@ export class SellerService {
   approveRejectProduct(reqBody) {
     return this.http.post('products/approve-disapprove-product', reqBody);
   }
+
+  getSortProducts(reqBody) {
+    return this.http.post('products/sort-products', reqBody);
+  }
+
+  getSortSellers(reqBody) {
+    return this.http.post('users/sort-user', reqBody);
+  }
   
 
 }
