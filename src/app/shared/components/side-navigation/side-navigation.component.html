@@ -17,9 +17,9 @@
             alt="User picture"
           />
         </div>
-        <div class="user-info">
-          <a> {{userName}} </a>
-          <button class="btn btn-dark mr-2" (click)="logout()" type="button">Logout</button>
+        <div class="user-info justify-content-between align-items-center d-flex col p-0">
+          <a>{{userName}} </a>
+          <button class="btn btn-dark btn-sm" (click)="logout()" type="button">Logout</button>
           <!-- <span class="user-role">Seller</span> -->
         </div>
       </div>
@@ -30,21 +30,21 @@
           <li class="header-menu"><span>General</span></li>
           <li class="sidebar-dropdown" routerLinkActive="active" *ngIf="permissions.indexOf('seller')>-1">
             <a routerLink="/seller" >
-              <i class="fa fa-tachometer" aria-hidden="true"></i>
+              <i class="fa fa-list-ul" aria-hidden="true"></i>
               <span>Seller Listing</span>
             </a>
             
           </li>
           <li class="sidebar-dropdown" routerLinkActive="active" *ngIf="permissions.indexOf('product')>-1">
             <a routerLink="/seller/product-listing">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fa fa-dropbox" aria-hidden="true"></i>
               <span>Product Listing</span>
             </a>
           </li>
 
           <li class="sidebar-dropdown" routerLinkActive="active" *ngIf="permissions.indexOf('category')>-1">
             <a (click)="showSubMenu=!showSubMenu">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fa fa-stack-overflow" aria-hidden="true"></i>
               <span>Category</span>
             </a>
             <div *ngIf="showSubMenu" class="">
@@ -77,7 +77,7 @@
           </li>
           <li class="sidebar-dropdown" routerLinkActive="active" *ngIf="permissions.indexOf('permission')>-1">
             <a routerLink="/permission">
-              <i class="fa fa-edit"></i>
+              <i class="fa fa-users" aria-hidden="true"></i>
               <span>Permission</span>
             </a>
           </li>
