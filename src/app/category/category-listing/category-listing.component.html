@@ -3,31 +3,23 @@
         <!-- sidebar-wrapper  -->
         <main class="page-content">
           <div class="container-fluid">
-            <div class="row mx-2">
-              <span class="my-2 mx-2">Sort By</span>
-              <select class="form-control" (change)="sortData($event)">
-                  <option value="">Default</option>
-                  <!-- <option value="status-asc">Status (A - Z) </option>
-                  <option value="status-desc">Status (Z - A) </option> -->
-                  <option value="categoryName-asc">Category Name (A - Z) </option>
-                  <option value="categoryName-desc">Category Name (Z - A) </option>
-                  <!-- <option value="createdAt-asc">Sub Category Name (A - Z) </option>
-                  <option value="createdAt-desc">Sub Category Name (Z - A) </option> -->
-              </select>
-          </div>
+            
             <h2>Category Listing</h2>
+            
             <hr />
             <div class="row">
-              <!-- <div class="filer col p-3 rounded my-2 elegant-color text-white">
+              <div class="filer col p-3 rounded my-2 elegant-color text-white">
                 <div class="row">
                   <div class="col-sm-12 col-md-2">
-                    <select class="form-control">
-                        <option selected>Select Category</option>
-                        <option>Category 1</option>
-                    </select>
+                    Sort By
+                    <select class="form-control" (change)="sortData($event)">
+                      <option value="">Default</option>
+                      <option value="categoryName-asc">Category Name (A - Z) </option>
+                      <option value="categoryName-desc">Category Name (Z - A) </option>
+                  </select>
                   </div>
                 </div>
-              </div> -->
+              </div>
               <div class="table-responsive rounded table-striped">
                 <table class="table">
                   <thead class="grey lighten-2 small text-uppercase">
