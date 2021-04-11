@@ -29,27 +29,28 @@ export class AddOrderComponent implements OnInit {
     this.getSellerListing();
     this.addOrderForm = this.fb.group({
      
-  mode: ['Phone'],
-  // products: this.fb.array([this.fb.group({
-  //   name: '',
-  //   price:null,
-  //   quantity: null
-  // })]),
-  products: this.fb.group({
-    name: '',
-    price: null,
-    quantity: null,
-    sellerId: '',
-    sellerName: ''
-  }),
-  //userId: [],
-  totalAmnt:[],
-  address:[],
-  userGstin:[""],
-  businessName:[""],
-  paymentMode:['Cash On Delivery']
-    });
-this.userName = JSON.parse(localStorage.getItem('user')).name;
+    mode: ['Phone'],
+    // products: this.fb.array([this.fb.group({
+    //   name: '',
+    //   price:null,
+    //   quantity: null
+    // })]),
+    products: this.fb.group({
+      name: '',
+      price: null,
+      quantity: null,
+      sellerId: '',
+      productId: '',
+      sellerName: ''
+    }),
+    //userId: [],
+    totalAmnt:[],
+    address:[],
+    userGstin:[""],
+    businessName:[""],
+    paymentMode:['Cash On Delivery']
+      });
+    this.userName = JSON.parse(localStorage.getItem('user')).name;
   }
 
   addProduct() {
@@ -94,16 +95,17 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
     })
   }
 
-  setProductSearchText(productName, price) {
+  setProductSearchText(productName, price, productId) {
   this.addOrderForm.controls['products']['controls']['name'].setValue(productName);
   this.addOrderForm.controls['products']['controls']['price'].setValue(parseFloat(price));
+  this.addOrderForm.controls['products']['controls']['productId'].setValue(productId);
   }
 
   changeSeller(seller) {
     this.sellers.forEach(item => {
-if(item._id === this.addOrderForm.controls['products']['controls']['sellerId'].value) {
-  this.addOrderForm.controls['products']['controls']['sellerName'].setValue(item.name);
-}
+      if(item._id === this.addOrderForm.controls['products']['controls']['sellerId'].value) {
+        this.addOrderForm.controls['products']['controls']['sellerName'].setValue(item.name);
+      }
     }) 
   }
 
