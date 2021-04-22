@@ -25,7 +25,6 @@ export class ProductDescriptionComponent implements OnInit {
 
   getProductDetails() {
     this.sellerService.getProductDetails(this.id).subscribe(data => {
-      console.log('pppppp',data);
       //this.products = data;
       this.product = data['data'];
     }, error => {

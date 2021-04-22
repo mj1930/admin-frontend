@@ -27,7 +27,6 @@ export class AddCategoryComponent implements OnInit {
       limit: 100
     };
     this.categoryService.getCategory(reqBody).subscribe(data => {
-      console.log(data);
       this.categories = data['data'];
     }, error => {
       console.log(error);
@@ -51,7 +50,6 @@ export class AddCategoryComponent implements OnInit {
     // reqBody['categoryId'] = this.categoryId;
 
       this.categoryService.addSubCategory(formData).subscribe(data => {
-        console.log(data);
         this.router.navigateByUrl('/category/category-listing');
       }, error => {
         console.log(error)
@@ -62,7 +60,6 @@ export class AddCategoryComponent implements OnInit {
       formData.append('catImg', this.categoryImage)
       // reqBody['category'] = this.category;
       this.categoryService.addCategory(formData).subscribe(data => {
-        console.log(data);
         this.router.navigateByUrl('/category/category-listing');
       }, error => {
         console.log(error)

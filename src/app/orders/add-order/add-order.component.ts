@@ -55,7 +55,6 @@ export class AddOrderComponent implements OnInit {
 
   addProduct() {
     this.orderService.addOrder(this.addOrderForm.value).subscribe(data => {
-      console.log(data);
       this.router.navigateByUrl('/order/order-listing');
     }, error => {
       console.log(error);
@@ -65,7 +64,6 @@ export class AddOrderComponent implements OnInit {
   searchResult = [];
   searchProduct() {
     this.orderService.searchProduct(this.addOrderForm.controls['products']['controls']['name'].value).subscribe(data => {
-      console.log(data);
       this.searchResult=data['data'];
     }, error => {
       console.log(error);
@@ -88,7 +86,6 @@ export class AddOrderComponent implements OnInit {
       limit: 10000
     }
     this.orderService.getUsers(reqBody).subscribe(data => {
-      console.log(data);
       this.sellers = data['data'];
     }, error => {
       console.log(error);

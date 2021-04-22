@@ -28,7 +28,6 @@ export class UserPermissionComponent implements OnInit {
       limit: 10000
     }
     this.userPermissionService.getUsers(reqBody).subscribe(data => {
-      console.log(data);
       this.users = data['data'];
       this.getAllPermissions();
       // this.users.forEach(item => {
@@ -45,7 +44,6 @@ export class UserPermissionComponent implements OnInit {
 
   getAllPermissions() {
     this.userPermissionService.getAllPermission().subscribe(data => {
-      console.log(data);
       this.users.forEach(item => {
         for(let i=0; i<data['data'].length; i++) {
           if(item._id == data['data'][i]['userId']) {
@@ -78,8 +76,7 @@ export class UserPermissionComponent implements OnInit {
       permission: type,
       userId: userId
     }
-    this.userPermissionService.removePermission(reqBody).subscribe(data => {
-      console.log(data);
+    this.userPermissionService.removePermission(reqBody).subscribe(() => {
       //this.products = data;
     }, error => {
       console.log(error);

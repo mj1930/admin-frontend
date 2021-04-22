@@ -41,7 +41,6 @@ export class SignupComponent implements OnInit {
     }
 
     this.authService.register(reqData).subscribe(data => {
-      console.log(data);
       this.router.navigateByUrl('/auth/login');
     }, error => {
       console.log(error);

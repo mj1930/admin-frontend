@@ -30,6 +30,7 @@
     "rxjs": "~6.6.0",
     "themify-icons": "^1.0.0",
     "tslib": "^2.0.0",
+    "ngx-toastr": "9.1.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

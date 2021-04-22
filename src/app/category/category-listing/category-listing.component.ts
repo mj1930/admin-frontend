@@ -22,7 +22,6 @@ export class CategoryListingComponent implements OnInit {
       limit: 100
     };
     this.categoryService.getAll(reqBody).subscribe(data => {
-      console.log(data);
       this.categories = data['data'];
     }, error => {
       console.log(error);
@@ -30,7 +29,6 @@ export class CategoryListingComponent implements OnInit {
   }
 
   sortData(event) {
-    console.log(event)
     let obj = {
       key: event.target.value ? event.target.value.split('-')[0] : "null",
       sortBy: event.target.value ? (event.target.value.split('-')[1] === 'asc' ? "1" : "-1") : 0 ,

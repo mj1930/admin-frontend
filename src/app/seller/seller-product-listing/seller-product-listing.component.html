@@ -94,7 +94,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr style="cursor: pointer" *ngFor="let product of products; let i=index;" (click)="goToProductDescPage(product._id)">
+                <tr style="cursor: pointer" *ngFor="let product of products; let i=index;">
                   <td scope="row">
                     <input type="checkbox" style="cursor: pointer" />
                   </td>
@@ -112,7 +112,7 @@
                       height="50px"
                     />
                   </td>
-                  <td>
+                  <td  (click)="goToProductDescPage(product._id)">
                     <p class="p-0 m-0">
                       {{product?.itemName}}
                     </p>

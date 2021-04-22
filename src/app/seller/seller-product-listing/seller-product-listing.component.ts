@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SellerService } from '../seller.service';
 import { Router } from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: 'app-seller-product-listing',
   templateUrl: './seller-product-listing.component.html',
@@ -13,7 +14,11 @@ export class SellerProductListingComponent implements OnInit {
   showFeedbackSection = false;
   feedback = '';
 
-  constructor(private sellerService: SellerService, private router:Router) { }
+  constructor(
+    private sellerService: SellerService, 
+    private router:Router,
+    private toast: ToastrService,
+    ) { }
 
   ngOnInit(): void {
     this.getSellerProductListing();
@@ -38,6 +43,7 @@ export class SellerProductListingComponent implements OnInit {
     }
     this.sellerService.approveRejectProduct(reqBody).subscribe(data => {
       console.log(data);
+      this.toast.success('I am toast', 'success')
       //this.products = data;
       this.feedback = '';
       this.getSellerProductListing();

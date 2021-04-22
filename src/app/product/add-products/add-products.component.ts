@@ -48,7 +48,6 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
       return;
     }
     this.productService.addProduct(this.addProductForm.value).subscribe(data => {
-      console.log(data);
       this.router.navigateByUrl('/inventory');
     }, error => {
       console.log(error);

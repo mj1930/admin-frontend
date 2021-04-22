@@ -9,6 +9,8 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { UserRightsManagementComponent } from './user-rights-management/user-rights-management.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule } from "ngx-toastr";
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +22,10 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: "toast-top-right"
+    }),
     AppRoutingModule,
     SharedModule
   ],

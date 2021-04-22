@@ -30,7 +30,6 @@ export class OrderListingComponent implements OnInit {
       limit: 10000
     };
     this.orderService.getOrder(reqBody).subscribe(data => {
-      console.log(data);
       this.orders = data['data'];
       this.setOrderStaus();
     }, error => {
@@ -44,7 +43,6 @@ export class OrderListingComponent implements OnInit {
       status: event.target.value
     }
     this.orderService.updateStatus(reqBody).subscribe(data => {
-      console.log(data);
      this.getOrder();
 
     }, error => {

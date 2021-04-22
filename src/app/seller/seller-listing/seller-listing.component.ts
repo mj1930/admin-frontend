@@ -24,7 +24,6 @@ export class SellerListingComponent implements OnInit {
       limit: this.limit
     }
     this.sellerService.getUsers(reqBody).subscribe(data => {
-      console.log(data);
       this.users = data['data'];
     }, error => {
       console.log(error);
