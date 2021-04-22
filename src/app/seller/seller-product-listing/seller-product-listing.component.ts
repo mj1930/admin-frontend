@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SellerService } from '../seller.service';
 import { Router } from '@angular/router';
-import {ToastrService} from 'ngx-toastr';
+import { ToastService } from 'src/app/shared/services/toast.service';
 @Component({
   selector: 'app-seller-product-listing',
   templateUrl: './seller-product-listing.component.html',
@@ -17,7 +17,7 @@ export class SellerProductListingComponent implements OnInit {
   constructor(
     private sellerService: SellerService, 
     private router:Router,
-    private toast: ToastrService,
+    private toaster: ToastService
     ) { }
 
   ngOnInit(): void {
@@ -41,9 +41,8 @@ export class SellerProductListingComponent implements OnInit {
     if(type === 'reject') {
       reqBody['feedback']= this.feedback;
     }
-    this.sellerService.approveRejectProduct(reqBody).subscribe(data => {
-      console.log(data);
-      this.toast.success('I am toast', 'success')
+    this.sellerService.approveRejectProduct(reqBody).subscribe((data: any) => {
+      this.toaster.openSnackbar(data.message);
       //this.products = data;
       this.feedback = '';
       this.getSellerProductListing();

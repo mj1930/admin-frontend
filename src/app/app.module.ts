@@ -11,13 +11,17 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
     // LoginComponent,
     // ResetPasswordComponent,
     // ForgotPasswordComponent,
-    UserRightsManagementComponent,
+    UserRightsManagementComponent
     // SignupComponent
   ],
   imports: [
@@ -27,9 +31,13 @@ import { ToastrModule } from "ngx-toastr";
       positionClass: "toast-top-right"
     }),
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
