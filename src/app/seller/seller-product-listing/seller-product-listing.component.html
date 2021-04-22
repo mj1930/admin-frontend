@@ -1,15 +1,15 @@
 <div class="page-wrapper chiller-theme toggled">
   <app-side-navigation></app-side-navigation>
-    <!-- sidebar-wrapper  -->
-    <main class="page-content">
-      <div class="container-fluid">
-        <h2>Product Listing</h2>
-        <hr />
-        <div class="row">
-          <div class="filer col p-3 rounded my-2 elegant-color text-white">
-            <div class="row d-flex align-items-center">
-              <div class="col-lg-9">
-                <span class="small mr-3">Status</span>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    <div class="container-fluid">
+      <h2>Product Listing</h2>
+      <hr />
+      <div class="row">
+        <div class="filer col p-3 rounded my-2 elegant-color text-white">
+          <div class="row d-flex align-items-center">
+            <div class="col-lg-9">
+              <!-- <span class="small mr-3">Status</span>
                 <div class="custom-control custom-radio custom-control-inline">
                   <input
                     type="radio"
@@ -55,113 +55,149 @@
                   <label class="custom-control-label" for="defaultInline4"
                     >Blocked</label
                   >
-                </div>
-              </div>
-              <div class="col-lg-3 my-2">
-                Sort By
-                <select class="form-control" (change)="sortData($event)">
-                    <option value="">Default</option>
-          
-                    <option value="isApproved-asc">Status (A - Z) </option>
-                    <option value="isApproved-desc">Status (Z - A) </option>
-                    <option value="itemName-asc">Name (A - Z) </option>
-                    <option value="itemName-desc">Name (Z - A) </option>
-                    <option value="createdAt-asc">Date Created (A - Z) </option>
-                    <option value="createdAt-desc">Date Created (Z - A) </option>
-                </select>
-              </div>
+                </div> -->
+            </div>
+            <div class="col-lg-3 my-2">
+              Sort By
+              <select class="form-control" (change)="sortData($event)">
+                <option value="">Default</option>
+
+                <option value="isApproved-asc">Status (A - Z) </option>
+                <option value="isApproved-desc">Status (Z - A) </option>
+                <option value="itemName-asc">Name (A - Z) </option>
+                <option value="itemName-desc">Name (Z - A) </option>
+                <option value="createdAt-asc">Date Created (A - Z) </option>
+                <option value="createdAt-desc">Date Created (Z - A) </option>
+              </select>
             </div>
           </div>
-          <div class="table-responsive rounded table-striped">
-            <table class="table">
-              <thead class="grey lighten-2 small text-uppercase">
-                <tr class="text-nowrap">
-                  <th scope="col">
-                    <input type="checkbox" style="cursor: pointer" />
-                  </th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Image</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Date Created</th>
-                  <th scope="col">Available Units</th>
-                  <th scope="col">Total Sold</th>
-                  <th scope="col">Total Returns</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Price + Shipping</th>
-                  <th scope="col">Business Price + Shipping</th>
-                  <th scope="col">Lowest Price + Shipping</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style="cursor: pointer" *ngFor="let product of products; let i=index;" (click)="goToProductDescPage(product._id)">
-                  <td scope="row">
-                    <input type="checkbox" style="cursor: pointer" />
-                  </td>
-                  <td>
-                    <p class="text-left m-0">{{product?.isApproved ? "Active" : "Inactive"}}</p>
-                    <span *ngIf="!product?.isApproved" class="text-left small m-0 p-0 text-muted"
-                      >(Out Of Stock)</span
-                    >
-                  </td>
-                  <td>
-                    <img
-                      src="https://images-na.ssl-images-amazon.com/images/I/61pZoOB87SL.jpg"
-                      alt=""
-                      width="50px"
-                      height="50px"
-                    />
-                  </td>
-                  <td>
-                    <p class="p-0 m-0">
-                      {{product?.itemName}}
-                    </p>
-                  </td>
-                  <td>{{product?.createdAt | date: 'medium'}}</td>
-                  <td>{{product?.availableUnits}}</td>
-                  <td>N/A</td>
-                  <td>N/A</td>
-                  <td>INR {{product?.productPrice}}</td>
-                  <td>N/A</td>
-                  <td>N/A</td>
-                  <td>N/A</td>
-                  
-                  <td>
-                      <div class="d-flex justify-content-around">
-                        <button [disabled]="showFeedbackSection" (click)="showFeedbackSection = true;" class="btn btn-sm btn-danger m-2"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        <button [disabled]="showFeedbackSection" (click)="approveRejectProduct(product, 'approve'); showFeedbackSection = false" class="btn btn-sm btn-success m-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-                      </div>
-
-                      <div class="col" *ngIf="showFeedbackSection">
-                          <textarea rows="5" [(ngModel)]="feedback" placeholder="Feedback Here"></textarea>
-                          <div class="d-flex justify-content-between">
-                            <button class="btn btn-sm btn-primary m-2" (click)="showFeedbackSection = false;">Cancel</button>
-                            <button class="btn btn-sm btn-dark m-2" (click)="approveRejectProduct(product, 'reject'); showFeedbackSection = false;">Submit</button>
-                          </div>
-                      </div>
-                  </td>
-                </tr>
-  
-              </tbody>
-            </table>
-          </div>
         </div>
-  
-        <footer class="text-center">
-          <div class="mb-2">
-            <small>
-              © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
-              Rights Reserved
-            </small>
-          </div>
-        </footer>
-        
+        <div class="table-responsive rounded table-striped">
+          <table class="table">
+            <thead class="grey lighten-2 small text-uppercase">
+              <tr class="text-nowrap">
+                <th scope="col">
+                  <input type="checkbox" style="cursor: pointer" />
+                </th>
+                <th scope="col">Status</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Available Units</th>
+                <th scope="col">Total Sold</th>
+                <th scope="col">Total Returns</th>
+                <th scope="col">Price</th>
+                <th scope="col">Price + Shipping</th>
+                <th scope="col">Business Price + Shipping</th>
+                <th scope="col">Lowest Price + Shipping</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                style="cursor: pointer"
+                *ngFor="let product of products; let i = index"
+              >
+                <td scope="row">
+                  <input type="checkbox" style="cursor: pointer" />
+                </td>
+                <td>
+                  <p class="text-left m-0">
+                    {{ product?.isApproved ? "Active" : "Inactive" }}
+                  </p>
+                  <span
+                    *ngIf="!product?.isApproved"
+                    class="text-left small m-0 p-0 text-muted"
+                    >(Out Of Stock)</span
+                  >
+                </td>
+                <td (click)="goToProductDescPage(product._id)">
+                  <img
+                    src="https://images-na.ssl-images-amazon.com/images/I/61pZoOB87SL.jpg"
+                    alt=""
+                    width="50px"
+                    height="50px"
+                  />
+                </td>
+                <td>
+                  <p class="p-0 m-0">
+                    {{ product?.itemName }}
+                  </p>
+                </td>
+                <td>{{ product?.createdAt | date: "medium" }}</td>
+                <td>{{ product?.availableUnits }}</td>
+                <td>N/A</td>
+                <td>N/A</td>
+                <td>INR {{ product?.productPrice }}</td>
+                <td>N/A</td>
+                <td>N/A</td>
+                <td>N/A</td>
+
+                <td>
+                  <div class="d-flex justify-content-around">
+                    <button
+                      [disabled]="showFeedbackSection"
+                      (click)="showFeedbackSection = true"
+                      class="btn btn-sm btn-danger m-2"
+                    >
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                    <button
+                      [disabled]="showFeedbackSection"
+                      (click)="
+                        approveRejectProduct(product, 'approve');
+                        showFeedbackSection = false
+                      "
+                      class="btn btn-sm btn-success m-2"
+                    >
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                  </div>
+
+                  <div class="col" *ngIf="showFeedbackSection">
+                    <textarea
+                      rows="5"
+                      [(ngModel)]="feedback"
+                      placeholder="Feedback Here"
+                    ></textarea>
+                    <div class="d-flex justify-content-between">
+                      <button
+                        class="btn btn-sm btn-primary m-2"
+                        (click)="showFeedbackSection = false"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        class="btn btn-sm btn-dark m-2"
+                        (click)="
+                          approveRejectProduct(product, 'reject');
+                          showFeedbackSection = false
+                        "
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </main>
-    <!-- page-content" -->
-  </div>
-  <!-- page-wrapper -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  
+
+      <footer class="text-center">
+        <div class="mb-2">
+          <small>
+            © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+            Rights Reserved
+          </small>
+        </div>
+      </footer>
+    </div>
+  </main>
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

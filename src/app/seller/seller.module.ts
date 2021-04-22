@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SellerListingComponent } from "./seller-listing/seller-listing.component";
-import { SellerProductListingComponent } from "./seller-product-listing/seller-product-listing.component";
+import { SellerListingComponent } from './seller-listing/seller-listing.component';
+import { SellerProductListingComponent } from './seller-product-listing/seller-product-listing.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,10 +10,14 @@ import { httpInterceptorProviders } from '../http-interceptor';
 import { SellerService } from './seller.service';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDescriptionComponent } from './product-description/product-description.component';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
-  declarations: [SellerListingComponent, SellerProductListingComponent, ProductDescriptionComponent],
+  declarations: [
+    SellerListingComponent,
+    SellerProductListingComponent,
+    ProductDescriptionComponent
+  ],
   imports: [
     CommonModule,
     SellerRoutingModule,
@@ -22,8 +26,9 @@ import { ProductDescriptionComponent } from './product-description/product-descr
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ],
   providers: [httpInterceptorProviders, SellerService]
 })
-export class SellerModule { }
+export class SellerModule {}

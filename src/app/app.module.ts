@@ -9,21 +9,30 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { UserRightsManagementComponent } from './user-rights-management/user-rights-management.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SharedModule } from './shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
     // LoginComponent,
     // ResetPasswordComponent,
     // ForgotPasswordComponent,
-    UserRightsManagementComponent,
+    UserRightsManagementComponent
     // SignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
