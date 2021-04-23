@@ -54,11 +54,8 @@ export class AddCategoryComponent implements OnInit {
     // reqBody['subCategory'] = this.subCategory;
     if (this.categoryId) {
       formData.append('categoryId', this.categoryId);
-      // reqBody['categoryId'] = this.categoryId;
-
       this.categoryService.addSubCategory(formData).subscribe(
-        data => {
-          console.log(data);
+        () => {
           this.toaster.openSnackbar('Category Added Successfully!!');
           this.router.navigateByUrl('/category/category-listing');
         },
@@ -71,15 +68,18 @@ export class AddCategoryComponent implements OnInit {
       formData.append('category', this.category);
       formData.append('catImg', this.categoryImage);
       // reqBody['category'] = this.category;
-      this.categoryService.addCategory(formData).subscribe(
-        data => {
-          console.log(data);
-          this.router.navigateByUrl('/category/category-listing');
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      if (this.categoryImage) {
+        this.categoryService.addCategory(formData).subscribe(
+          () => {
+            this.router.navigateByUrl('/category/category-listing');
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      } else {
+        this.toaster.openSnackbar('Please add category image also!!'); 
+      }
     }
   }
 }

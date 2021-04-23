@@ -39,7 +39,7 @@ export class SellerProductListingComponent implements OnInit {
       productId: data._id
     }
     if(type === 'reject') {
-      reqBody['feedback']= this.feedback;
+      reqBody['feedback']= data.feedback;
     }
     this.sellerService.approveRejectProduct(reqBody).subscribe((data: any) => {
       this.toaster.openSnackbar(data.message);

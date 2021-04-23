@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class SignupComponent implements OnInit {
     step3: false
   }
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router,
+    private toaster: ToastService) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -40,8 +42,13 @@ export class SignupComponent implements OnInit {
       password: this.registerForm.controls['password'].value
     }
 
-    this.authService.register(reqData).subscribe(data => {
-      this.router.navigateByUrl('/auth/login');
+    this.authService.register(reqData).subscribe((data: any) => {
+      this.toaster.openSnackbar(data.message);
+      if (data.code === 200) {
+        this.router.navigateByUrl('/auth/login');
+      } else {
+
+      }
     }, error => {
       console.log(error);
     })

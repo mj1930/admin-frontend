@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   loginAttempt: boolean;
   loginError = null;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, 
+    private toaster: ToastService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -54,7 +56,7 @@ export class LoginComponent implements OnInit {
         }
         this.router.navigateByUrl('/seller');
     } else {
-      this.loginError = data['message'];
+      this.toaster.openSnackbar(data.messgae);
     }
     }, error => {
       console.log(error);
