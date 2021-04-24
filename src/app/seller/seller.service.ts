@@ -7,7 +7,7 @@ export class SellerService {
   constructor(private http: HttpClient) { }
 
   getProducts() {
-    return this.http.post('products/get-all-products', {skip:0, limit:100});
+    return this.http.post('products/get-all-products-admin', {skip:0, limit:100});
   }
 
   getProductDetails(id) {
