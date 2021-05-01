@@ -11,6 +11,7 @@ import { SellerService } from './seller.service';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDescriptionComponent } from './product-description/product-description.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { OrderService } from '../orders/order.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FormsModule,
     NgxSpinnerModule
   ],
-  providers: [httpInterceptorProviders, SellerService]
+  providers: [httpInterceptorProviders, SellerService, OrderService]
 })
 export class SellerModule {}

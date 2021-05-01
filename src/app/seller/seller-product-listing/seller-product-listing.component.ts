@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SellerService } from '../seller.service';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { OrderService } from 'src/app/orders/order.service';
 @Component({
   selector: 'app-seller-product-listing',
   templateUrl: './seller-product-listing.component.html',
@@ -13,9 +14,11 @@ export class SellerProductListingComponent implements OnInit {
   status;
   showFeedbackSection = false;
   feedback = '';
+  searchTerm: string = '';
 
   constructor(
     private sellerService: SellerService, 
+    private orderService: OrderService,
     private router:Router,
     private toaster: ToastService
     ) { }
@@ -25,11 +28,11 @@ export class SellerProductListingComponent implements OnInit {
   }
 
   getSellerProductListing() {
-    this.sellerService.getProducts().subscribe(data => {
-      console.log(data);
+    this.sellerService.getProducts().subscribe((data: any) => {
+      this.toaster.openSnackbar(data.message);
       this.products = data['data'];
     }, error => {
-      console.log(error);
+      this.toaster.openSnackbar(error);
     })
   }
 
@@ -47,7 +50,7 @@ export class SellerProductListingComponent implements OnInit {
       this.feedback = '';
       this.getSellerProductListing();
     }, error => {
-      console.log(error);
+      this.toaster.openSnackbar(error);
     })
   }
 
@@ -66,7 +69,24 @@ export class SellerProductListingComponent implements OnInit {
       if (res.code === 200) {
         this.products = res.data;
       }
+    }, error => {
+      this.toaster.openSnackbar(error);
     });
+  }
+
+  searchProduct() {
+    if (!this.searchTerm) {
+      this.getSellerProductListing();
+      return;
+    }
+    this.orderService.searchProduct(this.searchTerm).subscribe((resp: any) => {
+      this.toaster.openSnackbar(resp.message);
+      if (resp.code === 200) {
+        this.products = resp['data'];
+      }
+    }, error => {
+      this.toaster.openSnackbar(error);
+    })
   }
 
 }

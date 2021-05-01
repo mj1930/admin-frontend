@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
         }
         this.router.navigateByUrl('/seller');
     } else {
-      this.toaster.openSnackbar(data.messgae);
+      this.toaster.openSnackbar(data.message);
     }
     }, error => {
       console.log(error);
