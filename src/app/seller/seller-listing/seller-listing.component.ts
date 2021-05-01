@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SellerService } from '../seller.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastService } from 'src/app/shared/services/toast.service';
 @Component({
   selector: 'app-seller-listing',
   templateUrl: './seller-listing.component.html',
@@ -10,10 +11,12 @@ export class SellerListingComponent implements OnInit {
   users = [];
   skip = 0;
   limit = -1;
+  searchTerm: string = '';
   isloading = true;
   constructor(
     private sellerService: SellerService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toaster: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -62,5 +65,25 @@ export class SellerListingComponent implements OnInit {
     setTimeout(() => {
       this.spinner.hide();
     }, 6000);
+  }
+
+  searchSeller() {
+    if (!this.searchTerm) {
+      this.getSellerListing();
+      return;
+    }
+    let obj = {
+      skip: 0,
+      limit: 10,
+      search: this.searchTerm
+    };
+    this.sellerService.searchSeller(obj).subscribe((resp: any) => {
+      this.toaster.openSnackbar(resp.message);
+      if (resp.code === 200) {
+        this.users = resp.data;
+      }
+    }, error => {
+      this.toaster.openSnackbar(error);
+    })
   }
 }

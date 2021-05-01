@@ -29,6 +29,10 @@ export class SellerService {
   getSortSellers(reqBody) {
     return this.http.post('users/sort-user', reqBody);
   }
+
+  searchSeller(reqBody) {
+    return this.http.post('users/search-user', reqBody);
+  }
   
 
 }

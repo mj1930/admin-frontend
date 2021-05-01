@@ -16,8 +16,8 @@
       <div class="row">
         <div class="filer col p-3 rounded my-2 elegant-color text-white">
           <div class="row d-flex align-items-center">
-            <div class="col-lg-9">
-              <!-- <span class="small mr-3">Listing Status</span>
+            <!-- <div class="col-lg-9">
+              <span class="small mr-3">Listing Status</span>
                 <div class="custom-control custom-radio custom-control-inline">
                   <input
                     type="radio"
@@ -64,8 +64,8 @@
                   <label class="custom-control-label" for="defaultInline4"
                     >Blocked</label
                   >
-                </div> -->
-            </div>
+                </div>
+            </div> -->
             <div class="col-lg-3 my-2">
               Sort By
               <select class="form-control" (change)="sortData($event)">
@@ -79,6 +79,15 @@
                 <option value="createdAt-desc">Date Created (Z - A) </option>
               </select>
             </div>
+            <div class="col-lg-6">
+              Search Orders
+              <div class="input-group">
+                <input type="search" class="form-control rounded" [(ngModel)]="searchTerm" placeholder="Search Sellers" />
+                <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchSeller()">
+                  <i class="fa fa-search"></i>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="table-responsive rounded table-striped">
@@ -90,6 +99,7 @@
                 </th>
                 <th scope="col">Status</th>
                 <th scope="col">Store Name</th>
+                <th scope="col">seller Email</th>
                 <th scope="col">Date Created</th>
                 <th scope="col">Total lisited Products</th>
               </tr>
@@ -111,6 +121,9 @@
                 </td>
                 <td>
                   {{ user?.storename ? user?.storename : "NA" }}
+                </td>
+                <td>
+                  {{ user?.email ? user?.email : "NA" }}
                 </td>
                 <td>{{ user?.createdAt | date: "medium" }}</td>
                 <td>
