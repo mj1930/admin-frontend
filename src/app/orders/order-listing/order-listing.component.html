@@ -98,7 +98,7 @@
                           <p>On Delivery</p>
                       </td> -->
                       <td>
-                          <p>{{order?.address}}</p>
+                          <p>{{order?.address?.city ? order?.address?.city : 'NA'}}</p>
                       </td>
                       <!-- <td>
                           <p>NA</p>
