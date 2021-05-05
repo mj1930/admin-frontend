@@ -12,7 +12,7 @@ export class SellerProductListingComponent implements OnInit {
 
   products;
   status;
-  showFeedbackSection = false;
+  showFeedback =  -1;
   feedback = '';
   searchTerm: string = '';
 
@@ -87,6 +87,10 @@ export class SellerProductListingComponent implements OnInit {
     }, error => {
       this.toaster.openSnackbar(error);
     })
+  }
+
+  showFeedbackFn(index) {
+    this.showFeedback = index;
   }
 
 }

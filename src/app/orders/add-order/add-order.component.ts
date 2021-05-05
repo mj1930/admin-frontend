@@ -12,6 +12,7 @@ export class AddOrderComponent implements OnInit {
   addOrderForm: FormGroup;
   showSubMenu = false;
   userName = '';
+  isSearchControl= '';
   paymentModes = [
     // {value:'debit', text:'Debit Card / Credit Card'},
     // {value:'upi', text:'UPI Payment'},
@@ -65,6 +66,7 @@ export class AddOrderComponent implements OnInit {
   searchProduct() {
     this.orderService.searchProduct(this.addOrderForm.controls['products']['controls']['name'].value).subscribe(data => {
       this.searchResult=data['data'];
+      this.isSearchControl = this.addOrderForm.controls['products']['controls']['name'].value;
     }, error => {
       console.log(error);
     })
@@ -96,6 +98,7 @@ export class AddOrderComponent implements OnInit {
   this.addOrderForm.controls['products']['controls']['name'].setValue(productName);
   this.addOrderForm.controls['products']['controls']['price'].setValue(parseFloat(price));
   this.addOrderForm.controls['products']['controls']['productId'].setValue(productId);
+  this.isSearchControl = '';
   }
 
   changeSeller(seller) {

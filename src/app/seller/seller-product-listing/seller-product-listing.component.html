@@ -86,27 +86,27 @@
                 <td>N/A</td>
 
                 <td>
-                  <div class="d-flex justify-content-around">
+                  <input type="hidden"   >
+                  <div class="d-flex justify-content-around" >
                     <button
-                      [disabled]="showFeedbackSection"
-                      (click)="showFeedbackSection = true"
+                      [disabled]="showFeedback == i"
+                      (click)="showFeedbackFn(i)"
                       class="btn btn-sm btn-danger m-2"
                     >
                       <i class="fa fa-times" aria-hidden="true"></i>
                     </button>
                     <button
-                      [disabled]="showFeedbackSection"
+                      [disabled]="showFeedback == i"
                       (click)="
                         approveRejectProduct(product, 'approve');
-                        showFeedbackSection = false
-                      "
+                        showFeedback = -1;"
                       class="btn btn-sm btn-success m-2"
                     >
                       <i class="fa fa-check" aria-hidden="true"></i>
                     </button>
                   </div>
 
-                  <div class="col" *ngIf="showFeedbackSection">
+                  <div class="col" *ngIf="showFeedback == i">
                     <textarea
                       rows="2"
                       [(ngModel)]="product.feedback"
@@ -115,7 +115,7 @@
                     <div class="d-flex justify-content-between">
                       <button
                         class="btn btn-sm btn-primary m-2"
-                        (click)="showFeedbackSection = false"
+                        (click)="showFeedback = -1;"
                       >
                         Cancel
                       </button>
@@ -123,7 +123,7 @@
                         class="btn btn-sm btn-dark m-2"
                         (click)="
                           approveRejectProduct(product, 'reject');
-                          showFeedbackSection = false
+                          showFeedback = -1;
                         "
                       >
                         Submit
