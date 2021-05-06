@@ -12,7 +12,8 @@ export class AddOrderComponent implements OnInit {
   addOrderForm: FormGroup;
   showSubMenu = false;
   userName = '';
-  isSearchControl= '';
+  isSearchControl :any= { name: "", indx: -1};
+  product: any;
   paymentModes = [
     // {value:'debit', text:'Debit Card / Credit Card'},
     // {value:'upi', text:'UPI Payment'},
@@ -36,14 +37,16 @@ export class AddOrderComponent implements OnInit {
     //   price:null,
     //   quantity: null
     // })]),
-    products: this.fb.group({
-      name: '',
-      price: null,
-      quantity: null,
-      sellerId: '',
-      productId: '',
-      sellerName: ''
-    }),
+    products: this.fb.array([
+      this.fb.group({
+        name: [''],
+        price: [''],
+        quantity: [''],
+        sellerId: [''],
+        productId: [''],
+        sellerName: ['']
+      }),
+    ]),
     //userId: [],
     totalAmnt:[],
     address:[],
@@ -52,6 +55,7 @@ export class AddOrderComponent implements OnInit {
     paymentMode:['Cash On Delivery']
       });
     this.userName = JSON.parse(localStorage.getItem('user')).name;
+    console.log(this.addOrderForm.get('products')['controls'][0]['controls']['name']);
   }
 
   addProduct() {
@@ -63,18 +67,19 @@ export class AddOrderComponent implements OnInit {
   }
 
   searchResult = [];
-  searchProduct() {
-    this.orderService.searchProduct(this.addOrderForm.controls['products']['controls']['name'].value).subscribe(data => {
+  searchProduct(index=0) {
+    this.orderService.searchProduct(this.addOrderForm.get('products')['controls'][index]['controls']['name'].value).subscribe(data => {
       this.searchResult=data['data'];
-      this.isSearchControl = this.addOrderForm.controls['products']['controls']['name'].value;
+      this.isSearchControl.name = this.addOrderForm.get('products')['controls'][index]['controls']['name'].value;
+      this.isSearchControl.indx = index;
     }, error => {
       console.log(error);
     })
   }
 
-  calculateTotalAmount() {
-    const quantity = this.addOrderForm.controls['products']['controls']['quantity'].value;
-    const price = this.addOrderForm.controls['products']['controls']['price'].value;
+  calculateTotalAmount(index = 0) {
+    const quantity = this.addOrderForm.get('products')['controls'][index]['controls']['quantity'].value;
+    const price = this.addOrderForm.get('products')['controls'][index]['controls']['price'].value;
 
     if( quantity && price) {
       String(this.addOrderForm.controls['totalAmnt'].setValue(quantity * price));
@@ -94,17 +99,17 @@ export class AddOrderComponent implements OnInit {
     })
   }
 
-  setProductSearchText(productName, price, productId) {
-  this.addOrderForm.controls['products']['controls']['name'].setValue(productName);
-  this.addOrderForm.controls['products']['controls']['price'].setValue(parseFloat(price));
-  this.addOrderForm.controls['products']['controls']['productId'].setValue(productId);
-  this.isSearchControl = '';
+  setProductSearchText(productName, price, productId, index =0) {
+    this.addOrderForm.get('products')['controls'][index]['controls']['name'].setValue(productName);
+    this.addOrderForm.get('products')['controls'][index]['controls']['price'].setValue(parseFloat(price));
+    this.addOrderForm.get('products')['controls'][index]['controls']['productId'].setValue(productId);
+    this.isSearchControl = { name: "", indx: -1};
   }
 
-  changeSeller(seller) {
+  changeSeller(seller, index) {
     this.sellers.forEach(item => {
-      if(item._id === this.addOrderForm.controls['products']['controls']['sellerId'].value) {
-        this.addOrderForm.controls['products']['controls']['sellerName'].setValue(item.name);
+      if(item._id === this.addOrderForm.get('products')['controls'][index]['controls']['sellerId'].value) {
+        this.addOrderForm.get('products')['controls'][index]['controls']['sellerName'].setValue(item.name);
       }
     }) 
   }
@@ -112,6 +117,20 @@ export class AddOrderComponent implements OnInit {
   resetForm() {
     this.addOrderForm.reset();
    // this.router.navigateByUrl('/seller/active-dashboard');
+  }
+
+  addProducts() {
+    this.product = this.addOrderForm.get('products') as FormArray;
+    this.product.push(
+      this.fb.group({
+        name: '',
+        price: null,
+        quantity: null,
+        sellerId: '',
+        productId: '',
+        sellerName: ''
+      })
+    );
   }
 
 }
