@@ -10,12 +10,11 @@ import { ToastrModule } from "ngx-toastr";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { DataTablesModule } from "angular-datatables";
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserRightsManagementComponent
+    UserRightsManagementComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +22,6 @@ import { DataTablesModule } from "angular-datatables";
     ToastrModule.forRoot({
       positionClass: "toast-top-right"
     }),
-    DataTablesModule,
     AppRoutingModule,
     SharedModule,
     NgbModule,

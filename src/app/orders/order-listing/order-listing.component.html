@@ -84,7 +84,7 @@
                             <p>{{order?.mode}}</p>
                         </td>
                         <td>
-                            <p>{{order?._id}}</p>
+                            <p><a href="order/order-details" target="_blank" class="text-primary">{{order?._id}}</a></p>
                         </td>
                         <td *ngFor="let prod of order?.products">
                           <p>{{prod?.name}}</p>

@@ -100,6 +100,7 @@
                 <th scope="col">Seller Phone</th>
                 <th scope="col">Date Created</th>
                 <th scope="col">Total lisited Products</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody *ngIf="users.length">
@@ -126,6 +127,12 @@
                 <td>{{ user?.createdAt | date: "medium" }}</td>
                 <td>
                   N/A
+                </td>
+                <td>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="" >
+                    <label class="custom-control-label cursor-pointer my-2" for=""></label>
+                  </div>
                 </td>
               </tr>
             </tbody>
