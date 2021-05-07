@@ -1,152 +1,156 @@
 <div class="page-wrapper chiller-theme toggled">
-    <app-side-navigation></app-side-navigation>
-        <!-- sidebar-wrapper  -->
-        <main class="page-content">
-          <div class="container-fluid">
-            <h2>Order Booking</h2>
-            <hr />
-            <div class="row">
-                <form class="col" [formGroup]="addOrderForm" (ngSubmit)="addProduct()">
-                    <div class="form-group">
-                      <label for="">Mode Of Booking</label>
-                      <select class="form-control" formControlName="mode">
-                        <!-- <option>Website</option> -->
-                        <option selected value="Phone">Phone</option>
-                        <option value="Whatsapp">Whatsapp</option>
-                      </select>
-                    </div>
-
-                    <div class="">
-                      <!-- <span class="text-primary" style="cursor: pointer;">Add New Product</span> -->
-
-                      <!-- <div formArrayName="products"
-          *ngFor="let product of addOrderForm.get('products')['controls']; let i = index;"> -->
-          <div formGroupName="products">
-                      <div class="form-group">
-                        <div class="d-flex justify-content-between">
-                          <label for="">Product Name</label>
-                        </div>
-                        <input type="text" class="form-control" (keyup)="searchProduct()" formControlName="name" placeholder="Product Name">
-                      </div>
-
-                      <div class="row" *ngIf="addOrderForm.controls['products']['controls']['name'].value">
-                        <div class="col">
-                            <p>Search Result</p>
-                            <div class="mb-4" *ngIf="!searchResult.length">
-                              No Product found
-                            </div>
-                            <div class="row" *ngIf="searchResult.length">
-                                <div  *ngFor="let product of searchResult" class="col-sm-4 col-md-3 col-lg-2 my-2">
-                                    <div (click)="setProductSearchText(product.itemName, product.productPrice)" class="card px-2 cursor-style">
-                                      <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
-                                      <div class="card-body px-0">
-                                        <h5 class="card-title">{{product?.itemName}}</h5>
-                                        <p class="card-text">{{product?.description}}</p>
-                                        <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
-                                        <button type="button" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                      </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                      <div class="form-group mt-2">
-                        <label for="">Quantity</label>
-                        <input type="text" class="form-control" (keyup)="calculateTotalAmount()" formControlName="quantity" placeholder="Product quantity">
-                      </div>
-
-                      <div class="form-group mt-2">
-                          <label for="">Product Price (MRP)</label>
-                          <input type="text" class="form-control" (keyup)="calculateTotalAmount()" formControlName="price" placeholder="Product price">
-                      </div>
-                    <!-- </div> -->
-
-
-                    <div class="form-group" *ngIf="sellers.length">
-                      <label for="">Select Seller</label>
-                      <select class="form-control" (change)="changeSeller(seller)" formControlName="sellerId">
-                        <option *ngFor="let seller of sellers;" [value]="seller._id">{{seller?.name}}</option>
-                      </select>
-                    </div>
-
+  <app-side-navigation></app-side-navigation>
+      <!-- sidebar-wrapper  -->
+      <main class="page-content">
+        <div class="container-fluid">
+          <h2>Order Booking</h2>
+          <hr />
+          <div class="row">
+              <form class="col" [formGroup]="addOrderForm" (ngSubmit)="addProduct()">
+                  <div class="form-group">
+                    <label for="">Mode Of Booking</label>
+                    <select class="form-control" formControlName="mode">
+                      <!-- <option>Website</option> -->
+                      <option selected value="Phone">Phone</option>
+                      <option value="Whatsapp">Whatsapp</option>
+                    </select>
                   </div>
-                    </div>
+
+                  <div class="">
+                    <!-- <span class="text-primary" style="cursor: pointer;">Add New Product</span> -->
+
+                    <!-- <div formArrayName="products"
+        *ngFor="let product of addOrderForm.get('products')['controls']; let i = index;"> -->
+        <div formArrayName="products">
+        <div  *ngFor="let products of addOrderForm.get('products')['controls']; let i = index;"
+        [formGroupName]="i">
                     <div class="form-group">
-                        <label for="">Order Total</label>
-                        <input type="text" class="form-control" formControlName="totalAmnt" placeholder="Rs 200" disabled>
+                      <div class="d-flex justify-content-between">
+                        <label for="">Product Name</label>
+                      </div>
+                      <input type="text" class="form-control" (keyup)="searchProduct(i)" formControlName="name" placeholder="Product Name">
                     </div>
 
-                    <div class="form-group">
-                        <label for="">Address</label>
-                        <textarea class="form-control" formControlName="address"></textarea>
+                    <div class="row" *ngIf="isSearchControl &&  isSearchControl.indx == i">
+                      <div class="col">
+                          <p>Search Result</p>
+                          <div class="mb-4" *ngIf="!searchResult.length">
+                            No Product found
+                          </div>
+                          <div class="row" *ngIf="searchResult.length">
+                              <div  *ngFor="let product of searchResult" class="col-sm-4 col-md-3 col-lg-2 my-2">
+                                  <div  class="card px-2 cursor-style">
+                                    <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
+                                    <div class="card-body px-0">
+                                      <h5 class="card-title">{{product?.itemName}}</h5>
+                                      <p class="card-text">{{product?.description}}</p>
+                                      <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
+                                      <button type="button" class="btn btn-success btn-sm mx-2" (click)="setProductSearchText(product.itemName, product.productPrice, product._id, i)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                    </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                  </div>
+                    <div class="form-group mt-2">
+                      <label for="">Quantity</label>
+                      <input type="text" class="form-control" (keyup)="calculateTotalAmount(i)" formControlName="quantity" placeholder="Product quantity">
                     </div>
 
-                    <div class="form-group">
-                        <label for="">GST (Applicable only at Business Purchase)</label>
-                        <input type="text" class="form-control" formControlName="userGstin" placeholder="GSTIN">
+                    <div class="form-group mt-2">
+                        <label for="">Product Price (MRP)</label>
+                        <input type="text" class="form-control" (keyup)="calculateTotalAmount(i)" formControlName="price" placeholder="Product price">
                     </div>
+                  <!-- </div> -->
 
-                    <div class="form-group">
-                        <label for="">Business Name</label>
-                        <input type="text" class="form-control" formControlName="businessName" placeholder="Name of business">
-                    </div>
 
-                    <div class="form-group">
-                        <label for="">Payment Mode</label>
-                        <div class="form-check" *ngFor="let payMode of paymentModes">
-                            <input class="form-check-input" type="radio" id="exampleRadios1" formControlName="paymentMode" [value]="payMode.text" [checked]="payMode.text === 'Cash On Delivery'">
-                            <label class="form-check-label" for="exampleRadios1">
-                              {{payMode.text}}
-                            </label>
-                        </div>
-                        <!-- <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                            <label class="form-check-label" for="exampleRadios2">
-                              UPI Payment
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-                            <label class="form-check-label" for="exampleRadios3">
-                              Payment Gateway (PayTM, PhonePe, GooglePay)
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
-                            <label class="form-check-label" for="exampleRadios4">
-                              Cash On Delivery
-                            </label>
-                        </div> -->
-                    </div>
+                  <div class="form-group" *ngIf="sellers.length">
+                    <label for="">Select Seller</label>
+                    <select class="form-control" (change)="changeSeller(seller, i)" formControlName="sellerId">
+                      <option *ngFor="let seller of sellers;" [value]="seller._id">{{seller?.name}}</option>
+                    </select>
+                  </div>
+                  </div>
+                  </div>
+                </div>
 
-                    <button type="submit" class="btn btn-primary btn-sm rounded m-0">Go to Details</button>
-                  </form>
-            </div>
-      
-            <footer class="text-center">
-              <div class="mb-2">
-                <small>
-                  © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
-                  Rights Reserved
-                </small>
-              </div>
-            </footer>
+                  <button class="btn mb-4 btn-sm btn-dark" (click)="addProducts()" type="button">Add Product</button>
+                  <div class="form-group">
+                      <label for="">Order Total</label>
+                      <input type="text" class="form-control" formControlName="totalAmnt" placeholder="Rs 200" disabled>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="">Address</label>
+                      <textarea class="form-control" formControlName="address"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="">GST (Applicable only at Business Purchase)</label>
+                      <input type="text" class="form-control" formControlName="userGstin" placeholder="GSTIN">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="">Business Name</label>
+                      <input type="text" class="form-control" formControlName="businessName" placeholder="Name of business">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="">Payment Mode</label>
+                      <div class="form-check" *ngFor="let payMode of paymentModes">
+                          <input class="form-check-input" type="radio" id="exampleRadios1" formControlName="paymentMode" [value]="payMode.text" [checked]="payMode.text === 'Cash On Delivery'">
+                          <label class="form-check-label" for="exampleRadios1">
+                            {{payMode.text}}
+                          </label>
+                      </div>
+                      <!-- <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                          <label class="form-check-label" for="exampleRadios2">
+                            UPI Payment
+                          </label>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                          <label class="form-check-label" for="exampleRadios3">
+                            Payment Gateway (PayTM, PhonePe, GooglePay)
+                          </label>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+                          <label class="form-check-label" for="exampleRadios4">
+                            Cash On Delivery
+                          </label>
+                      </div> -->
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn-sm rounded m-0">Go to Details</button>
+                </form>
           </div>
-        </main>
     
-        <!-- page-content" -->
-      </div>
-      <!-- page-wrapper -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"
-      ></script>
-      <script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"
-      ></script>
-      
+          <footer class="text-center">
+            <div class="mb-2">
+              <small>
+                © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+                Rights Reserved
+              </small>
+            </div>
+          </footer>
+        </div>
+      </main>
+  
+      <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    
