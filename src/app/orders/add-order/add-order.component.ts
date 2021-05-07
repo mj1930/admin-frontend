@@ -15,12 +15,10 @@ export class AddOrderComponent implements OnInit {
   isSearchControl :any= { name: "", indx: -1};
   product: any;
   paymentModes = [
-    // {value:'debit', text:'Debit Card / Credit Card'},
-    // {value:'upi', text:'UPI Payment'},
-    // {value:'gateway', text:'Payment Gateway (PayTM, PhonePe, GooglePay)'},
     {value:'cod', text:'Cash On Delivery'}
   ];
   sellers = [];
+  productLength: number = 0;
 
   constructor(private fb: FormBuilder, 
     private orderService: OrderService, 
@@ -67,9 +65,14 @@ export class AddOrderComponent implements OnInit {
   }
 
   searchResult = [];
-  searchProduct(index=0) {
-    this.orderService.searchProduct(this.addOrderForm.get('products')['controls'][index]['controls']['name'].value).subscribe(data => {
-      this.searchResult=data['data'];
+  searchProduct(index = 0) {
+    let searchTerm = this.addOrderForm.get('products')['controls'][index]['controls']['name'].value;
+    if (!searchTerm) {
+      this.searchResult = [];
+      return;
+    }
+    this.orderService.searchProduct(searchTerm).subscribe(data => {
+      this.searchResult = data['data'];
       this.isSearchControl.name = this.addOrderForm.get('products')['controls'][index]['controls']['name'].value;
       this.isSearchControl.indx = index;
     }, error => {
@@ -131,6 +134,13 @@ export class AddOrderComponent implements OnInit {
         sellerName: ''
       })
     );
+    this.productLength++;
   }
+
+  // removeProducts() {
+  //   this.product = this.addOrderForm.get('products') as FormArray;
+  //   this.product.pop();
+  //   this.productLength--;
+  // }
 
 }

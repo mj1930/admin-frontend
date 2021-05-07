@@ -29,7 +29,7 @@
                   <div class="col-sm-12 col-md-3">
                     Search Orders by payment mode
                     <div class="input-group">
-                      <input type="search" class="form-control rounded" [(ngModel)]="searchTerm" placeholder="Search Orders" />
+                      <input type="search" class="form-control rounded" [(ngModel)]="searchTerm" placeholder="Search Orders by payment mode" />
                       <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchOrder()">
                         <i class="fa fa-search"></i>
                       </span>
@@ -38,8 +38,8 @@
                   <div class="col-sm-12 col-md-3">
                     Search Orders by order id
                     <div class="input-group">
-                      <input type="search" class="form-control rounded" [(ngModel)]="orderId" placeholder="Search Orders" />
-                      <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchOrder()">
+                      <input type="search" class="form-control rounded" [(ngModel)]="searchId" placeholder="Search Orders by id" />
+                      <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchOrderById()">
                         <i class="fa fa-search"></i>
                       </span>
                     </div>

@@ -20,6 +20,7 @@ export class OrderListingComponent implements OnInit {
   ];
   orderStatus: string = "";
   searchTerm: string = '';
+  searchId: string = '';
   orderId: string = '';
 
   constructor(private orderService: OrderService, private toaster: ToastService) { }
@@ -132,6 +133,26 @@ export class OrderListingComponent implements OnInit {
       search: this.searchTerm
     };
     this.orderService.searchProducts(obj).subscribe((resp: any) => {
+      this.toaster.openSnackbar(resp.message);
+      if (resp.code === 200) {
+        this.orders = resp['data'];
+      }
+    });
+  }
+
+  searchOrderById() {
+    if (!this.searchId) {
+      this.getOrder();
+      return;
+    }
+    let obj = {
+      skip: 0,
+      limit: 10,
+      status: this.selectedStatus,
+      orderId: this.searchId,
+      search: this.searchTerm ? this.searchTerm : ''
+    };
+    this.orderService.searchProductsById(obj).subscribe((resp: any) => {
       this.toaster.openSnackbar(resp.message);
       if (resp.code === 200) {
         this.orders = resp['data'];

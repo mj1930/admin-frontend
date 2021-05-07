@@ -40,5 +40,9 @@ export class OrderService {
     return this.http.post('orders/search-product', reqBody);
   }
 
+  searchProductsById(reqBody) {
+    return this.http.post('orders/search-product-id', reqBody);
+  }
+
 
 }
