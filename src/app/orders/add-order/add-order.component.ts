@@ -81,12 +81,18 @@ export class AddOrderComponent implements OnInit {
   }
 
   calculateTotalAmount(index = 0) {
-    const quantity = this.addOrderForm.get('products')['controls'][index]['controls']['quantity'].value;
-    const price = this.addOrderForm.get('products')['controls'][index]['controls']['price'].value;
-
-    if( quantity && price) {
-      String(this.addOrderForm.controls['totalAmnt'].setValue( this.addOrderForm.controls['totalAmnt'].value + (quantity * price)));
+    let totalPrice = 0
+    for (let i = 0;  i < this.addOrderForm.get('products')['controls'].length; i++ ) {
+      const quantity = this.addOrderForm.get('products')['controls'][i]['controls']['quantity'].value;
+      const price = this.addOrderForm.get('products')['controls'][i]['controls']['price'].value;
+      if( quantity && price) {
+        totalPrice = totalPrice + (quantity * price);
+      }
+      String(this.addOrderForm.controls['totalAmnt'].setValue( totalPrice));
     }
+
+
+
   }
 
   
@@ -138,9 +144,15 @@ export class AddOrderComponent implements OnInit {
 
 
   removeProducts(index) {
-   // this.product = this.addOrderForm.get('products') as FormArray;
+    const quantity = this.addOrderForm.get('products')['controls'][index]['controls']['quantity'].value;
+    const price = this.addOrderForm.get('products')['controls'][index]['controls']['price'].value;
+    const ProductId = this.addOrderForm.get('products')['controls'][index]['controls']['productId'].value;
+    String(this.addOrderForm.controls['totalAmnt'].setValue( this.addOrderForm.controls['totalAmnt'].value - (quantity * price)));
+    this.product = this.addOrderForm.get('products') as FormArray;
+    console.log(this.product)
     if (index > -1) {
-      this.addOrderForm.get('products')['controls'].splice(index, 1);
+      this.product.removeAt(this.product.value.findIndex(product => product._id === ProductId));
+      console.log('inside if',this.product)
     }
   }
 
