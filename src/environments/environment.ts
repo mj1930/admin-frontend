@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3002/',
-  sellerApiUrl: 'http://localhost:3003/'
+  apiUrl: 'http://65.2.31.91:3002/',
+  sellerApiUrl: 'http://65.2.73.90:3003/'
 };
 
 /*

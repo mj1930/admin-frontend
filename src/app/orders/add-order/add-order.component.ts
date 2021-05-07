@@ -85,7 +85,7 @@ export class AddOrderComponent implements OnInit {
     const price = this.addOrderForm.get('products')['controls'][index]['controls']['price'].value;
 
     if( quantity && price) {
-      String(this.addOrderForm.controls['totalAmnt'].setValue(quantity * price));
+      String(this.addOrderForm.controls['totalAmnt'].setValue( this.addOrderForm.controls['totalAmnt'].value + (quantity * price)));
     }
   }
 
@@ -134,13 +134,14 @@ export class AddOrderComponent implements OnInit {
         sellerName: ''
       })
     );
-    this.productLength++;
   }
 
-  // removeProducts() {
-  //   this.product = this.addOrderForm.get('products') as FormArray;
-  //   this.product.pop();
-  //   this.productLength--;
-  // }
+
+  removeProducts(index) {
+   // this.product = this.addOrderForm.get('products') as FormArray;
+    if (index > -1) {
+      this.addOrderForm.get('products')['controls'].splice(index, 1);
+    }
+  }
 
 }
