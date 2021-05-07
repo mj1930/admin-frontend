@@ -1,68 +1,68 @@
 <div class="page-wrapper chiller-theme toggled">
-    <app-side-navigation></app-side-navigation>
-        <!-- sidebar-wrapper  -->
-        <main class="page-content">
-          <div class="container-fluid">
-            <h2>Add Category</h2>
-            <hr />
-            <div class="row">
-                <form class="col">
-                    <div class="form-group">
-                      <label for="">Category Name</label>
-                      <select name="categoresDropDown" [disabled]="showInputForCategory" class="form-control" [(ngModel)]="categoryId">
-                        <option value="null">Select Category Name</option>
-                        <option *ngFor="let category of categories" value="{{category?._id}}">{{category?.categoryName}}</option>
-                      </select>
-                    </div>
-                    <button type="button" *ngIf="!showInputForCategory" class="btn mb-4 btn-sm btn-dark rounded m-0" (click)="showInputForCategory = true; categoryId=null;">Add New</button>
-                    <button type="button" *ngIf="showInputForCategory" class="btn mb-4 btn-sm btn-dark rounded m-0" (click)="showInputForCategory = false; category=''">Cancel</button>
-                    <div class="form-group" *ngIf="showInputForCategory">
-                      <label for="">Category Name</label>
-                      <input type="text" name="Category" class="form-control" placeholder="Category Name" [(ngModel)]="category">
-
-                    <label for="" class="small" *ngIf="showInputForCategory">Upload Image</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="imageUpload">Upload</span>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" (change)="categoryFileUpload($event)" class="custom-file-input" id="imageUpload" aria-describedby="inputGroupFileAddon01" accept="jpeg, png">
-                            <label class="custom-file-label" for="imageUpload">Choose file</label>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="">Sub Category Name</label>
-                      <input type="text" name="Sub Category" class="form-control" placeholder="Sub Category Name" [(ngModel)]="subCategory">
-                    </div>
-                        <!-- <p *ngIf="categoryImage" class="small m-0 text-success">File Uploaded Successfully</p> -->
-                    <button type="submit" class="btn btn-primary rounded m-0 mt-2" (click)="addCategory()">Add Category</button>
-                  </form>
-            </div>
-      
-            <footer class="text-center">
-              <div class="mb-2">
-                <small>
-                  © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
-                  Rights Reserved
-                </small>
-              </div>
-            </footer>
+  <app-side-navigation></app-side-navigation>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    <div class="container-fluid">
+      <h2>Add Category</h2>
+      <hr />
+      <div class="row">
+        <form class="col">
+          <div class="form-group">
+            <label for="">Category Name</label>
+            <select name="categoresDropDown" [disabled]="showInputForCategory" class="form-control"
+              [(ngModel)]="categoryId">
+              <option value="null">Select Category Name</option>
+              <option *ngFor="let category of categories" value="{{category?._id}}">{{category?.categoryName}}</option>
+            </select>
           </div>
-        </main>
-    
-        <!-- page-content" -->
+          <button type="button" *ngIf="!showInputForCategory" class="btn mb-4 btn-sm btn-dark rounded m-0"
+            (click)="showInputForCategory = true; categoryId=null;">Add New</button>
+          <button type="button" *ngIf="showInputForCategory" class="btn mb-4 btn-sm btn-dark rounded m-0"
+            (click)="showInputForCategory = false; category=''">Cancel</button>
+          <div class="form-group" *ngIf="showInputForCategory">
+            <label for="">Category Name</label>
+            <input type="text" name="Category" class="form-control" placeholder="Category Name" [(ngModel)]="category">
+
+            <label for="" class="small" *ngIf="showInputForCategory">Upload Image</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="imageUpload">Upload</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" (change)="categoryFileUpload($event)" class="custom-file-input" id="imageUpload"
+                  aria-describedby="inputGroupFileAddon01" accept="jpeg, png">
+                <label class="custom-file-label" for="imageUpload">Choose file</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Sub Category Name</label>
+            <input type="text" name="Sub Category" class="form-control" placeholder="Sub Category Name"
+              [(ngModel)]="subCategory">
+          </div>
+          <button type="submit" class="btn btn-primary rounded m-0 mt-2" *ngIf="showInputForCategory"
+            (click)="addCategory()">Add Category</button>
+          <button type="submit" class="btn btn-primary rounded m-0 mt-2" *ngIf="!showInputForCategory"
+            (click)="addCategory()">Add Subcategory</button>
+        </form>
       </div>
-      <!-- page-wrapper -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"
-      ></script>
-      <script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"
-      ></script>
-      
+
+      <footer class="text-center">
+        <div class="mb-2">
+          <small>
+            © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+            Rights Reserved
+          </small>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

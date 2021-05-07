@@ -3,6 +3,7 @@ import { SellerService } from '../seller.service';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { OrderService } from 'src/app/orders/order.service';
+import { CategoryService } from 'src/app/category/category.service';
 @Component({
   selector: 'app-seller-product-listing',
   templateUrl: './seller-product-listing.component.html',
@@ -15,12 +16,14 @@ export class SellerProductListingComponent implements OnInit {
   showFeedback =  -1;
   feedback = '';
   searchTerm: string = '';
+  categories: any = [];
 
   constructor(
     private sellerService: SellerService, 
     private orderService: OrderService,
     private router:Router,
-    private toaster: ToastService
+    private toaster: ToastService,
+    private categoryService: CategoryService
     ) { }
 
   ngOnInit(): void {
@@ -29,11 +32,35 @@ export class SellerProductListingComponent implements OnInit {
 
   getSellerProductListing() {
     this.sellerService.getProducts().subscribe((data: any) => {
-      this.toaster.openSnackbar(data.message);
+      // this.toaster.openSnackbar(data.message);
       this.products = data['data'];
+      this.getAllCategory();
     }, error => {
       this.toaster.openSnackbar(error);
     })
+  }
+
+  getAllCategory() {
+    let obj = {
+      skip: 0,
+      limit: 100
+    };
+    this.categoryService.getCategory(obj).subscribe((resp: any) => {
+      if (resp.code === 200) {
+        this.categories = resp['data'];
+        this.getProductCategory();
+      }
+    });
+  };
+
+  getProductCategory() {
+    this.products.forEach((item: any, i) => {
+      let index = this.categories.findIndex(x => x._id == item.categoryId);
+      if (index > -1) {
+        let categoryName = this.categories.find(x => x._id == item.categoryId).categoryName;
+        this.products[i]['categoryName'] = categoryName;
+      }
+    });
   }
 
   approveRejectProduct(data, type) {

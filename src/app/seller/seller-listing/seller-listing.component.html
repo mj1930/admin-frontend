@@ -91,24 +91,19 @@
           </div>
         </div>
         <div class="table-responsive rounded table-striped">
-          <table class="table">
+          <table datatable class="table">
             <thead class="grey lighten-2 small text-uppercase">
               <tr class="text-nowrap">
-                <th scope="col">
-                  <input type="checkbox" style="cursor: pointer" />
-                </th>
                 <th scope="col">Status</th>
                 <th scope="col">Store Name</th>
-                <th scope="col">seller Email</th>
+                <th scope="col">Seller Email</th>
+                <th scope="col">Seller Phone</th>
                 <th scope="col">Date Created</th>
                 <th scope="col">Total lisited Products</th>
               </tr>
             </thead>
             <tbody *ngIf="users.length">
               <tr *ngFor="let user of users; let i = index">
-                <td scope="row">
-                  <input type="checkbox" style="cursor: pointer" />
-                </td>
                 <td>
                   <p class="text-left small m-0">
                     {{ user?.isEmailVerified ? "Active" : "Inactive" }}
@@ -124,6 +119,9 @@
                 </td>
                 <td>
                   {{ user?.email ? user?.email : "NA" }}
+                </td>
+                <td>
+                  {{ user?.mobile ? user?.mobile : "NA" }}
                 </td>
                 <td>{{ user?.createdAt | date: "medium" }}</td>
                 <td>

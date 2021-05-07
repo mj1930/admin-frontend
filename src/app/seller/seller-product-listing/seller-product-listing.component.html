@@ -40,12 +40,9 @@
                 <th scope="col">Name</th>
                 <th scope="col">Date Created</th>
                 <th scope="col">Available Units</th>
-                <th scope="col">Total Sold</th>
-                <th scope="col">Total Returns</th>
                 <th scope="col">Price</th>
-                <th scope="col">Price + Shipping</th>
-                <th scope="col">Business Price + Shipping</th>
-                <th scope="col">Lowest Price + Shipping</th>
+                <th scope="col">Category</th>
+                <th scope="col">Product Rating</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -54,11 +51,14 @@
                 *ngFor="let product of products; let i = index"
               >
                 <td>
-                  <p class="text-left m-0">
-                    {{ product?.isApproved ? "Active" : "Inactive" }}
+                  <p class="text-left m-0" *ngIf="product?.availableUnits">
+                    {{ product?.isApproved ? "Active" : "Blocked" }}
+                  </p>
+                  <p class="text-left m-0" *ngIf="!product?.availableUnits">
+                    Inactive
                   </p>
                   <span
-                    *ngIf="!product?.isApproved"
+                    *ngIf="!product?.availableUnits"
                     class="text-left small m-0 p-0 text-muted"
                     >(Out Of Stock)</span
                   >
@@ -78,12 +78,9 @@
                 </td>
                 <td>{{ product?.createdAt | date: "medium" }}</td>
                 <td>{{ product?.availableUnits }}</td>
-                <td>N/A</td>
-                <td>N/A</td>
                 <td>INR {{ product?.productPrice }}</td>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
+                <td>{{ product?.categoryName }}</td>
+                <td>{{ product?.rating ? product?.rating : 'NA' }}</td>
 
                 <td>
                   <input type="hidden"   >

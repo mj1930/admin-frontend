@@ -10,7 +10,7 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 export class SellerListingComponent implements OnInit {
   users = [];
   skip = 0;
-  limit = -1;
+  limit = 100;
   searchTerm: string = '';
   isloading = true;
   constructor(
