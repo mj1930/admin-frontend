@@ -10,7 +10,7 @@
               <div class="filer col p-3 rounded my-2 elegant-color text-white">
                 <div class="row">
                   <div class="col-sm-12 col-md-2">
-                    Sort By
+                    Sort By Date/Time
                     <select class="form-control" (change)="sortData($event)">
                       <option value="">Default</option>
                       <option value="createdAt-asc">Order Date/Time (A - Z) </option>
@@ -19,17 +19,26 @@
                   </div>
 
                   <div class="col-sm-12 col-md-2">
-                    Status
+                    Sort By Status
                     <select class="form-control select-style" name="status-sort" [(ngModel)]="orderStatus" (change)="sortByStatus($event)">
                       <option value="">Default</option>
                       <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
                     </select>
                   </div>
 
-                  <div class="col-sm-12 col-md-6">
-                    Search Orders
+                  <div class="col-sm-12 col-md-3">
+                    Search Orders by payment mode
                     <div class="input-group">
                       <input type="search" class="form-control rounded" [(ngModel)]="searchTerm" placeholder="Search Orders" />
+                      <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchOrder()">
+                        <i class="fa fa-search"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-3">
+                    Search Orders by order id
+                    <div class="input-group">
+                      <input type="search" class="form-control rounded" [(ngModel)]="orderId" placeholder="Search Orders" />
                       <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchOrder()">
                         <i class="fa fa-search"></i>
                       </span>

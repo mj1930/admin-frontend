@@ -20,6 +20,7 @@ export class OrderListingComponent implements OnInit {
   ];
   orderStatus: string = "";
   searchTerm: string = '';
+  orderId: string = '';
 
   constructor(private orderService: OrderService, private toaster: ToastService) { }
 
