@@ -55,7 +55,7 @@
                   <div class="custom-control custom-switch my-n2">
                     <input type="checkbox" class="custom-control-input" (change)="statusChange(category)" id="_{{ category?.categoryId }}"
                       name="_{{ category?.categoryId }}" [checked]="category?.status ? true : false">
-                    <label class="custom-control-label cursor-pointer my-2">{{ category?.status ? 'Active': 'InActive'
+                    <label class="custom-control-label cursor-pointer my-2" for="_{{ category?.categoryId }}">{{ category?.status ? 'Active': 'InActive'
                       }}</label>
                   </div>
                 </td>
