@@ -40,9 +40,9 @@
             <input type="text" name="Sub Category" class="form-control" placeholder="Sub Category Name"
               [(ngModel)]="subCategory">
           </div>
-          <button type="submit" class="btn btn-primary rounded m-0 mt-2" *ngIf="showInputForCategory"
+          <button type="submit" class="btn btn-dark btn-sm rounded m-0 mt-2" *ngIf="showInputForCategory"
             (click)="addCategory()">Add Category</button>
-          <button type="submit" class="btn btn-primary rounded m-0 mt-2" *ngIf="!showInputForCategory"
+          <button type="submit" class="btn btn-dark btn-sm rounded m-0 mt-2" *ngIf="!showInputForCategory"
             (click)="addCategory()">Add Subcategory</button>
         </form>
       </div>

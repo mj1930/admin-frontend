@@ -42,4 +42,11 @@ export class CategoryListingComponent implements OnInit {
     });
   }
 
+  statusChange(category) {
+    let index = this.categories.findIndex(x => x.categoryId == category.categoryId);
+    if (index > -1) {
+      this.categories[index].status = !this.categories[index].status;
+    }
+  }
+
 }

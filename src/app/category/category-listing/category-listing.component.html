@@ -28,6 +28,7 @@
                 <th scope="col">Category Name</th>
                 <th scope="col">Sub Category Name</th>
                 <th scope="col">Action</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -48,10 +49,14 @@
                 <td>
                   <div class="btn-group" role="group">
                     <a type="button" href="category/edit-category-details" class="btn btn-sm btn-dark mr-3">Edit</a>
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="" >
-                      <label class="custom-control-label cursor-pointer my-2" for=""></label>
-                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="custom-control custom-switch my-n2">
+                    <input type="checkbox" class="custom-control-input" (change)="statusChange(category)" id="_{{ category?.categoryId }}"
+                      name="_{{ category?.categoryId }}" [checked]="category?.status ? true : false">
+                    <label class="custom-control-label cursor-pointer my-2">{{ category?.status ? 'Active': 'InActive'
+                      }}</label>
                   </div>
                 </td>
               </tr>
