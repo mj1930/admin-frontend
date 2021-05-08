@@ -78,8 +78,8 @@
                       </td>
                       <td>
                         <div class="custom-control custom-switch">
-                          <input type="checkbox" class="custom-control-input" id="" >
-                          <label class="custom-control-label cursor-pointer my-2" for=""></label>
+                          <input type="checkbox" class="custom-control-input" id="{{user?._id}}" (change)="statusChange(user)">
+                          <label class="custom-control-label cursor-pointer my-2" for="{{user?._id}}"></label>
                         </div>
                       </td>
                     </tr>

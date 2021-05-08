@@ -86,4 +86,12 @@ export class SellerListingComponent implements OnInit {
       this.toaster.openSnackbar(error);
     })
   }
+
+  statusChange(user) {
+    let index = this.users.findIndex(x => x._id == user._id);
+    if (index > -1) {
+      this.users[index].status = !this.users[index].status;
+    }
+  }
+
 }
