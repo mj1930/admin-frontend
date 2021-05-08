@@ -10,10 +10,11 @@ import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryListingComponent } from './category-listing/category-listing.component';
 import { CategoryService } from './category.service';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 
 @NgModule({
-  declarations: [AddCategoryComponent, CategoryListingComponent],
+  declarations: [AddCategoryComponent, CategoryListingComponent, EditCategoryComponent],
   imports: [
     CommonModule,
     CategoryRoutingModule,

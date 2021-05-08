@@ -7,9 +7,117 @@
         <h2>Order Details</h2>
         <hr />
         <div class="row">
-            <div class="table-responsive rounded table-striped table-bordered">
-            
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table table-bordered my-3">
+                        <thead class="grey lighten-2">
+                            <tr>
+                            <th class="text-nowrap">Payment Address</th>
+                            <th class="text-nowrap">Shipping Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="m-0">
+                                    <p>address.name | uppercase </p>
+                                    <p>address.mobile | uppercase </p>
+                                    <p>address.address1 | uppercase </p>
+                                    <p>address.address2 | uppercase </p>
+                                    <p>address.landmark | uppercase </p>
+                                    <p>address.postal_code | uppercase </p>
+                                    <p>address.city | uppercase </p>
+                                    <p>address.state | uppercase </p>
+                                    <p>address.country | uppercase </p>
+                                </div>
+                            </th>
+                            <td class="text-nowrap">
+                                <div class="m-0">
+                                    <p>address.name | uppercase </p>
+                                    <p>address.mobile | uppercase </p>
+                                    <p>address.address1 | uppercase </p>
+                                    <p>address.address2 | uppercase </p>
+                                    <p>address.landmark | uppercase </p>
+                                    <p>address.postal_code | uppercase </p>
+                                    <p>address.city | uppercase </p>
+                                    <p>address.state | uppercase </p>
+                                    <p>address.country | uppercase </p>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-responsive">
+                    <ng-container *ngfor="let product of order?.products;let i=index">
+                            </ng-container><table class="table table-bordered my-3">
+                        <thead class="grey lighten-2">
+                        <tr>
+                            <th scope="col" class="text-nowrap">Product Name</th>
+                            <th scope="col" class="text-nowrap">Product Id</th>
+                            <th scope="col" class="text-nowrap">Quantity</th>
+                            <th scope="col" class="text-nowrap">Price</th>
+                            <th scope="col" class="text-nowrap">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                                <th scope="row" class="text-left">
+                                  product.productName
+                                </th>
+                                <td class="text-nowrap">
+                                    <p>product.productId</p>
+                                </td>
+                                <td>
+                                    product.quantity
+                                </td>
+    
+                                <td class="text-nowrap">
+                                    <p>INR product.orderPrice</p>
+                                </td>
+                                <td class="text-nowrap">
+                                    <p>INR product.orderPrice*product.quantity</p>
+                                </td>
+                            </tr>
+                          
+                            <tr>
+                                <th scope="row" colspan="2"></th>
+                                <td class="text-nowrap text-right">
+                                    <p><b>Sub-Total:</b></p>
+                                </td>
+                                <td class="text-nowrap">
+                                    <p>INR order?.totalAmnt</p>
+                                </td>
+                                <td></td>
+                            </tr>
+    
+                            <tr>
+                                <th scope="row" colspan="2"></th>
+                                <td class="text-nowrap text-right">
+                                    <p><b>Flat Shipping Rate:</b></p>
+                                </td>
+                                <td class="text-nowrap">
+                                    <p>N/A</p>
+                                </td>
+                                <td></td>
+                            </tr>
+    
+                            <tr>
+                                <th scope="row" colspan="2"></th>
+                                <td class="text-nowrap text-right">
+                                    <p><b>Total:</b></p>
+                                </td>
+                                <td class="text-nowrap">
+                                    <p>INR order?.totalAmnt</p>
+                                </td>
+                                <td></td>
+                            </tr>
+    
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            
         </div>
     
         <footer class="text-center">
