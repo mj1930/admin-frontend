@@ -53,7 +53,6 @@ export class AddOrderComponent implements OnInit {
     paymentMode:['Cash On Delivery']
       });
     this.userName = JSON.parse(localStorage.getItem('user')).name;
-    console.log(this.addOrderForm.get('products')['controls'][0]['controls']['name']);
   }
 
   addProduct() {
@@ -149,10 +148,8 @@ export class AddOrderComponent implements OnInit {
     const ProductId = this.addOrderForm.get('products')['controls'][index]['controls']['productId'].value;
     String(this.addOrderForm.controls['totalAmnt'].setValue( this.addOrderForm.controls['totalAmnt'].value - (quantity * price)));
     this.product = this.addOrderForm.get('products') as FormArray;
-    console.log(this.product)
     if (index > -1) {
       this.product.removeAt(this.product.value.findIndex(product => product._id === ProductId));
-      console.log('inside if',this.product)
     }
   }
 
