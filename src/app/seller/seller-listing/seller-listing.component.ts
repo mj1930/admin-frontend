@@ -93,4 +93,5 @@ export class SellerListingComponent implements OnInit {
       this.users[index].status = !this.users[index].status;
     }
   }
+
 }
