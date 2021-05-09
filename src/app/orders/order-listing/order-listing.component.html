@@ -84,17 +84,17 @@
                             <p>{{order?.mode}}</p>
                         </td>
                         <td>
-                            <p><a href="order/order-details" target="_blank" class="text-primary">{{order?._id}}</a></p>
+                            <p><a href="order/order-details" class="text-primary">{{order?._id}}</a></p>
                         </td>
-                        <td *ngFor="let prod of order?.products">
-                          <p>{{prod?.name}}</p>
+                        <td>
+                          <p *ngFor="let prod of order?.products">{{prod?.name}}</p>
                         </td>
-                        <td *ngFor="let prod of order?.products">
-                          <p>{{prod?.quantity}}</p>
+                        <td>
+                          <p *ngFor="let prod of order?.products">{{prod?.quantity}}</p>
                       </td>
-                      <td *ngFor="let prod of order?.products">
-                          <p>{{prod?.sellerName}}</p>
-                    </td>
+                      <td>
+                          <p *ngFor="let prod of order?.products">{{prod?.sellerName}}</p>
+                      </td>
                         <td>
                             <p>{{order?.totalAmnt}}</p>
                         </td>
@@ -114,7 +114,7 @@
                             <p>On Delivery</p>
                         </td> -->
                         <td>
-                            <p>{{order?.address?.city ? order?.address?.city : 'NA'}}</p>
+                            <p>{{order?.address?.city ? order?.address?.city : order?.address}}</p>
                         </td>
                         <!-- <td>
                             <p>NA</p>
