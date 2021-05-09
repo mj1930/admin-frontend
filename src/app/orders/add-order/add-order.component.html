@@ -78,15 +78,15 @@
                     <option *ngFor="let seller of sellers;" [value]="seller._id">{{seller?.name}}</option>
                   </select>
                 </div>
+                <button *ngIf= "addOrderForm.get('products')['controls'].length > 1" class="btn mb-4 btn-sm btn-dark" (click)="removeProducts(i)" type="button">Remove </button>
               </div>
             </div>
           </div>
 
           <button class="btn mb-4 btn-sm btn-dark" (click)="addProducts()" type="button">Add Product</button>
-          <!-- <button class="btn mb-4 btn-sm btn-dark" (click)="removeProducts()" type="button" *ngIf="productLength > 0">Remove Product</button> -->
           <div class="form-group">
             <label for="">Order Total</label>
-            <input type="text" class="form-control" formControlName="totalAmnt" placeholder="Total amount" disabled>
+            <input type="readonly" class="form-control" formControlName="totalAmnt" placeholder="Total amount" disabled>
           </div>
 
           <div class="form-group">
