@@ -13,12 +13,14 @@ import { ProductDescriptionComponent } from './product-description/product-descr
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { OrderService } from '../orders/order.service';
 import { CategoryService } from '../category/category.service';
+import { CustomerComponent } from './customer/customer.component';
 
 @NgModule({
   declarations: [
     SellerListingComponent,
     SellerProductListingComponent,
-    ProductDescriptionComponent
+    ProductDescriptionComponent,
+    CustomerComponent
   ],
   imports: [
     CommonModule,

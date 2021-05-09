@@ -46,6 +46,14 @@ export class CategoryListingComponent implements OnInit {
     let index = this.categories.findIndex(x => x.categoryId == category.categoryId);
     if (index > -1) {
       this.categories[index].status = !this.categories[index].status;
+      this.categoryService.approveDisapproveCategories({
+        categoryId: category.categoryId,
+        status: this.categories[index].status
+      }).subscribe((data: any) => {
+        if (data.code === 200) {
+          this.categories[index].status = data['data'].status;
+        }
+      })
     }
   }
 

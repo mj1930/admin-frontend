@@ -24,36 +24,33 @@
             <table class="table">
               <thead class="grey lighten-2 small text-uppercase">
                 <tr class="text-nowrap">
+                  <th scope="col">Status</th>
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
                   <th scope="col">Mobile</th>
-                  <th scope="col">Action</th>
+                  <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let customer of customers">
-                  <!-- <td scope="row">
-                          <input type="checkbox" style="cursor: pointer" />
-                        </td> -->
                   <td>
-                    <p>{{customer?.status ? 'Active': 'InActive'}}</p>
+                    <p>{{ !customer?.isDeleted ? 'Active': 'InActive'}}</p>
                   </td>
                   <td>
-                    <p>{{customer?.customerName}}</p>
+                    <p>{{ customer?.fname }} {{ customer?.lname }}</p>
                   </td>
                   <td>
-                    <p *ngFor="let subcustomer of customer.subCategories"><span>{{subcustomer?.subcustomerName}}</span>
-                    </p>
+                    <p>{{ customer?.email }}</p>
                   </td>
                   <td>
-                    <div class="btn-group" role="group">
-                      <a type="button" href="customer/edit-customer-details" class="btn btn-sm btn-dark mr-3">Edit</a>
-                    </div>
+                    <p>{{ customer?.address?.mobile ? customer?.address?.mobile : "NA" }}</p>
                   </td>
                   <td>
                     <div class="custom-control custom-switch my-n2">
-                      <input type="checkbox" class="custom-control-input" >
-                      <label class="custom-control-label cursor-pointer my-2"></label>
+                      <input type="checkbox" class="custom-control-input" (change)="statusChange(customer)" id="_{{ customer?._id }}"
+                        name="_{{ customer?._id }}" [checked]="!category?.isDeleted ? true : false">
+                      <label class="custom-control-label cursor-pointer my-2" for="_{{ customer?._id }}">{{ !category?.isDeleted ? 'Active': 'InActive'
+                        }}</label>
                     </div>
                   </td>
                 </tr>

@@ -129,9 +129,11 @@
                   N/A
                 </td>
                 <td>
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="{{user?._id}}" (change)="statusChange(user)">
-                    <label class="custom-control-label cursor-pointer my-2" for="{{user?._id}}"></label>
+                  <div class="custom-control custom-switch my-n2">
+                    <input type="checkbox" class="custom-control-input" (change)="statusChange(user)" id="_{{ user?._id }}"
+                      name="_{{ user?._id }}" [checked]="user?.isActive ? true : false">
+                    <label class="custom-control-label cursor-pointer my-2" for="_{{ user?._id }}">{{ user?.isActive ? 'Active': 'InActive'
+                      }}</label>
                   </div>
                 </td>
               </tr>

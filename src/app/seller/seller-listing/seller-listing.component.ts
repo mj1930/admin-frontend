@@ -87,10 +87,19 @@ export class SellerListingComponent implements OnInit {
     })
   }
 
-  statusChange(user) {
-    let index = this.users.findIndex(x => x._id == user._id);
+  statusChange(customer) {
+    let index = this.users.findIndex(x => x._id == customer._id);
     if (index > -1) {
-      this.users[index].status = !this.users[index].status;
+      this.users[index].isActive = !customer.isActive;
+      this.sellerService.approveDisapproveSeller({
+        sellerId: customer._id,
+        status: this.users[index].isActive
+      }).subscribe((data: any) => {
+        this.toaster.openSnackbar(data.message);
+        if (data.code === 200) {
+          this.users[index].isActive = data['data'].isActive;
+        }
+      })
     }
   }
 

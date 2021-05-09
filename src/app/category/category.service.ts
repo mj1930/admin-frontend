@@ -27,5 +27,9 @@ export class CategoryService {
   getSortCategories(reqBody) {
     return this.http.post('category/sort-category', reqBody);
   }
+  
+  approveDisapproveCategories(reqBody) {
+    return this.http.post('category/approve-disapprove-categories', reqBody);
+  }
 
 }

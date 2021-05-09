@@ -18,6 +18,10 @@ export class SellerService {
     return this.http.post('users/get-all-users', reqBody);
   }
 
+  getCustomers(reqBody) {
+    return this.http.post('users/get-all-customers', reqBody);
+  }
+
   approveRejectProduct(reqBody) {
     return this.http.post('products/approve-disapprove-product', reqBody);
   }
@@ -32,6 +36,14 @@ export class SellerService {
 
   searchSeller(reqBody) {
     return this.http.post('users/search-user', reqBody);
+  }
+
+  approveDisapproveCustomer(reqBody) {
+    return this.http.post('users/approve-disapprove-customer', reqBody);
+  }
+
+  approveDisapproveSeller(reqBody) {
+    return this.http.post('users/approve-disapprove-seller', reqBody);
   }
   
 
