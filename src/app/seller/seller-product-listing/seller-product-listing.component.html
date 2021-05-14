@@ -40,6 +40,8 @@
                 <th scope="col">Name</th>
                 <th scope="col">Date Created</th>
                 <th scope="col">Available Units</th>
+                <th scope="col">Seller Name</th>
+                <th scope="col">Seller Email</th>
                 <th scope="col">Price</th>
                 <th scope="col">Category</th>
                 <th scope="col">Product Rating</th>
@@ -78,6 +80,8 @@
                 </td>
                 <td>{{ product?.createdAt | date: "medium" }}</td>
                 <td>{{ product?.availableUnits }}</td>
+                <td>{{ product?.sellerName }}</td>
+                <td>{{ product?.sellerEmail }}</td>
                 <td>INR {{ product?.productPrice }}</td>
                 <td>{{ product?.categoryName }}</td>
                 <td>{{ product?.rating ? product?.rating : 'NA' }}</td>

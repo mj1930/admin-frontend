@@ -13,10 +13,13 @@ export class SellerProductListingComponent implements OnInit {
 
   products;
   status;
-  showFeedback =  -1;
+  skip = 0;
+  limit = 100;
+  showFeedback = -1;
   feedback = '';
   searchTerm: string = '';
   categories: any = [];
+  users: any = [];
 
   constructor(
     private sellerService: SellerService, 
@@ -28,6 +31,7 @@ export class SellerProductListingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSellerProductListing();
+    this.getSellerListing();
   }
 
   getSellerProductListing() {
@@ -61,6 +65,36 @@ export class SellerProductListingComponent implements OnInit {
         this.products[i]['categoryName'] = categoryName;
       }
     });
+  }
+
+  getProductSeller() {
+    this.products.forEach((item: any, i) => {
+      let index = this.users.findIndex(x => x._id == item.userId);
+      if (index > -1) {
+        let userName = this.users.find(x => x._id == item.userId).name;
+        let email = this.users.find(x => x._id == item.userId).email;
+        this.products[i]['sellerName'] = userName;
+        this.products[i]['sellerEmail'] = email;
+      }
+    });
+  }
+
+  getSellerListing() {
+    //this.isLoading = true;
+    let reqBody = {
+      skip: this.skip,
+      limit: this.limit
+    };
+    this.sellerService.getUsers(reqBody).subscribe(
+      data => {
+        console.log(data);
+        this.users = data['data'];
+        this.getProductSeller()
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   approveRejectProduct(data, type) {
