@@ -114,7 +114,8 @@
                             <p>On Delivery</p>
                         </td> -->
                         <td>
-                            <p>{{order?.address?.city ? order?.address?.city : order?.address}}</p>
+                          <p *ngIf="order?.mode != website" >{{order?.address}}</p>
+                          <p *ngIf="order?.mode == website" >{{order?.address?.city}}</p>
                         </td>
                         <!-- <td>
                             <p>NA</p>

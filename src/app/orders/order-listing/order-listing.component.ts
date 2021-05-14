@@ -14,6 +14,7 @@ export class OrderListingComponent implements OnInit {
   orderStatuses = [
     {text: 'Pending', value: 'P'},
     {text: 'Dispatched', value: 'D'},
+    {text: 'Delivered', value: 'DL'},
     {text: 'Refunded', value: 'RF'},
     {text: 'Cancelled', value: 'C'},
     {text: 'Returned', value: 'RT'}
@@ -70,6 +71,9 @@ export class OrderListingComponent implements OnInit {
           case 'RT' :
           item['status'] = "Returned";
           break;
+          case 'DL' :
+          item['status'] = "Delivered";
+          break;
       }
     });
   }
@@ -106,6 +110,9 @@ export class OrderListingComponent implements OnInit {
         break;
         case 'Returned' :
         event.target.value = "RT";
+        break;
+        case 'DL' :
+          event.target.value = "DL";
         break;
     }
     this.selectedStatus = event.target.value;
