@@ -16,7 +16,7 @@
                       <th scope="col">Seller</th>
                       <th scope="col">Category</th>
                       <th scope="col">Permission</th>
-                      <th scope="col">Action</th>
+                      <!-- <th scope="col">Action</th> -->
                     </tr>
                   </thead>
                   <tbody>
@@ -62,7 +62,7 @@
                       </td>
                       <td>
                         <div class="form-check" *ngFor="let option of radioOptions; let i=index">
-                            <input class="form-check-input" [checked]="user?.permission && user?.permission.indexOf('user')>-1 ? i == 0 : i==1" (change)="changePermission($event, 'user', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-user{{j}}" id="chan-pr-1-user">
+                            <input class="form-check-input" [checked]="user?.permission && user?.permission.indexOf('category')>-1 ? i == 0 : i==1" (change)="changePermission($event, 'user', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-user{{j}}" id="chan-pr-1-user">
                             <label class="form-check-label" for="chan-pr-1-user">
                               {{option.text}}
                             </label>
@@ -76,14 +76,14 @@
                             </label>
                           </div>
                       </td>
-                      <td>
+                      <!-- <td>
                         <div class="custom-control custom-switch my-n2">
                           <input type="checkbox" class="custom-control-input" (change)="statusChange(user)" id="_{{ user?._id }}"
                             name="_{{ user?._id }}" [checked]="user?.isActive ? true : false">
                           <label class="custom-control-label cursor-pointer my-2" for="_{{ user?._id }}">{{ user?.isActive ? 'Active': 'InActive'
                             }}</label>
                         </div>
-                      </td>
+                      </td> -->
                     </tr>
 
                     <!-- <tr>

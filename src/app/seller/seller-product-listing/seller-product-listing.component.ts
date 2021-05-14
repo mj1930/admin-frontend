@@ -39,6 +39,7 @@ export class SellerProductListingComponent implements OnInit {
       // this.toaster.openSnackbar(data.message);
       this.products = data['data'];
       this.getAllCategory();
+      this.getProductCategory();
     }, error => {
       this.toaster.openSnackbar(error);
     })
@@ -52,7 +53,6 @@ export class SellerProductListingComponent implements OnInit {
     this.categoryService.getCategory(obj).subscribe((resp: any) => {
       if (resp.code === 200) {
         this.categories = resp['data'];
-        this.getProductCategory();
       }
     });
   };

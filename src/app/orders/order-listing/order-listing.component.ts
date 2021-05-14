@@ -74,6 +74,9 @@ export class OrderListingComponent implements OnInit {
           case 'DL' :
           item['status'] = "Delivered";
           break;
+          case 'C' :
+          item['status'] = "Cancelled";
+          break;
       }
     });
   }
@@ -111,8 +114,11 @@ export class OrderListingComponent implements OnInit {
         case 'Returned' :
         event.target.value = "RT";
         break;
-        case 'DL' :
+        case 'Delivered' :
           event.target.value = "DL";
+        break;
+        case 'Cancelled' :
+          event.target.value = "C";
         break;
     }
     this.selectedStatus = event.target.value;
