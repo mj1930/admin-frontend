@@ -28,7 +28,7 @@
                 <th scope="col">Category Name</th>
                 <th scope="col">Sub Category Name</th>
                 <th scope="col">Action</th>
-                <th scope="col">Status</th>
+                <th scope="col">Deleted</th>
               </tr>
             </thead>
             <tbody>
@@ -48,14 +48,14 @@
                 </td>
                 <td>
                   <div class="btn-group" role="group">
-                    <a type="button" href="category/edit-category-details" class="btn btn-sm btn-dark mr-3">Edit</a>
+                    <a type="button" routerLink="/category/edit-category-details/{{category.categoryId}}" class="btn btn-sm btn-dark mr-3">Edit</a>
                   </div>
                 </td>
                 <td>
                   <div class="custom-control custom-switch my-n2">
                     <input type="checkbox" class="custom-control-input" (change)="statusChange(category)" id="_{{ category?.categoryId }}"
-                      name="_{{ category?.categoryId }}" [checked]="category?.status ? true : false">
-                    <label class="custom-control-label cursor-pointer my-2" for="_{{ category?.categoryId }}">{{ category?.status ? 'Active': 'InActive'
+                      name="_{{ category?.categoryId }}" [checked]=" category?.deleted ? true : false">
+                    <label class="custom-control-label cursor-pointer my-2" for="_{{ category?.categoryId }}">{{ category?.deleted ? 'True': 'False'
                       }}</label>
                   </div>
                 </td>

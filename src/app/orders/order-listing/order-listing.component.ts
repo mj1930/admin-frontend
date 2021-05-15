@@ -97,7 +97,7 @@ export class OrderListingComponent implements OnInit {
   }
 
   sortByStatus(event?) {
-    if (!event.target.value) {
+    if (!event.target.value && !this.searchTerm) {
       this.getOrder();
       return;
     }
@@ -125,17 +125,19 @@ export class OrderListingComponent implements OnInit {
     let obj = {
       skip:0,
       limit: 10,
-      status: event.target.value
+      status: event.target.value,
+      search: this.searchTerm
     };
     this.orderService.getOrdersByStatus(obj).subscribe((resp: any) => {
       if (resp.code === 200) {
         this.orders = resp['data'];
+        this.setOrderStaus();
       }
     })
   }
 
   searchOrder() {
-    if (!this.searchTerm) {
+    if (!this.searchTerm && !this.selectedStatus) {
       this.getOrder();
       return;
     }
@@ -149,6 +151,7 @@ export class OrderListingComponent implements OnInit {
       this.toaster.openSnackbar(resp.message);
       if (resp.code === 200) {
         this.orders = resp['data'];
+        this.setOrderStaus();
       }
     });
   }
@@ -169,8 +172,8 @@ export class OrderListingComponent implements OnInit {
       this.toaster.openSnackbar(resp.message);
       if (resp.code === 200) {
         this.orders = resp['data'];
+        this.setOrderStaus();
       }
     });
   }
-
 }

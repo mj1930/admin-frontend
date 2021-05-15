@@ -23,6 +23,7 @@
                     <tr *ngFor="let user of users; let j=index;">
                       <td>
                           <p>{{user?.name}}</p>
+                          <p>{{user?.email}}</p>
                       </td>
                       <td>
                         <div class="form-check" *ngFor="let option of radioOptions; let i=index">

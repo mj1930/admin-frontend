@@ -48,8 +48,8 @@
                   <td>
                     <div class="custom-control custom-switch my-n2">
                       <input type="checkbox" class="custom-control-input" (change)="statusChange(customer)" id="_{{ customer?._id }}"
-                        name="_{{ customer?._id }}" [checked]="!category?.isDeleted ? true : false">
-                      <label class="custom-control-label cursor-pointer my-2" for="_{{ customer?._id }}">{{ !category?.isDeleted ? 'Active': 'InActive'
+                        name="_{{ customer?._id }}" [checked]="!customer?.isDeleted ? true : false">
+                      <label class="custom-control-label cursor-pointer my-2" for="_{{ customer?._id }}">{{ !customer?.isDeleted ? 'Active': 'InActive'
                         }}</label>
                     </div>
                   </td>

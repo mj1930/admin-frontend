@@ -7,7 +7,7 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
 const routes: Routes = [
     {path: '', component: AddCategoryComponent},
     {path: 'category-listing', component: CategoryListingComponent},
-    {path: 'edit-category-details', component: EditCategoryComponent}
+    {path: 'edit-category-details/:id', component: EditCategoryComponent}
   ];
   
   @NgModule({

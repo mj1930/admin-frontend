@@ -44,5 +44,9 @@ export class OrderService {
     return this.http.post('orders/search-product-id', reqBody);
   }
 
+  getOrderDetails(id) {
+    return this.http.get(`orders/get-order/${id}`);
+  }
+
 
 }

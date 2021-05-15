@@ -31,5 +31,17 @@ export class CategoryService {
   approveDisapproveCategories(reqBody) {
     return this.http.post('category/approve-disapprove-categories', reqBody);
   }
+  
+  getAllSubcategories(reqBody) {
+    return this.http.post('category/get-all-subcategories', reqBody);
+  }
+
+  updateCategory(reqBody) {
+    return this.http.post('category/update-category', reqBody);
+  }
+
+  updateSubcategory(reqBody) {
+    return this.http.post('category/update-subcategory', reqBody);
+  }
 
 }

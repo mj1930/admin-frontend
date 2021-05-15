@@ -46,35 +46,35 @@ export class AddCategoryComponent implements OnInit {
   }
 
   addCategory() {
-    let formData = new FormData();
-    // let reqBody = {
-    //   subCategory: this.subCategory
-    // }
-    formData.append('subCategory', this.subCategory);
-    // reqBody['subCategory'] = this.subCategory;
+    let reqBody = {
+      subCategory: this.subCategory
+    }
+    reqBody['categoryId'] = this.categoryId;
     if (this.categoryId) {
-      formData.append('categoryId', this.categoryId);
-      this.categoryService.addSubCategory(formData).subscribe(
+      this.categoryService.addSubCategory(reqBody).subscribe(
         () => {
-          this.toaster.openSnackbar('Category Added Successfully!!');
+          this.toaster.openSnackbar('Subcategory Added Successfully!!');
           this.router.navigateByUrl('/category/category-listing');
         },
         error => {
-          console.log(error);
+          this.toaster.openSnackbar(error);
         }
       );
     } else {
-      // formData.append("file", this.categoryImage);
+      let formData = new FormData();
+      formData.append("subCategory", this.subCategory);
       formData.append('category', this.category);
       formData.append('catImg', this.categoryImage);
       // reqBody['category'] = this.category;
       if (this.categoryImage) {
         this.categoryService.addCategory(formData).subscribe(
-          () => {
-            this.router.navigateByUrl('/category/category-listing');
+          (resp: any) => {
+            if (resp.code === 200)
+              this.router.navigateByUrl('/category/category-listing');
+            this.toaster.openSnackbar(resp.message);
           },
           error => {
-            console.log(error);
+            this.toaster.openSnackbar(error);
           }
         );
       } else {

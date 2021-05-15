@@ -94,7 +94,7 @@
           <table class="table" id="myTable">
             <thead class="grey lighten-2 small text-uppercase">
               <tr class="text-nowrap">
-                <th scope="col">Status</th>
+                <th scope="col">Email Verified</th>
                 <th scope="col">Store Name</th>
                 <th scope="col">Seller Email</th>
                 <th scope="col">Seller Phone</th>
@@ -107,13 +107,8 @@
               <tr *ngFor="let user of users; let i = index">
                 <td>
                   <p class="text-left small m-0">
-                    {{ user?.isEmailVerified ? "Active" : "Inactive" }}
+                    {{ user?.isEmailVerified ? "Verified" : "Not Verified" }}
                   </p>
-                  <span
-                    *ngIf="!user?.isEmailVerified"
-                    class="text-left small m-0 p-0 text-muted"
-                    >(Not Verified)</span
-                  >
                 </td>
                 <td>
                   {{ user?.storename ? user?.storename : "NA" }}

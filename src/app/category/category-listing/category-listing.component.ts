@@ -45,13 +45,14 @@ export class CategoryListingComponent implements OnInit {
   statusChange(category) {
     let index = this.categories.findIndex(x => x.categoryId == category.categoryId);
     if (index > -1) {
-      this.categories[index].status = !this.categories[index].status;
+      let status = !this.categories[index].deleted;
+      this.categories[index].deleted = status;
       this.categoryService.approveDisapproveCategories({
         categoryId: category.categoryId,
-        status: this.categories[index].status
+        status
       }).subscribe((data: any) => {
         if (data.code === 200) {
-          this.categories[index].status = data['data'].status;
+          this.categories[index].status = data['data'].deleted;
         }
       })
     }

@@ -58,16 +58,9 @@
                       <th scope="col">Quantity</th>
                       <th scope="col">Seller</th>
                       <th scope="col">Order Total (INR)</th>
-                      <!-- <th scope="col">GSTIN Number</th>
-                      <th scope="col">GSTIN Name</th> -->
                       <th scope="col">Status</th>
                       <th scope="col">Payment Mode</th>
-                      <!-- <th scope="col">Payment Status</th> -->
                       <th scope="col">Address Details</th>
-                      <!-- <th scope="col">Expected Time</th>
-                      <th scope="col">Delay</th>
-                      <th scope="col">Delivery Man</th> -->
-                      <!-- <th scope="col">Print Invoice & Label</th> -->
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -84,7 +77,7 @@
                             <p>{{order?.mode}}</p>
                         </td>
                         <td>
-                            <p><a href="order/order-details" class="text-primary">{{order?._id}}</a></p>
+                            <p><a routerLink="/order/order-details/{{order?._id}}" class="text-primary">{{order?._id}}</a></p>
                         </td>
                         <td>
                           <p *ngFor="let prod of order?.products">{{prod?.name}}</p>
@@ -98,39 +91,16 @@
                         <td>
                             <p>{{order?.totalAmnt}}</p>
                         </td>
-                        <!-- <td>
-                            <p>{{order?.userGstin}}</p>
-                        </td> -->
-                        <!-- <td>
-                            <p>NA</p>
-                        </td> -->
                         <td>
                             <p>{{order?.status}}</p>
                         </td>
                         <td>
                             <p>{{order?.paymentMode}}</p>
                         </td>
-                        <!-- <td>
-                            <p>On Delivery</p>
-                        </td> -->
                         <td>
                           <p *ngIf="order?.mode != website" >{{order?.address}}</p>
                           <p *ngIf="order?.mode == website" >{{order?.address?.city}}</p>
                         </td>
-                        <!-- <td>
-                            <p>NA</p>
-                        </td>
-                        <td>
-                            <p>NA</p>
-                        </td>
-                        <td>
-                            <p>NA</p>
-                        </td> -->
-                        <!-- <td>
-                          <div class="btn-group" role="group">
-                              <button type="button" class="btn btn-sm btn-dark">Print</button>
-                            </div>
-                        </td> -->
                         <td>
                           <select class="form-control select-style" name="status" [(ngModel)]="order.orderStatus" (change)="updateStatus(order._id, $event)">
                             <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>

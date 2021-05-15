@@ -39,10 +39,10 @@ export class CustomerComponent implements OnInit {
   statusChange(customer) {
     let index = this.customers.findIndex(x => x._id == customer._id);
     if (index > -1) {
-      this.customers[index].status = !customer.status;
+      this.customers[index].isDeleted = !this.customers[index].isDeleted;
       this.sellerService.approveDisapproveCustomer({
         customerId: customer._id,
-        status: !this.customers[index].status
+        status: this.customers[index].isDeleted
       }).subscribe((data: any) => {
         if (data.code === 200) {
           this.customers[index].status = data['data'].isDeleted;
