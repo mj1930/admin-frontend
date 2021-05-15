@@ -27,4 +27,8 @@ export class UserPermissionService {
   getUsers(reqBody) {
     return this.http.post('permission/get-all-users', reqBody);
   }
+
+  approveDisapproveUser(reqBody) {
+    return this.http.post('permission/get-all-users', reqBody);
+  }
 }

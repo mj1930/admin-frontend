@@ -1,87 +1,81 @@
 <div class="page-wrapper chiller-theme toggled">
-    <app-side-navigation></app-side-navigation>
-        <!-- sidebar-wrapper  -->
-        <main class="page-content">
-          <div class="container-fluid">
-            
-            <h2>Category Listing</h2>
-            
-            <hr />
-            <div class="row">
-              <div class="filer col p-3 rounded my-2 elegant-color text-white">
-                <div class="row">
-                  <div class="col-sm-12 col-md-2">
-                    Sort By
-                    <select class="form-control" (change)="sortData($event)">
-                      <option value="">Default</option>
-                      <option value="categoryName-asc">Category Name (A - Z) </option>
-                      <option value="categoryName-desc">Category Name (Z - A) </option>
-                  </select>
-                  </div>
-                </div>
-              </div>
-              <div class="table-responsive rounded table-striped">
-                <table class="table">
-                  <thead class="grey lighten-2 small text-uppercase">
-                    <tr class="text-nowrap">
-                      <th scope="col">
-                        <input type="checkbox" style="cursor: pointer" />
-                      </th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Category Name</th>
-                      <th scope="col">Sub Category Name</th>
-                      <!-- <th scope="col">Action</th> -->
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let category of categories">
-                      <td scope="row">
-                        <input type="checkbox" style="cursor: pointer" />
-                      </td>
-                      <td>
-                          <p>{{category?.status ? 'Active': 'InActive'}}</p>
-                      </td>
-                      <td>
-                        <p>{{category?.categoryName}}</p>
-                      </td>
-                      <td>
-                          <p *ngFor="let subCategory of category.subCategories"><span>{{subCategory?.subCategoryName}}</span></p>
-                      </td>
-                      <!-- <td>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-sm btn-dark">Edit</button>
-                            <button type="button" class="btn btn-sm btn-danger">Delete</button>
-                          </div>
-                      </td> -->
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+  <app-side-navigation></app-side-navigation>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    <div class="container-fluid">
+
+      <h2>Category Listing</h2>
+
+      <hr />
+      <div class="row">
+        <div class="filer col p-3 rounded my-2 elegant-color text-white">
+          <div class="row">
+            <div class="col-sm-12 col-md-2">
+              Sort By
+              <select class="form-control" (change)="sortData($event)">
+                <option value="">Default</option>
+                <option value="categoryName-asc">Category Name (A - Z) </option>
+                <option value="categoryName-desc">Category Name (Z - A) </option>
+              </select>
             </div>
-      
-            <footer class="text-center">
-              <div class="mb-2">
-                <small>
-                  © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
-                  Rights Reserved
-                </small>
-              </div>
-            </footer>
           </div>
-        </main>
-    
-        <!-- page-content" -->
+        </div>
+        <div class="table-responsive rounded table-striped">
+          <table class="table">
+            <thead class="grey lighten-2 small text-uppercase">
+              <tr class="text-nowrap">
+                <th scope="col">Status</th>
+                <th scope="col">Category Name</th>
+                <th scope="col">Sub Category Name</th>
+                <th scope="col">Action</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let category of categories">
+                <!-- <td scope="row">
+                        <input type="checkbox" style="cursor: pointer" />
+                      </td> -->
+                <td>
+                  <p>{{category?.status ? 'Active': 'InActive'}}</p>
+                </td>
+                <td>
+                  <p>{{category?.categoryName}}</p>
+                </td>
+                <td>
+                  <p *ngFor="let subCategory of category.subCategories"><span>{{subCategory?.subCategoryName}}</span>
+                  </p>
+                </td>
+                <td>
+                  <div class="btn-group" role="group">
+                    <a type="button" href="category/edit-category-details" class="btn btn-sm btn-dark mr-3">Edit</a>
+                  </div>
+                </td>
+                <td>
+                  <div class="custom-control custom-switch my-n2">
+                    <input type="checkbox" class="custom-control-input" (change)="statusChange(category)" id="_{{ category?.categoryId }}"
+                      name="_{{ category?.categoryId }}" [checked]="category?.status ? true : false">
+                    <label class="custom-control-label cursor-pointer my-2" for="_{{ category?.categoryId }}">{{ category?.status ? 'Active': 'InActive'
+                      }}</label>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <!-- page-wrapper -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"
-      ></script>
-      <script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"
-      ></script>
-      
+
+      <footer class="text-center">
+        <div class="mb-2">
+          <small>
+            © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+            Rights Reserved
+          </small>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->

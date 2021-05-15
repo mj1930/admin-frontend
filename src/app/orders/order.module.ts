@@ -9,10 +9,11 @@ import { AddOrderComponent } from './add-order/add-order.component';
 import { OrderRoutingModule } from './order-routing.module';
 import { OrderListingComponent } from './order-listing/order-listing.component';
 import { OrderService } from './order.service';
+import { OrderDetailsViewComponent } from './order-details-view/order-details-view.component';
 
 
 @NgModule({
-  declarations: [AddOrderComponent, OrderListingComponent],
+  declarations: [AddOrderComponent, OrderListingComponent, OrderDetailsViewComponent],
   imports: [
     CommonModule,
     OrderRoutingModule,

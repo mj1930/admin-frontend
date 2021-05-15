@@ -11,12 +11,16 @@ import { SellerService } from './seller.service';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDescriptionComponent } from './product-description/product-description.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { OrderService } from '../orders/order.service';
+import { CategoryService } from '../category/category.service';
+import { CustomerComponent } from './customer/customer.component';
 
 @NgModule({
   declarations: [
     SellerListingComponent,
     SellerProductListingComponent,
-    ProductDescriptionComponent
+    ProductDescriptionComponent,
+    CustomerComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +33,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FormsModule,
     NgxSpinnerModule
   ],
-  providers: [httpInterceptorProviders, SellerService]
+  providers: [httpInterceptorProviders, SellerService, OrderService, CategoryService]
 })
 export class SellerModule {}

@@ -10,25 +10,36 @@
               <div class="filer col p-3 rounded my-2 elegant-color text-white">
                 <div class="row">
                   <div class="col-sm-12 col-md-2">
-                    Sort By
+                    Sort By Date/Time
                     <select class="form-control" (change)="sortData($event)">
                       <option value="">Default</option>
                       <option value="createdAt-asc">Order Date/Time (A - Z) </option>
                       <option value="createdAt-desc">Order Date/Time (Z - A) </option>
-                      <option value="name-asc">Product Name (A - Z) </option>
-                      <option value="name-desc">Product Name (Z - A) </option>
-                      <option value="orderStatus-asc">Status (A - Z) </option>
-                      <option value="orderStatus-desc">Status (Z - A) </option>
-                      <option value="sellerName-asc">Seller (A - Z) </option>
-                      <option value="sellerName-desc">Seller (Z - A) </option>
                   </select>
                   </div>
 
-                  <div class="col-sm-12 col-md-10">
-                    Search Orders
+                  <div class="col-sm-12 col-md-2">
+                    Sort By Status
+                    <select class="form-control select-style" name="status-sort" [(ngModel)]="orderStatus" (change)="sortByStatus($event)">
+                      <option value="">Default</option>
+                      <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
+                    </select>
+                  </div>
+
+                  <div class="col-sm-12 col-md-3">
+                    Search Orders by payment mode
                     <div class="input-group">
-                      <input type="search" class="form-control rounded" placeholder="Search Orders" />
-                      <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;">
+                      <input type="search" class="form-control rounded" [(ngModel)]="searchTerm" placeholder="Search Orders by payment mode" />
+                      <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchOrder()">
+                        <i class="fa fa-search"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-3">
+                    Search Orders by order id
+                    <div class="input-group">
+                      <input type="search" class="form-control rounded" [(ngModel)]="searchId" placeholder="Search Orders by id" />
+                      <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchOrderById()">
                         <i class="fa fa-search"></i>
                       </span>
                     </div>
@@ -36,12 +47,9 @@
                 </div>
               </div>
               <div class="table-responsive rounded table-striped table-bordered">
-                <table class="table">
+                <table class="table" *ngIf="orders.length > 0">
                   <thead class="grey lighten-2 small text-uppercase">
                     <tr class="text-nowrap">
-                      <th scope="col">
-                        <input type="checkbox" style="cursor: pointer" />
-                      </th>
                       <th scope="col">SR NO.</th>
                       <th scope="col">Order Date/Time</th>
                       <th scope="col">Mode</th>
@@ -64,74 +72,77 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let order of orders; let i=index;">
-                      <td scope="row">
-                        <input type="checkbox" style="cursor: pointer" />
+                    <ng-container>
+                      <tr *ngFor="let order of orders; let i=index;">
+                        <td>
+                            <p>{{i+1}}</p>
+                        </td>
+                        <td>
+                          <p>{{order?.createdAt | date:'medium'}}</p>
+                        </td>
+                        <td>
+                            <p>{{order?.mode}}</p>
+                        </td>
+                        <td>
+                            <p><a href="order/order-details" class="text-primary">{{order?._id}}</a></p>
+                        </td>
+                        <td>
+                          <p *ngFor="let prod of order?.products">{{prod?.name}}</p>
+                        </td>
+                        <td>
+                          <p *ngFor="let prod of order?.products">{{prod?.quantity}}</p>
                       </td>
                       <td>
-                          <p>{{i+1}}</p>
+                          <p *ngFor="let prod of order?.products">{{prod?.sellerName}}</p>
                       </td>
-                      <td>
-                        <p>{{order?.createdAt | date:'medium'}}</p>
-                      </td>
-                      <td>
-                          <p>{{order?.mode}}</p>
-                      </td>
-                      <td>
-                          <p>{{order?._id}}</p>
-                      </td>
-                      <td *ngFor="let prod of order?.products">
-                        <p>{{prod?.name}}</p>
-                      </td>
-                      <td *ngFor="let prod of order?.products">
-                        <p>{{prod?.quantity}}</p>
-                    </td>
-                    <td *ngFor="let prod of order?.products">
-                        <p>{{prod?.sellerName}}</p>
-                  </td>
-                      <td>
-                          <p>{{order?.totalAmnt}}</p>
-                      </td>
-                      <!-- <td>
-                          <p>{{order?.userGstin}}</p>
-                      </td> -->
-                      <!-- <td>
-                          <p>NA</p>
-                      </td> -->
-                      <td>
-                          <p>{{order?.status}}</p>
-                      </td>
-                      <td>
-                          <p>{{order?.paymentMode}}</p>
-                      </td>
-                      <!-- <td>
-                          <p>On Delivery</p>
-                      </td> -->
-                      <td>
-                          <p>{{order?.address}}</p>
-                      </td>
-                      <!-- <td>
-                          <p>NA</p>
-                      </td>
-                      <td>
-                          <p>NA</p>
-                      </td>
-                      <td>
-                          <p>NA</p>
-                      </td> -->
-                      <!-- <td>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-sm btn-dark">Print</button>
-                          </div>
-                      </td> -->
-                      <td>
-                        <select class="form-control select-style" name="status" [(ngModel)]="order.orderStatus" (change)="updateStatus(order._id, $event)">
-                          <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
-                        </select>
-                      </td>
-                    </tr>
+                        <td>
+                            <p>{{order?.totalAmnt}}</p>
+                        </td>
+                        <!-- <td>
+                            <p>{{order?.userGstin}}</p>
+                        </td> -->
+                        <!-- <td>
+                            <p>NA</p>
+                        </td> -->
+                        <td>
+                            <p>{{order?.status}}</p>
+                        </td>
+                        <td>
+                            <p>{{order?.paymentMode}}</p>
+                        </td>
+                        <!-- <td>
+                            <p>On Delivery</p>
+                        </td> -->
+                        <td>
+                          <p *ngIf="order?.mode != website" >{{order?.address}}</p>
+                          <p *ngIf="order?.mode == website" >{{order?.address?.city}}</p>
+                        </td>
+                        <!-- <td>
+                            <p>NA</p>
+                        </td>
+                        <td>
+                            <p>NA</p>
+                        </td>
+                        <td>
+                            <p>NA</p>
+                        </td> -->
+                        <!-- <td>
+                          <div class="btn-group" role="group">
+                              <button type="button" class="btn btn-sm btn-dark">Print</button>
+                            </div>
+                        </td> -->
+                        <td>
+                          <select class="form-control select-style" name="status" [(ngModel)]="order.orderStatus" (change)="updateStatus(order._id, $event)">
+                            <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </ng-container>
                   </tbody>
                 </table>
+                <ng-container *ngIf="orders.length == 0">
+                  No Orders listed
+                </ng-container>
               </div>
             </div>
       

@@ -29,7 +29,10 @@ let user = JSON.parse(localStorage.getItem('user'));
   }  
 
   logout() {
-    sessionStorage.setItem('token', '');
+    sessionStorage.removeItem('token');
+    localStorage.removeItem('email');
+    localStorage.removeItem('user');
+    localStorage.removeItem('password');
     this.router.navigateByUrl('/auth/login');
   }
 

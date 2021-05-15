@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { OrderService } from '../order.service';
 
 @Component({
@@ -8,17 +9,22 @@ import { OrderService } from '../order.service';
 })
 export class OrderListingComponent implements OnInit {
 
-  orders: any;
-
+  orders: any = [];
+  selectedStatus: string = '';
   orderStatuses = [
     {text: 'Pending', value: 'P'},
     {text: 'Dispatched', value: 'D'},
+    {text: 'Delivered', value: 'DL'},
     {text: 'Refunded', value: 'RF'},
     {text: 'Cancelled', value: 'C'},
     {text: 'Returned', value: 'RT'}
   ];
+  orderStatus: string = "";
+  searchTerm: string = '';
+  searchId: string = '';
+  orderId: string = '';
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private toaster: ToastService) { }
 
   ngOnInit(): void {
     this.getOrder();
@@ -65,13 +71,17 @@ export class OrderListingComponent implements OnInit {
           case 'RT' :
           item['status'] = "Returned";
           break;
+          case 'DL' :
+          item['status'] = "Delivered";
+          break;
+          case 'C' :
+          item['status'] = "Cancelled";
+          break;
       }
-      
-    })
+    });
   }
 
   sortData(event) {
-    console.log(event)
     let obj = {
       key: event.target.value ? event.target.value.split('-')[0] : "null",
       sortBy: event.target.value ? (event.target.value.split('-')[1] === 'asc' ? "1" : "-1") : 0 ,
@@ -82,6 +92,83 @@ export class OrderListingComponent implements OnInit {
       if (res.code === 200) {
         this.orders = res.data;
         this.setOrderStaus();
+      }
+    });
+  }
+
+  sortByStatus(event?) {
+    if (!event.target.value) {
+      this.getOrder();
+      return;
+    }
+    switch(event.target.value) {
+      case 'Pending' :
+        event.target.value = "P";
+        break;
+      case 'Dispatched' :
+        event.target.value = "D";
+        break;
+        case 'Refunded' :
+        event.target.value = "RF";
+        break;
+        case 'Returned' :
+        event.target.value = "RT";
+        break;
+        case 'Delivered' :
+          event.target.value = "DL";
+        break;
+        case 'Cancelled' :
+          event.target.value = "C";
+        break;
+    }
+    this.selectedStatus = event.target.value;
+    let obj = {
+      skip:0,
+      limit: 10,
+      status: event.target.value
+    };
+    this.orderService.getOrdersByStatus(obj).subscribe((resp: any) => {
+      if (resp.code === 200) {
+        this.orders = resp['data'];
+      }
+    })
+  }
+
+  searchOrder() {
+    if (!this.searchTerm) {
+      this.getOrder();
+      return;
+    }
+    let obj = {
+      skip: 0,
+      limit: 10,
+      status: this.selectedStatus,
+      search: this.searchTerm
+    };
+    this.orderService.searchProducts(obj).subscribe((resp: any) => {
+      this.toaster.openSnackbar(resp.message);
+      if (resp.code === 200) {
+        this.orders = resp['data'];
+      }
+    });
+  }
+
+  searchOrderById() {
+    if (!this.searchId) {
+      this.getOrder();
+      return;
+    }
+    let obj = {
+      skip: 0,
+      limit: 10,
+      status: this.selectedStatus,
+      orderId: this.searchId,
+      search: this.searchTerm ? this.searchTerm : ''
+    };
+    this.orderService.searchProductsById(obj).subscribe((resp: any) => {
+      this.toaster.openSnackbar(resp.message);
+      if (resp.code === 200) {
+        this.orders = resp['data'];
       }
     });
   }

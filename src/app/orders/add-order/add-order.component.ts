@@ -12,13 +12,13 @@ export class AddOrderComponent implements OnInit {
   addOrderForm: FormGroup;
   showSubMenu = false;
   userName = '';
+  isSearchControl :any= { name: "", indx: -1};
+  product: any;
   paymentModes = [
-    // {value:'debit', text:'Debit Card / Credit Card'},
-    // {value:'upi', text:'UPI Payment'},
-    // {value:'gateway', text:'Payment Gateway (PayTM, PhonePe, GooglePay)'},
     {value:'cod', text:'Cash On Delivery'}
   ];
   sellers = [];
+  productLength: number = 0;
 
   constructor(private fb: FormBuilder, 
     private orderService: OrderService, 
@@ -35,14 +35,16 @@ export class AddOrderComponent implements OnInit {
     //   price:null,
     //   quantity: null
     // })]),
-    products: this.fb.group({
-      name: '',
-      price: null,
-      quantity: null,
-      sellerId: '',
-      productId: '',
-      sellerName: ''
-    }),
+    products: this.fb.array([
+      this.fb.group({
+        name: [''],
+        price: [''],
+        quantity: [''],
+        sellerId: [''],
+        productId: [''],
+        sellerName: ['']
+      }),
+    ]),
     //userId: [],
     totalAmnt:[],
     address:[],
@@ -62,21 +64,34 @@ export class AddOrderComponent implements OnInit {
   }
 
   searchResult = [];
-  searchProduct() {
-    this.orderService.searchProduct(this.addOrderForm.controls['products']['controls']['name'].value).subscribe(data => {
-      this.searchResult=data['data'];
+  searchProduct(index = 0) {
+    let searchTerm = this.addOrderForm.get('products')['controls'][index]['controls']['name'].value;
+    if (!searchTerm) {
+      this.searchResult = [];
+      return;
+    }
+    this.orderService.searchProduct(searchTerm).subscribe(data => {
+      this.searchResult = data['data'];
+      this.isSearchControl.name = this.addOrderForm.get('products')['controls'][index]['controls']['name'].value;
+      this.isSearchControl.indx = index;
     }, error => {
       console.log(error);
     })
   }
 
-  calculateTotalAmount() {
-    const quantity = this.addOrderForm.controls['products']['controls']['quantity'].value;
-    const price = this.addOrderForm.controls['products']['controls']['price'].value;
-
-    if( quantity && price) {
-      String(this.addOrderForm.controls['totalAmnt'].setValue(quantity * price));
+  calculateTotalAmount(index = 0) {
+    let totalPrice = 0
+    for (let i = 0;  i < this.addOrderForm.get('products')['controls'].length; i++ ) {
+      const quantity = this.addOrderForm.get('products')['controls'][i]['controls']['quantity'].value;
+      const price = this.addOrderForm.get('products')['controls'][i]['controls']['price'].value;
+      if( quantity && price) {
+        totalPrice = totalPrice + (quantity * price);
+      }
+      String(this.addOrderForm.controls['totalAmnt'].setValue( totalPrice));
     }
+
+
+
   }
 
   
@@ -92,16 +107,17 @@ export class AddOrderComponent implements OnInit {
     })
   }
 
-  setProductSearchText(productName, price, productId) {
-  this.addOrderForm.controls['products']['controls']['name'].setValue(productName);
-  this.addOrderForm.controls['products']['controls']['price'].setValue(parseFloat(price));
-  this.addOrderForm.controls['products']['controls']['productId'].setValue(productId);
+  setProductSearchText(productName, price, productId, index =0) {
+    this.addOrderForm.get('products')['controls'][index]['controls']['name'].setValue(productName);
+    this.addOrderForm.get('products')['controls'][index]['controls']['price'].setValue(parseFloat(price));
+    this.addOrderForm.get('products')['controls'][index]['controls']['productId'].setValue(productId);
+    this.isSearchControl = { name: "", indx: -1};
   }
 
-  changeSeller(seller) {
+  changeSeller(seller, index) {
     this.sellers.forEach(item => {
-      if(item._id === this.addOrderForm.controls['products']['controls']['sellerId'].value) {
-        this.addOrderForm.controls['products']['controls']['sellerName'].setValue(item.name);
+      if(item._id === this.addOrderForm.get('products')['controls'][index]['controls']['sellerId'].value) {
+        this.addOrderForm.get('products')['controls'][index]['controls']['sellerName'].setValue(item.name);
       }
     }) 
   }
@@ -109,6 +125,32 @@ export class AddOrderComponent implements OnInit {
   resetForm() {
     this.addOrderForm.reset();
    // this.router.navigateByUrl('/seller/active-dashboard');
+  }
+
+  addProducts() {
+    this.product = this.addOrderForm.get('products') as FormArray;
+    this.product.push(
+      this.fb.group({
+        name: '',
+        price: null,
+        quantity: null,
+        sellerId: '',
+        productId: '',
+        sellerName: ''
+      })
+    );
+  }
+
+
+  removeProducts(index) {
+    const quantity = this.addOrderForm.get('products')['controls'][index]['controls']['quantity'].value;
+    const price = this.addOrderForm.get('products')['controls'][index]['controls']['price'].value;
+    const ProductId = this.addOrderForm.get('products')['controls'][index]['controls']['productId'].value;
+    String(this.addOrderForm.controls['totalAmnt'].setValue( this.addOrderForm.controls['totalAmnt'].value - (quantity * price)));
+    this.product = this.addOrderForm.get('products') as FormArray;
+    if (index > -1) {
+      this.product.removeAt(this.product.value.findIndex(product => product._id === ProductId));
+    }
   }
 
 }

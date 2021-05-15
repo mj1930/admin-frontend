@@ -1,0 +1,75 @@
+<div class="page-wrapper chiller-theme toggled">
+    <app-side-navigation></app-side-navigation>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+      <div class="container-fluid">
+  
+        <h2>Customer Listing</h2>
+  
+        <hr />
+        <div class="row">
+          <div class="filer col p-3 rounded my-2 elegant-color text-white">
+            <div class="row">
+              <div class="col-sm-12 col-md-2">
+                Sort By
+                <select class="form-control">
+                  <option value="">Default</option>
+                  <option value="customerName-asc">customer Name (A - Z) </option>
+                  <option value="customerName-desc">customer Name (Z - A) </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive rounded table-striped">
+            <table class="table">
+              <thead class="grey lighten-2 small text-uppercase">
+                <tr class="text-nowrap">
+                  <th scope="col">Status</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Mobile</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let customer of customers">
+                  <td>
+                    <p>{{ !customer?.isDeleted ? 'Active': 'InActive'}}</p>
+                  </td>
+                  <td>
+                    <p>{{ customer?.fname }} {{ customer?.lname }}</p>
+                  </td>
+                  <td>
+                    <p>{{ customer?.email }}</p>
+                  </td>
+                  <td>
+                    <p>{{ customer?.address?.mobile ? customer?.address?.mobile : "NA" }}</p>
+                  </td>
+                  <td>
+                    <div class="custom-control custom-switch my-n2">
+                      <input type="checkbox" class="custom-control-input" (change)="statusChange(customer)" id="_{{ customer?._id }}"
+                        name="_{{ customer?._id }}" [checked]="!category?.isDeleted ? true : false">
+                      <label class="custom-control-label cursor-pointer my-2" for="_{{ customer?._id }}">{{ !category?.isDeleted ? 'Active': 'InActive'
+                        }}</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+        <footer class="text-center">
+          <div class="mb-2">
+            <small>
+              © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+              Rights Reserved
+            </small>
+          </div>
+        </footer>
+      </div>
+    </main>
+  
+    <!-- page-content" -->
+  </div>
+  <!-- page-wrapper -->

@@ -8,60 +8,10 @@
       <div class="row">
         <div class="filer col p-3 rounded my-2 elegant-color text-white">
           <div class="row d-flex align-items-center">
-            <div class="col-lg-9">
-              <!-- <span class="small mr-3">Status</span>
-                <div class="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    class="custom-control-input"
-                    id="defaultInline1"
-                    name="inlineDefaultRadiosExample"
-                  />
-                  <label class="custom-control-label" for="defaultInline1"
-                    >All</label
-                  >
-                </div>
-  
-                <div class="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    class="custom-control-input"
-                    id="defaultInline2"
-                    name="inlineDefaultRadiosExample"
-                  />
-                  <label class="custom-control-label" for="defaultInline2"
-                    >Active</label
-                  >
-                </div>
-  
-                <div class="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    class="custom-control-input"
-                    id="defaultInline3"
-                    name="inlineDefaultRadiosExample"
-                  />
-                  <label class="custom-control-label" for="defaultInline3"
-                    >Inactive</label
-                  >
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    class="custom-control-input"
-                    id="defaultInline4"
-                    name="inlineDefaultRadiosExample"
-                  />
-                  <label class="custom-control-label" for="defaultInline4"
-                    >Blocked</label
-                  >
-                </div> -->
-            </div>
-            <div class="col-lg-3 my-2">
+            <div class="col-lg-3 my">
               Sort By
               <select class="form-control" (change)="sortData($event)">
                 <option value="">Default</option>
-
                 <option value="isApproved-asc">Status (A - Z) </option>
                 <option value="isApproved-desc">Status (Z - A) </option>
                 <option value="itemName-asc">Name (A - Z) </option>
@@ -70,16 +20,13 @@
                 <option value="createdAt-desc">Date Created (Z - A) </option>
               </select>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-12 col-md-12">
-                Search Orders
-                <div class="input-group">
-                  <input type="search" class="form-control rounded" placeholder="Search Orders" />
-                  <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;">
-                    <i class="fa fa-search"></i>
-                  </span>
-                </div>
+            <div class="col-lg-6">
+              Search Orders
+              <div class="input-group">
+                <input type="search" class="form-control rounded" [(ngModel)]="searchTerm" placeholder="Search products by barcode or name" />
+                <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchProduct()">
+                  <i class="fa fa-search"></i>
+                </span>
               </div>
             </div>
           </div>
@@ -93,12 +40,11 @@
                 <th scope="col">Name</th>
                 <th scope="col">Date Created</th>
                 <th scope="col">Available Units</th>
-                <th scope="col">Total Sold</th>
-                <th scope="col">Total Returns</th>
+                <th scope="col">Seller Name</th>
+                <th scope="col">Seller Email</th>
                 <th scope="col">Price</th>
-                <th scope="col">Price + Shipping</th>
-                <th scope="col">Business Price + Shipping</th>
-                <th scope="col">Lowest Price + Shipping</th>
+                <th scope="col">Category</th>
+                <th scope="col">Product Rating</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -107,18 +53,21 @@
                 *ngFor="let product of products; let i = index"
               >
                 <td>
-                  <p class="text-left m-0">
-                    {{ product?.isApproved ? "Active" : "Inactive" }}
+                  <p class="text-left m-0" *ngIf="product?.availableUnits">
+                    {{ product?.isApproved ? "Active" : "Blocked" }}
+                  </p>
+                  <p class="text-left m-0" *ngIf="!product?.availableUnits">
+                    Inactive
                   </p>
                   <span
-                    *ngIf="!product?.isApproved"
+                    *ngIf="!product?.availableUnits"
                     class="text-left small m-0 p-0 text-muted"
                     >(Out Of Stock)</span
                   >
                 </td>
                 <td (click)="goToProductDescPage(product._id)">
                   <img
-                    src="https://images-na.ssl-images-amazon.com/images/I/61pZoOB87SL.jpg"
+                  [src]="product?.productImg.length > 0 ? product?.productImg[0] : 'https://images-na.ssl-images-amazon.com/images/I/61pZoOB87SL.jpg'"
                     alt=""
                     width="50px"
                     height="50px"
@@ -131,35 +80,34 @@
                 </td>
                 <td>{{ product?.createdAt | date: "medium" }}</td>
                 <td>{{ product?.availableUnits }}</td>
-                <td>N/A</td>
-                <td>N/A</td>
+                <td>{{ product?.sellerName }}</td>
+                <td>{{ product?.sellerEmail }}</td>
                 <td>INR {{ product?.productPrice }}</td>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
+                <td>{{ product?.categoryName }}</td>
+                <td>{{ product?.rating ? product?.rating : 'NA' }}</td>
 
                 <td>
-                  <div class="d-flex justify-content-around">
+                  <input type="hidden"   >
+                  <div class="d-flex justify-content-around" >
                     <button
-                      [disabled]="showFeedbackSection"
-                      (click)="showFeedbackSection = true"
+                      [disabled]="showFeedback == i"
+                      (click)="showFeedbackFn(i)"
                       class="btn btn-sm btn-danger m-2"
                     >
                       <i class="fa fa-times" aria-hidden="true"></i>
                     </button>
                     <button
-                      [disabled]="showFeedbackSection"
+                      [disabled]="showFeedback == i"
                       (click)="
                         approveRejectProduct(product, 'approve');
-                        showFeedbackSection = false
-                      "
+                        showFeedback = -1;"
                       class="btn btn-sm btn-success m-2"
                     >
                       <i class="fa fa-check" aria-hidden="true"></i>
                     </button>
                   </div>
 
-                  <div class="col" *ngIf="showFeedbackSection">
+                  <div class="col" *ngIf="showFeedback == i">
                     <textarea
                       rows="2"
                       [(ngModel)]="product.feedback"
@@ -168,7 +116,7 @@
                     <div class="d-flex justify-content-between">
                       <button
                         class="btn btn-sm btn-primary m-2"
-                        (click)="showFeedbackSection = false"
+                        (click)="showFeedback = -1;"
                       >
                         Cancel
                       </button>
@@ -176,7 +124,7 @@
                         class="btn btn-sm btn-dark m-2"
                         (click)="
                           approveRejectProduct(product, 'reject');
-                          showFeedbackSection = false
+                          showFeedback = -1;
                         "
                       >
                         Submit
@@ -202,7 +150,3 @@
   </main>
   <!-- page-content" -->
 </div>
-<!-- page-wrapper -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

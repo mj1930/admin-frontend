@@ -1,3 +1,6 @@
+.cursor-pointer{
+  cursor: pointer !important;
+}
 /* You can add global styles to this file, and also import other style files */
 .toast {
   opacity: 1 !important;
