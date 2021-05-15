@@ -46,6 +46,14 @@ export class AddCategoryComponent implements OnInit {
   }
 
   addCategory() {
+    if (!this.categoryId && !this.showInputForCategory) {
+      this.toaster.openSnackbar("Select category first!!");
+      return;
+    }
+    if ((!this.category || !this.subCategory) && this.showInputForCategory) {
+      this.toaster.openSnackbar("Both category and subcategory can't be empty!!");
+      return;
+    }
     let reqBody = {
       subCategory: this.subCategory
     }
