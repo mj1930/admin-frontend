@@ -27,7 +27,6 @@ export class CustomerComponent implements OnInit {
     };
     this.sellerService.getCustomers(reqBody).subscribe(
       data => {
-        console.log(data);
         this.customers = data['data'];
       },
       error => {

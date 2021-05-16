@@ -79,14 +79,17 @@
                         <td>
                             <p><a routerLink="/order/order-details/{{order?._id}}" class="text-primary">{{order?._id}}</a></p>
                         </td>
-                        <td>
-                          <p *ngFor="let prod of order?.products">{{prod?.name}}</p>
+                        <td *ngIf="order?.mode != 'website'">
+                            <p *ngFor="let prod of order?.products">{{prod?.name}}</p> 
+                        </td>
+                        <td *ngIf="order?.mode == 'website'">
+                          <p *ngFor="let prod of order?.products">{{prod?.productName}}</p>
                         </td>
                         <td>
                           <p *ngFor="let prod of order?.products">{{prod?.quantity}}</p>
                       </td>
                       <td>
-                          <p *ngFor="let prod of order?.products">{{prod?.sellerName}}</p>
+                          <p *ngFor="let prod of order?.products">{{prod?.sellerName || "NA"}}</p>
                       </td>
                         <td>
                             <p>{{order?.totalAmnt}}</p>
@@ -98,8 +101,8 @@
                             <p>{{order?.paymentMode}}</p>
                         </td>
                         <td>
-                          <p *ngIf="order?.mode != website" >{{order?.address}}</p>
-                          <p *ngIf="order?.mode == website" >{{order?.address?.city}}</p>
+                          <p *ngIf="order?.mode != 'website'" >{{order?.address}}</p>
+                          <p *ngIf="order?.mode == 'website'" >{{order?.address?.city}}</p>
                         </td>
                         <td>
                           <select class="form-control select-style" name="status" [(ngModel)]="order.orderStatus" (change)="updateStatus(order._id, $event)">

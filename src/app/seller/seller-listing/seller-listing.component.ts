@@ -33,7 +33,6 @@ export class SellerListingComponent implements OnInit {
     this.sellerService.getUsers(reqBody).subscribe(
       data => {
         this.isloading = false;
-        console.log(data);
         this.users = data['data'];
       },
       error => {
