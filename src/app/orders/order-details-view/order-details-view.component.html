@@ -25,8 +25,11 @@
                                 </thead>
                                 <tbody *ngFor="let product of order?.products;let i=index">
                                     <tr>
-                                        <th scope="row" class="text-left">
+                                        <th *ngIf="order?.mode != 'website'" scope="row" class="text-left">
                                             {{product.name}}
+                                        </th>
+                                        <th *ngIf="order?.mode == 'website'" scope="row" class="text-left">
+                                            {{product.productName}}
                                         </th>
                                         <td class="text-nowrap">
                                             <p>{{product.productId}}</p>

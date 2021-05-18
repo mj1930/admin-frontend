@@ -40,7 +40,7 @@
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Product Dimensions: <span class="font-weight-light text-dark">{{product?.dimensions}}</span></p>
+                <p class="font-weight-bold m-0">Product Dimensions: <span class="font-weight-light text-dark">{{product?.dimensions.length}} * {{product?.dimensions.width}} * {{product?.dimensions.height}}</span></p>
             </div>
 
             <div>
@@ -75,15 +75,11 @@
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Seller SKU: <span class="font-weight-light text-dark">NA</span></p>
+                <p class="font-weight-bold m-0">Seller SKU: <span class="font-weight-light text-dark">{{ product?.sku }}</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Condition: <span class="font-weight-light text-dark">NA</span></p>
-            </div>
-
-            <div>
-                <p class="font-weight-bold m-0">HSN Code: <span class="font-weight-light text-dark">NA</span></p>
+                <p class="font-weight-bold m-0">HSN Code: <span class="font-weight-light text-dark">{{ product?.hsn }}</span></p>
             </div>
 
             <div>
@@ -102,9 +98,15 @@
                 <p class="font-weight-bold m-0">Size: <span class="font-weight-light text-dark">{{product?.size.join(',')}}</span></p>
             </div>
         </div>
+        <div class="border rounded border-light p-3 my-2">
+            <h4>Product Images</h4>
+            <div *ngFor="let img of product?.productImg">
+                <img [src]="img">
+            </div>
+        </div>
 
         <!-- <div class="border rounded border-light p-3 my-2 d-flex justify-content-between"> -->
-            <button class="btn btn-sm btn-dark mt-3" (click)="goToProductListingPage()">Cancel</button>
+            <button class="btn btn-sm btn-dark mt-3" (click)="goToProductListingPage()">Close</button>
         <!-- </div> -->
   
   

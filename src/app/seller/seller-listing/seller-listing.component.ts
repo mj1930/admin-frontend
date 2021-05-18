@@ -101,5 +101,21 @@ export class SellerListingComponent implements OnInit {
       })
     }
   }
+  
+  statusChangeVerification(customer) {
+    let index = this.users.findIndex(x => x._id == customer._id);
+    if (index > -1) {
+      this.users[index].isVerified = !customer.isVerified;
+      this.sellerService.approveDisapproveSeller({
+        sellerId: customer._id,
+        status: this.users[index].isVerified
+      }).subscribe((data: any) => {
+        this.toaster.openSnackbar(data.message);
+        if (data.code === 200) {
+          this.users[index].isVerified = data['data'].isVerified;
+        }
+      })
+    }
+  }
 
 }

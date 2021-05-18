@@ -16,9 +16,10 @@ export class SideNavigationComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-let user = JSON.parse(localStorage.getItem('user'));
+    let user = JSON.parse(localStorage.getItem('user'));
     this.userName = user.name;
-    this.permissions = user.permissions.permissions;
+    if (user.permissions)
+      this.permissions = user.permissions.permissions;
   }
 
   closeSidebar() {

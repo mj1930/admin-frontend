@@ -101,6 +101,7 @@
                 <th scope="col">Date Created</th>
                 <th scope="col">Total lisited Products</th>
                 <th scope="col">Action</th>
+                <th scope="col">Verification Status</th>
               </tr>
             </thead>
             <tbody *ngIf="users.length">
@@ -128,6 +129,14 @@
                     <input type="checkbox" class="custom-control-input" (change)="statusChange(user)" id="_{{ user?._id }}"
                       name="_{{ user?._id }}" [checked]="user?.isActive ? true : false">
                     <label class="custom-control-label cursor-pointer my-2" for="_{{ user?._id }}">{{ user?.isActive ? 'Active': 'InActive'
+                      }}</label>
+                  </div>
+                </td>
+                <td>
+                  <div class="custom-control custom-switch my-n2">
+                    <input type="checkbox" class="custom-control-input" (change)="statusChangeVerification(user)" id="__{{ user?._id }}"
+                      name="__{{ user?._id }}" [checked]="user?.isVerified ? true : false">
+                    <label class="custom-control-label cursor-pointer my-2" for="__{{ user?._id }}">{{ user?.isVerified ? 'Verified': 'Not Verified'
                       }}</label>
                   </div>
                 </td>
