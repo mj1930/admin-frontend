@@ -14,13 +14,15 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { OrderService } from '../orders/order.service';
 import { CategoryService } from '../category/category.service';
 import { CustomerComponent } from './customer/customer.component';
+import { SellerDocumentsRecordsComponent } from './seller-documents-records/seller-documents-records.component';
 
 @NgModule({
   declarations: [
     SellerListingComponent,
     SellerProductListingComponent,
     ProductDescriptionComponent,
-    CustomerComponent
+    CustomerComponent,
+    SellerDocumentsRecordsComponent
   ],
   imports: [
     CommonModule,
