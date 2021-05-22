@@ -46,5 +46,9 @@ export class SellerService {
     return this.http.post('users/approve-disapprove-seller', reqBody);
   }
   
+  VerifyUnverifySeller(reqBody) {
+    return this.http.post('users/verify-unverify-seller', reqBody);
+  }
+  
 
 }

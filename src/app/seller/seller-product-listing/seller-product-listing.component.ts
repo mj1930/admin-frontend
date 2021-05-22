@@ -38,6 +38,7 @@ export class SellerProductListingComponent implements OnInit {
     this.sellerService.getProducts().subscribe((data: any) => {
       // this.toaster.openSnackbar(data.message);
       this.products = data['data'];
+      this.getProductSeller();
       this.getAllCategory();
       this.getProductCategory();
     }, error => {
@@ -87,9 +88,8 @@ export class SellerProductListingComponent implements OnInit {
     };
     this.sellerService.getUsers(reqBody).subscribe(
       data => {
-        console.log(data);
         this.users = data['data'];
-        this.getProductSeller()
+        this.getProductSeller();
       },
       error => {
         console.log(error);

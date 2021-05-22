@@ -45,12 +45,13 @@
                             [src]="product?.productImg[0]"
                             class="card-img-top" style="height: 150px;">
                           <div class="card-body px-0">
-                            <h5 class="card-title">Item Name - {{product?.itemName}}</h5>
-                            <h5 class="card-title">Price - Rs. {{product?.productPrice}}</h5>
-                            <h5 class="card-title">Rating - {{product?.rating}}</h5>
+                            <h5 class="card-title">Item Name - {{ product?.itemName }}</h5>
+                            <h5 class="card-title">Price - Rs. {{ product?.productPrice }}</h5>
+                            <h5 class="card-title">Rating - {{ product?.rating }}</h5>
+                            <h5 class="card-title">Seller Name - {{ product?.sellerName }}</h5>
                             <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
                             <button type="button" class="btn btn-success btn-sm mx-2"
-                              (click)="setProductSearchText(product.itemName, product.productPrice, product._id, i)"><i
+                              (click)="setProductSearchText(product.itemName, product.productPrice, product?.sellerName, product._id, i)"><i
                                 class="fa fa-check" aria-hidden="true"></i></button>
                           </div>
                         </div>
@@ -73,12 +74,12 @@
                 <!-- </div> -->
 
 
-                <div class="form-group" *ngIf="sellers.length">
+                <!-- <div class="form-group" *ngIf="sellers.length">
                   <label for="">Select Seller</label>
                   <select class="form-control" (change)="changeSeller(seller, i)" formControlName="sellerId">
                     <option *ngFor="let seller of sellers;" [value]="seller._id">{{seller?.name}}</option>
                   </select>
-                </div>
+                </div> -->
                 <button *ngIf= "addOrderForm.get('products')['controls'].length > 1" class="btn mb-4 btn-sm btn-dark" (click)="removeProducts(i)" type="button">Remove </button>
               </div>
             </div>

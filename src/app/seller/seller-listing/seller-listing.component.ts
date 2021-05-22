@@ -106,7 +106,7 @@ export class SellerListingComponent implements OnInit {
     let index = this.users.findIndex(x => x._id == customer._id);
     if (index > -1) {
       this.users[index].isVerified = !customer.isVerified;
-      this.sellerService.approveDisapproveSeller({
+      this.sellerService.VerifyUnverifySeller({
         sellerId: customer._id,
         status: this.users[index].isVerified
       }).subscribe((data: any) => {
