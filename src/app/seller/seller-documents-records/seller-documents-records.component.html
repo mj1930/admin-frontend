@@ -1,0 +1,92 @@
+<div class="page-wrapper chiller-theme toggled">
+    <app-side-navigation></app-side-navigation>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+      <div class="container-fluid">
+        <h2>Seller Documents Records</h2>
+        <hr />
+        <ngx-spinner
+          bdColor="rgba(51,51,51,0.8)"
+          size="medium"
+          color="#fff"
+          type="square-jelly-box"
+        >
+          <p style="font-size: 20px; color: white">Loading...</p>
+        </ngx-spinner>
+        <div class="row">
+          <div class="filer col p-3 rounded my-2 elegant-color text-white">
+            <div class="row d-flex align-items-center">
+              <div class="col-lg-3 my-2">
+                Sort By
+                <select class="form-control" (change)="sortData($event)">
+                  <option value="">Default</option>
+  
+                  <option value="isEmailVerified-asc">Status (A - Z) </option>
+                  <option value="isEmailVerified-desc">Status (Z - A) </option>
+                  <option value="storename-asc">Store Name (A - Z) </option>
+                  <option value="storename-desc">Store Name (Z - A) </option>
+                  <option value="createdAt-asc">Date Created (A - Z) </option>
+                  <option value="createdAt-desc">Date Created (Z - A) </option>
+                </select>
+              </div>
+              <div class="col-lg-6">
+                Search Orders
+                <div class="input-group">
+                  <input type="search" class="form-control rounded" [(ngModel)]="searchTerm" placeholder="Search Sellers" />
+                  <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchSeller()">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive rounded table-striped">
+            <table class="table" id="myTable">
+              <thead class="grey lighten-2 small text-uppercase">
+                <tr class="text-nowrap">
+                  <th scope="col">Store Name</th>
+                  <th scope="col">Seller Email</th>
+                  <th scope="col">PAN</th>
+                  <th scope="col">GSTIN</th>
+                  <th scope="col">Signature</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {{ user?.storename ? user?.storename : "NA" }}
+                  </td>
+                  <td>
+                    {{ user?.email ? user?.email : "NA" }}
+                  </td>
+                  <td>
+                    <img src="https://www.pngitem.com/pimgs/m/41-419983_transparent-signature-clipart-transparent-background-signature-png-png.png" width="120px" alt="">
+                </td>
+                  <td>
+                      <img src="https://www.pngitem.com/pimgs/m/41-419983_transparent-signature-clipart-transparent-background-signature-png-png.png" width="120px" alt="">
+                  </td>
+                  <td>
+                    <img src="https://www.pngitem.com/pimgs/m/41-419983_transparent-signature-clipart-transparent-background-signature-png-png.png" width="120px" alt="">
+                </td>
+                  <td>
+                    Action
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <footer class="text-center">
+          <div class="mb-2">
+            <small>
+              © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+              Rights Reserved
+            </small>
+          </div>
+        </footer>
+      </div>
+    </main>
+  
+    <!-- page-content" -->
+  </div>
