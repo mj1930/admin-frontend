@@ -111,7 +111,7 @@
                     {{ user?.isEmailVerified ? "Verified" : "Not Verified" }}
                   </p>
                 </td>
-                <td>
+                <td routerLink="documents/{{user._id}}" style="cursor: pointer;">
                   {{ user?.storename ? user?.storename : "NA" }}
                 </td>
                 <td>

@@ -50,5 +50,9 @@ export class SellerService {
     return this.http.post('users/verify-unverify-seller', reqBody);
   }
   
+  getSellerDetails(reqBody) {
+    return this.http.post('users/get-seller-details', reqBody);
+  }
+  
 
 }

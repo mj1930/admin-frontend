@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'product-listing', component: SellerProductListingComponent },
   { path: 'product-description/:id', component: ProductDescriptionComponent },
   { path: 'customer', component: CustomerComponent },
-  { path: 'documents', component: SellerDocumentsRecordsComponent }
+  { path: 'documents/:id', component: SellerDocumentsRecordsComponent }
 ];
 
 @NgModule({
