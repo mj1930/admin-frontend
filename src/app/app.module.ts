@@ -12,13 +12,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PaymentRecordsComponent } from './payment-records/payment-records.component';
 import { OrderInvoiceComponent } from './order-invoice/order-invoice.component';
+import { UnverifiedAdminAccountComponent } from './unverified-admin-account/unverified-admin-account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRightsManagementComponent,
     PaymentRecordsComponent,
-    OrderInvoiceComponent
+    OrderInvoiceComponent,
+    UnverifiedAdminAccountComponent
   ],
   imports: [
     BrowserModule,
