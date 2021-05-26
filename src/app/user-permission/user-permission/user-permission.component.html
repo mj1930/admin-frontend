@@ -78,6 +78,14 @@
                           </div>
                       </td>
                       <td>
+                        <div class="form-check" *ngFor="let option of radioOptions; let i=index">
+                            <input class="form-check-input" [checked]="user?.permission && user?.permission.indexOf('payments')>-1 ? i == 0 : i==1" (change)="changePermission($event, 'payments', user._id)" type="radio" [value]="option.value" name="chan-pr-radio-permission{{j}}" id="chan-pr-1-permission">
+                            <label class="form-check-label" for="chan-pr-1-permission">
+                              {{option.text}}
+                            </label>
+                          </div>
+                      </td>
+                      <td>
                         <div class="custom-control custom-switch my-n2">
                           <input type="checkbox" class="custom-control-input" (change)="statusChange(user)" id="_{{ user?._id }}"
                             name="_{{ user?._id }}" [checked]="user?.isActive ? true : false">

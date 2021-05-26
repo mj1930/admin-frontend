@@ -10,7 +10,6 @@ import { ToastrModule } from "ngx-toastr";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { PaymentRecordsComponent } from './payment-records/payment-records.component';
 import { OrderInvoiceComponent } from './order-invoice/order-invoice.component';
 import { UnverifiedAdminAccountComponent } from './unverified-admin-account/unverified-admin-account.component';
 
@@ -18,7 +17,6 @@ import { UnverifiedAdminAccountComponent } from './unverified-admin-account/unve
   declarations: [
     AppComponent,
     UserRightsManagementComponent,
-    PaymentRecordsComponent,
     OrderInvoiceComponent,
     UnverifiedAdminAccountComponent
   ],

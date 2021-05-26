@@ -47,6 +47,14 @@ export class OrderService {
   getOrderDetails(id) {
     return this.http.get(`orders/get-order/${id}`);
   }
+  
+  getPaymentRecords() {
+    return this.http.get(`orders/get-payments`);
+  }
+  
+  searchPayments(id) {
+    return this.http.post(`orders/search-payments`, {id: id});
+  }
 
 
 }

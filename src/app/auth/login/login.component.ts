@@ -54,7 +54,11 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('email', "");
           localStorage.setItem('password', "");
         }
-        this.router.navigateByUrl('/seller');
+        let user = data['data'];
+        if (user.permissions && user.permissions.permissions.length)
+          this.router.navigateByUrl('/seller');
+        else
+          this.router.navigateByUrl('/unverified');
     } else {
       this.toaster.openSnackbar(data.message);
     }

@@ -1,0 +1,73 @@
+<div class="page-wrapper chiller-theme toggled">
+    <app-side-navigation></app-side-navigation>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+      <div class="container-fluid">
+        <h2>Product Listing</h2>
+        <hr />
+        <div class="row">
+          <div class="filer col p-3 rounded my-2 elegant-color text-white">
+            <div class="row d-flex align-items-center">
+              <div class="col-lg-6">
+                Search By OrderID
+                <div class="input-group">
+                  <input type="search" class="form-control rounded" [(ngModel)]="searchTerm" placeholder="Search products by order id" />
+                  <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchPayment()">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive rounded table-striped">
+            <table class="table">
+              <thead class="grey lighten-2 small text-uppercase">
+                <tr class="text-nowrap">
+                  <th scope="col">#</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Order ID</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Transaction ID</th>
+                  <th scope="col">Date Created</th>
+                  <!-- <th scope="col">Action</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let record of paymentRecords; let i = index;">
+                    <td><p class="text-left m-0">{{ i+1 }}</p></td>
+                    <td *ngFor="let data of record.paymentResult; let i = index;">
+                      <p class="text-left m-0">{{ data.STATUS || "NA"}}</p>
+                    </td>
+                    <td *ngFor="let data of record.paymentResult; let i = index;">
+                      <p class="text-left m-0">{{ data.ORDERID || "NA" }}</p>
+                    </td>
+                    <td *ngFor="let data of record.paymentResult; let i = index;">
+                      <p class="text-left m-0">{{ data.TXNAMOUNT || "NA" }}</p>
+                    </td>
+                    <td *ngFor="let data of record.paymentResult; let i = index;">
+                      <p class="text-left m-0">{{ data.TXNID || "NA" }}</p>
+                    </td>
+                    <td *ngFor="let data of record.paymentResult; let i = index;">
+                      <p class="text-left m-0">{{ data.TXNDATE || "NA" }}</p>
+                    </td>
+                    <!-- <td><p class="text-left m-0"><button class="btn btn-sm btn-dark">View</button></p></td> -->
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+        <footer class="text-center">
+          <div class="mb-2">
+            <small>
+              © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+              Rights Reserved
+            </small>
+          </div>
+        </footer>
+      </div>
+    </main>
+    <!-- page-content" -->
+  </div>
+  

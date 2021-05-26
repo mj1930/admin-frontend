@@ -25,7 +25,7 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <div class="sidebar-menu">
+      <div class="sidebar-menu" *ngIf="hasPermissions">
         <ul>
           <li class="header-menu"><span>General</span></li>
           <li class="sidebar-dropdown" routerLinkActive="active" *ngIf="permissions.indexOf('seller')>-1">
@@ -37,6 +37,13 @@
             <a routerLink="/seller/customer" >
               <i class="fa fa-list-ul" aria-hidden="true"></i>
               <span>Customer Listing</span>
+            </a>
+            
+          </li>
+          <li class="sidebar-dropdown" routerLinkActive="active" *ngIf="permissions.indexOf('payments')>-1">
+            <a routerLink="/order/payment-records" >
+              <i class="fa fa-list-ul" aria-hidden="true"></i>
+              <span>Payments Listing</span>
             </a>
             
           </li>

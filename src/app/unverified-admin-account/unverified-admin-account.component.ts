@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnverifiedAdminAccountComponent implements OnInit {
 
+  userName: string = '';
   constructor() { }
 
   ngOnInit(): void {
+    let user = JSON.parse(localStorage.getItem('user'));
+    this.userName = user.name;
   }
 
 }
