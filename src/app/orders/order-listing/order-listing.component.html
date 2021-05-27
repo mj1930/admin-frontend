@@ -108,6 +108,16 @@
                           <select class="form-control select-style" name="status" [(ngModel)]="order.orderStatus" (change)="updateStatus(order._id, $event)">
                             <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
                           </select>
+                          <div class="btn-group">
+                            <button class="btn btn-sm btn-dark rounded px-2 mx-0">Delete</button>
+                            <button class="btn btn-sm btn-dark rounded px-2 ml-4">remark</button>
+                          </div>
+                          
+                          <div class="remark d-none">
+                            <textarea class="form-control"></textarea>
+                            <button class="btn btn-sm btn-warning text-dark rounded px-2 mx-0">Post Remark</button>
+                          </div>
+                          
                         </td>
                       </tr>
                     </ng-container>
