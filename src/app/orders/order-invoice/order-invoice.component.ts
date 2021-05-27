@@ -29,4 +29,8 @@ export class OrderInvoiceComponent implements OnInit {
     })
   }
 
+  totalCalculate(quantity, orderPrice) {
+    return quantity * orderPrice;
+  }
+
 }

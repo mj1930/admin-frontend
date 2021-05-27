@@ -11,9 +11,10 @@ import { OrderListingComponent } from './order-listing/order-listing.component';
 import { OrderService } from './order.service';
 import { OrderDetailsViewComponent } from './order-details-view/order-details-view.component';
 import { PaymentRecordsComponent } from './payment-records/payment-records.component';
+import { OrderInvoiceComponent } from './order-invoice/order-invoice.component';
 
 @NgModule({
-  declarations: [AddOrderComponent, OrderListingComponent, OrderDetailsViewComponent, PaymentRecordsComponent],
+  declarations: [AddOrderComponent, OrderListingComponent, OrderDetailsViewComponent, PaymentRecordsComponent, OrderInvoiceComponent],
   imports: [
     CommonModule,
     OrderRoutingModule,
