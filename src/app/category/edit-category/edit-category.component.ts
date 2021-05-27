@@ -53,16 +53,15 @@ export class EditCategoryComponent implements OnInit {
     })
   }
 
-  updateSubCategory() {
-    let namesData = this.categoriesData.map(cat => ({ "id": cat._id, "name": cat.subCategoryName}));
-    let names = this.categoriesData.map(data => {return data.subCategoryName})
-    if (names.includes("")) {
+  updateSubCategory(categoryData) {
+    if (!categoryData.subCategoryName) {
       this.toaster.openSnackbar('Please fill all subcategories!!');
       return;
     }
     let obj = {
       categoryId: this.categoryId,
-      subCategory: namesData
+      subCategory: categoryData.subCategoryName,
+      subCategoryId: categoryData._id
     };
     this.categoryService.updateSubcategory(obj).subscribe((resp: any) => {
       if (resp.data === 200) {

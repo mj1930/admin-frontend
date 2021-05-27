@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { OrderInvoiceComponent } from './order-invoice/order-invoice.component';
 import { UnverifiedAdminAccountComponent } from './unverified-admin-account/unverified-admin-account.component';
 import { UserRightsManagementComponent } from './user-rights-management/user-rights-management.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/auth/login'},
   { path: 'user-rights', component: UserRightsManagementComponent },
-  { path: 'order-invoice', component: OrderInvoiceComponent },
   { path: 'unverified', component: UnverifiedAdminAccountComponent },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule)},
   { path: 'seller', loadChildren: () => import('./seller/seller.module').then(module => module.SellerModule)},

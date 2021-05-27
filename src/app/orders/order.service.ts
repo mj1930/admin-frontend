@@ -56,5 +56,7 @@ export class OrderService {
     return this.http.post(`orders/search-payments`, {id: id});
   }
 
-
+  printInvoice(id) {
+    return this.http.get(`orders/print-invoice/${id}`);
+  }
 }

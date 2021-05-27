@@ -25,9 +25,8 @@
                 <div class="form-group" *ngFor="let subcategory of categoriesData; let i = index">
                   <label class="my-1">SubCategory Name</label>
                   <input type="text" class="form-control" name="{{i}}" [(ngModel)]="categoriesData[i].subCategoryName">
+                  <button type="submit" class="btn btn-dark mx-0 btn-sm rounded" (click)="updateSubCategory(categoriesData[i])">update subcategory</button>
                 </div>
-
-                <button type="submit" class="btn btn-dark mx-0 btn-sm rounded" (click)="updateSubCategory()">update subcategory</button>
             </form>
         </div>
   

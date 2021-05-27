@@ -6,8 +6,11 @@
 
             <div class="d-flex justify-content-between">
                 <h2 class="my-2">Order Details</h2>
-                <button class="btn btn-sm btn-dark mx-0 rounded" routerLink="/order/order-listing"> Back to my
-                    orders</button>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-sm btn-dark mx-0 rounded" routerLink="/order/order-listing"> Back to my
+                        orders</button>
+                    <a class="btn btn-sm btn-primary rounded mx-1" href="/order/print-invoice/{{order?._id}}" role="button" target="_blank"> Print Invoice</a>
+                </div>
             </div>
             <hr />
             <div class="row">

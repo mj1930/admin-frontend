@@ -51,7 +51,7 @@
                             <h5 class="card-title">Seller Name - {{ product?.sellerName }}</h5>
                             <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
                             <button type="button" class="btn btn-success btn-sm mx-2"
-                              (click)="setProductSearchText(product.itemName, product.productPrice, product?.sellerName, product._id, i)"><i
+                              (click)="setProductSearchText(product.itemName, product.productPrice, product?.sellerName, product._id,product.userId , i)"><i
                                 class="fa fa-check" aria-hidden="true"></i></button>
                           </div>
                         </div>
@@ -62,13 +62,13 @@
                 </div>
                 <div class="form-group mt-2">
                   <label for="">Quantity</label>
-                  <input type="text" class="form-control" (keyup)="calculateTotalAmount(i)" formControlName="quantity"
+                  <input type="text" class="form-control" (keyup)="calculateTotalAmount(i)" formControlName="quantity" oninput="this.value = this.value.replace(/[^1-9.]/g, '').replace(/(\..*)\./g, '$1');"
                     placeholder="Product quantity">
                 </div>
 
                 <div class="form-group mt-2">
                   <label for="">Product Price (MRP)</label>
-                  <input type="text" class="form-control" (keyup)="calculateTotalAmount(i)" formControlName="price"
+                  <input type="text" class="form-control" (keyup)="calculateTotalAmount(i)" formControlName="price" oninput="this.value = this.value.replace(/[^1-9.]/g, '').replace(/(\..*)\./g, '$1');"
                     placeholder="Product price">
                 </div>
                 <!-- </div> -->

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common'; 
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,18 +11,17 @@ import { ToastrModule } from "ngx-toastr";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { OrderInvoiceComponent } from './order-invoice/order-invoice.component';
 import { UnverifiedAdminAccountComponent } from './unverified-admin-account/unverified-admin-account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRightsManagementComponent,
-    OrderInvoiceComponent,
     UnverifiedAdminAccountComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: "toast-top-right"

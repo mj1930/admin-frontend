@@ -107,11 +107,12 @@ export class AddOrderComponent implements OnInit {
     })
   }
 
-  setProductSearchText(productName, price, sellerName, productId, index =0) {
+  setProductSearchText(productName, price, sellerName, productId, sellerId ,index =0) {
     this.addOrderForm.get('products')['controls'][index]['controls']['name'].setValue(productName);
     this.addOrderForm.get('products')['controls'][index]['controls']['price'].setValue(parseFloat(price));
     this.addOrderForm.get('products')['controls'][index]['controls']['productId'].setValue(productId);
     this.addOrderForm.get('products')['controls'][index]['controls']['sellerName'].setValue(sellerName);
+    this.addOrderForm.get('products')['controls'][index]['controls']['sellerId'].setValue(sellerId);
     this.isSearchControl = { name: "", indx: -1};
   }
 

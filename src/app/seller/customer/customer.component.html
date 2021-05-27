@@ -28,6 +28,7 @@
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
                   <th scope="col">Mobile</th>
+                  <th scope="col">Created At</th>
                   <th scope="col">Status</th>
                 </tr>
               </thead>
@@ -44,6 +45,9 @@
                   </td>
                   <td>
                     <p>{{ customer?.address?.mobile ? customer?.address?.mobile : "NA" }}</p>
+                  </td>
+                  <td>
+                    <p>{{ customer?.createdAt | date : 'dd/MM/yyyy' }}</p>
                   </td>
                   <td>
                     <div class="custom-control custom-switch my-n2">
