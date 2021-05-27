@@ -68,7 +68,7 @@
 
                 <div class="form-group mt-2">
                   <label for="">Product Price (MRP)</label>
-                  <input type="text" class="form-control" (keyup)="calculateTotalAmount(i)" formControlName="price" oninput="this.value = this.value.replace(/[^1-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  <input type="text" class="form-control" (keyup)="calculateTotalAmount(i)" formControlName="price" disabled
                     placeholder="Product price">
                 </div>
                 <!-- </div> -->
